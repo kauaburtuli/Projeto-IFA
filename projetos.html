@@ -8,143 +8,133 @@
 
 <title>Projetos Desenvolvidos</title>
 
+<link rel="icon" type="image/png" href="imagens/robo-logo.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#eef4f9;
-margin:0;
+    background:#eef4f9;
 }
 
-.container{
+/* Cabeçalho */
 
-  width:90%;
+header{
+    background:#0d47a1;
+    color:white;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
+header h1{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:28px;
+}
+
+.logo{
+    width:55px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:600;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* Conteúdo */
+
+main{
+    width:90%;
     max-width:1200px;
-
     margin:50px auto;
-
 }
 
-p{
-
-font-size:18px;
-line-height:1.8;
-margin-bottom:30px;
-
+main h2{
+    color:#0d47a1;
+    text-align:center;
+    margin-bottom:15px;
 }
 
-a{
-
-display:inline-block;
-padding:15px 35px;
-background:#0d47a1;
-color:white;
-text-decoration:none;
-border-radius:40px;
-transition:.3s;
-
+main p{
+    text-align:center;
+    margin-bottom:40px;
+    line-height:1.8;
 }
 
-a:hover{
-
-background:#1565c0;
-
-}
+/* Cartões */
 
 .projetos{
-
     display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
-
-    gap:35px;
-
-    margin-top:45px;
-
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
 }
 
 .card{
 
     background:white;
-
-    border-radius:18px;
-
+    border-radius:15px;
     overflow:hidden;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
-
-    transition:.3s;
-
-}
-
-.card:hover{
-
-    transform:translateY(-8px);
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 
 }
 
 .card img{
 
     width:100%;
-
     height:220px;
-
     object-fit:cover;
 
 }
 
-.conteudo{
+.card-conteudo{
 
-    padding:25px;
+    padding:20px;
 
 }
 
-.conteudo h2{
+.card h3{
 
     color:#0d47a1;
-
     margin-bottom:15px;
 
 }
 
-.conteudo p{
-
-    line-height:1.8;
+.card p{
 
     text-align:justify;
-
     margin-bottom:25px;
 
 }
 
-.conteudo a{
+.botao{
 
     display:inline-block;
-
-    padding:12px 28px;
-
     background:#0d47a1;
-
     color:white;
-
-    text-decoration:none;
-
+    padding:12px 25px;
     border-radius:30px;
-
-    transition:.3s;
+    text-decoration:none;
 
 }
 
-.conteudo a:hover{
+.botao:hover{
 
     background:#1565c0;
 
@@ -152,91 +142,18 @@ background:#1565c0;
 
 .voltar{
 
-    display:inline-block;
+    text-align:center;
+    margin-top:50px;
 
-    margin-top:20px;
+}
 
-    text-decoration:none;
+footer{
 
+    margin-top:60px;
     background:#0d47a1;
-
     color:white;
-
-    padding:12px 28px;
-
-    border-radius:30px;
-
-}
-
-header{
-
-    background:#0d47a1;
-
-    padding:18px 8%;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    box-shadow:0 3px 10px rgba(0,0,0,.2);
-
-}
-
-.container h1{
-
-color:#0d47a1;
-
-margin-bottom:20px;
-
-text-align:center;
-
-}
-
-.logo-robo{
-
-    width:55px;
-
-    height:55px;
-
-    object-fit:contain;
-
-}
-
-nav a{
-
-    color:white;
-
-    text-decoration:none;
-
-    margin-left:25px;
-
-    font-weight:500;
-
-}
-
-nav a:hover{
-
-    text-decoration:underline;
-
-}
-
-header{
-
-width:100%;
-
-}
-
-.voltar{
-
-display:block;
-
-width:250px;
-
-margin:50px auto;
-
-text-align:center;
+    text-align:center;
+    padding:25px;
 
 }
 
@@ -246,11 +163,11 @@ text-align:center;
 
 <body>
 
-    <header>
+<header>
 
 <h1>
 
-<img src="imagens/robo-logo.png" class="logo-robo" alt="Mascote">
+<img src="imagens/robo-logo.png" class="logo">
 
 Robótica Educacional
 
@@ -266,76 +183,63 @@ Robótica Educacional
 
 </header>
 
+<main>
 
-<div class="container">
+<h2>Projetos Desenvolvidos</h2>
 
-    <h1>Projetos Desenvolvidos</h1>
+<p>
 
-    <p>
-        Nesta página estão reunidos os projetos desenvolvidos pelo nosso grupo durante o IFA,
-        utilizando Robótica Educacional, programação e eletrônica para desenvolver soluções
-        voltadas à acessibilidade e inovação.
-    </p>
+Nesta página estão reunidos os projetos desenvolvidos pelo nosso grupo durante o IFA,
+utilizando a Robótica Educacional para desenvolver soluções voltadas à acessibilidade.
 
-    <div class="projetos">
+</p>
 
-        <!-- Projeto 1 -->
+<div class="projetos">
 
-        <div class="card">
+<div class="card">
 
-            <img src="imagens/circuito_fade-in_inicial.jpg" alt="Efeito Fade-In e Fade-Out">
+<img src="imagens/circuito_fade-in_inicial.jpg">
 
-            <div class="conteudo">
+<div class="card-conteudo">
 
-                <h2>Efeito Fade-In e Fade-Out</h2>
+<h3>Efeito Fade-In e Fade-Out</h3>
 
-                <p>
-                    Demonstra o controle gradual do brilho de um LED utilizando PWM
-                    com Arduino UNO e sua importância na acessibilidade visual.
-                </p>
+<p>
 
-                <a href="fade-in-fade-out.html">
-                    Saiba mais
-                </a>
+Projeto utilizando Arduino UNO para demonstrar o efeito Fade-In e Fade-Out
+em um LED através da modulação PWM e sua aplicação na acessibilidade visual.
 
-            </div>
+</p>
 
-        </div>
+<a href="fade-in-fade-out.html" class="botao">
 
-        <!-- Próximos projetos -->
+Saiba mais
 
-        <!--
-        <div class="card">
-
-            <img src="imagens/projeto2.jpg">
-
-            <div class="conteudo">
-
-                <h2>Nome do Projeto</h2>
-
-                <p>
-                    Pequena descrição...
-                </p>
-
-                <a href="projeto2.html">
-                    Saiba mais
-                </a>
-
-            </div>
-
-        </div>
-        -->
-
-    </div>
-
-    <br><br>
-
-    <a href="index.html" class="voltar">
-        Voltar para a página inicial
-    </a>
-
+</a>
 
 </div>
+
+</div>
+
+</div>
+
+<div class="voltar">
+
+<a href="index.html" class="botao">
+
+Voltar para a página inicial
+
+</a>
+
+</div>
+
+</main>
+
+<footer>
+
+Projeto desenvolvido para o IFA • Robótica Educacional
+
+</footer>
 
 </body>
 
