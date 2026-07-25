@@ -71,89 +71,186 @@ background:#1565c0;
 
 }
 
+.projetos{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+    gap:35px;
+
+    margin-top:45px;
+
+}
+
 .card{
 
-    margin-top:40px;
     background:white;
-    border-radius:15px;
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    border-radius:18px;
+
     overflow:hidden;
-    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
 
 }
 
 .card img{
 
     width:100%;
-    height:250px;
+
+    height:220px;
+
     object-fit:cover;
 
 }
 
-.card h2{
+.conteudo{
+
+    padding:25px;
+
+}
+
+.conteudo h2{
 
     color:#0d47a1;
-    margin:20px;
+
+    margin-bottom:15px;
 
 }
 
-.card p{
+.conteudo p{
 
-    margin:0 20px 25px;
     line-height:1.8;
+
     text-align:justify;
 
+    margin-bottom:25px;
+
 }
 
-.card a{
+.conteudo a{
 
     display:inline-block;
-    margin-bottom:25px;
-    padding:12px 30px;
+
+    padding:12px 28px;
+
     background:#0d47a1;
+
     color:white;
+
     text-decoration:none;
+
     border-radius:30px;
+
+    transition:.3s;
 
 }
 
-.card a:hover{
+.conteudo a:hover{
 
     background:#1565c0;
 
 }
 
+.voltar{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    text-decoration:none;
+
+    background:#0d47a1;
+
+    color:white;
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+}
 </style>
 
 </head>
 
 <body>
 
+
 <div class="container">
 
-<h1>Projetos Desenvolvidos</h1>
-
-<p>
-Nesta página estão reunidos os projetos desenvolvidos pelo nosso grupo durante o IFA, envolvendo Robótica Educacional, programação, eletrônica e acessibilidade.
-</p>
-
-<div class="card">
-
-    <img src="imagens/circuito_fade-in_inicial.jpg" alt="Projeto Fade-In e Fade-Out">
-
-    <h2>Efeito Fade-In e Fade-Out</h2>
+    <h1>Projetos Desenvolvidos</h1>
 
     <p>
-        Projeto desenvolvido com Arduino UNO para demonstrar os efeitos Fade-In e Fade-Out utilizando PWM, destacando sua aplicação na acessibilidade visual e em interfaces mais confortáveis para o usuário.
+        Nesta página estão reunidos os projetos desenvolvidos pelo nosso grupo durante o IFA,
+        utilizando Robótica Educacional, programação e eletrônica para desenvolver soluções
+        voltadas à acessibilidade e inovação.
     </p>
 
-    <a href="fade-in-fade-out.html">Saiba mais</a>
+    <div class="projetos">
 
-</div>
+        <!-- Projeto 1 -->
 
-<br>
+        <div class="card">
 
-<a href="index.html">Voltar para a página inicial</a>
+            <img src="imagens/circuito_fade-in_inicial.jpg" alt="Efeito Fade-In e Fade-Out">
+
+            <div class="conteudo">
+
+                <h2>Efeito Fade-In e Fade-Out</h2>
+
+                <p>
+                    Demonstra o controle gradual do brilho de um LED utilizando PWM
+                    com Arduino UNO e sua importância na acessibilidade visual.
+                </p>
+
+                <a href="fade-in-fade-out.html">
+                    Saiba mais
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Próximos projetos -->
+
+        <!--
+        <div class="card">
+
+            <img src="imagens/projeto2.jpg">
+
+            <div class="conteudo">
+
+                <h2>Nome do Projeto</h2>
+
+                <p>
+                    Pequena descrição...
+                </p>
+
+                <a href="projeto2.html">
+                    Saiba mais
+                </a>
+
+            </div>
+
+        </div>
+        -->
+
+    </div>
+
+    <br><br>
+
+    <a href="index.html" class="voltar">
+        Voltar para a página inicial
+    </a>
 
 </div>
 
