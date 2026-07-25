@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Efeito Fade-In e Fade-Out</title>
+
+<link rel="icon" type="image/png" href="imagens/robo-logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#eef4f9;
+color:#222;
+}
+
+header{
+background:#0d47a1;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+header h1{
+color:white;
+display:flex;
+align-items:center;
+gap:12px;
+font-size:28px;
+}
+
+.logo-robo{
+width:55px;
+height:55px;
+object-fit:contain;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+}
+
+.banner{
+
+width:100%;
+height:420px;
+overflow:hidden;
+position:relative;
+
+}
+
+.banner img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.banner-texto{
+
+position:absolute;
+left:8%;
+bottom:40px;
+
+background:rgba(13,71,161,.88);
+
+padding:25px;
+
+border-radius:12px;
+
+color:white;
+
+max-width:600px;
+
+}
+
+.banner-texto h2{
+
+font-size:42px;
+margin-bottom:15px;
+
+}
+
+.banner-texto p{
+
+line-height:1.8;
+
+}
+
+section{
+
+padding:70px 8%;
+
+}
+
+.titulo{
+
+font-size:36px;
+color:#0d47a1;
+margin-bottom:30px;
+text-align:center;
+
+}
+
+.texto{
+
+line-height:2;
+font-size:18px;
+text-align:justify;
+
+}
+
+.cards-materiais{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:25px;
+margin-top:40px;
+
+}
+
+.material{
+
+background:white;
+padding:30px;
+text-align:center;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.3s;
+
+}
+
+.material:hover{
+
+transform:translateY(-6px);
+
+}
+
+.material h3{
+
+color:#0d47a1;
+margin-bottom:15px;
+
+}
+
+.material p{
+
+font-size:17px;
+
+}
+
+.tinkercad{
+
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+text-align:center;
+
+}
+
+.tinkercad img{
+
+width:100%;
+max-width:900px;
+border-radius:12px;
+margin-bottom:25px;
+
+}
+
+.tinkercad p{
+
+font-size:18px;
+line-height:1.8;
+margin-bottom:30px;
+text-align:justify;
+
+}
+
+.codigo{
+
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.codigo h3{
+
+color:#0d47a1;
+margin-bottom:20px;
+
+}
+
+.codigo pre{
+
+background:#1e1e1e;
+color:#dcdcdc;
+padding:20px;
+border-radius:10px;
+
+overflow:auto;
+
+font-size:15px;
+
+line-height:1.6;
+
+margin-bottom:25px;
+
+}
+
+.codigo code{
+
+font-family:Consolas, monospace;
+
+}
+
+.video{
+
+background:white;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+.video video{
+
+width:100%;
+
+max-width:900px;
+
+border-radius:12px;
+
+}
+
+.galeria{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:25px;
+
+margin-top:30px;
+
+}
+
+.galeria img{
+
+width:100%;
+
+border-radius:15px;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+.galeria img:hover{
+
+transform:scale(1.04);
+
+}
+
+.janela{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.9);
+
+justify-content:center;
+
+align-items:center;
+
+z-index:9999;
+
+}
+
+.janela img{
+
+max-width:90%;
+
+max-height:90%;
+
+border-radius:12px;
+
+}
+
+.fechar{
+
+position:absolute;
+
+top:20px;
+
+right:40px;
+
+font-size:50px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+
+<img src="imagens/robo-logo.png" class="logo-robo">
+
+Robótica Educacional
+
+</h1>
+
+<nav>
+
+<a href="index.html">Início</a>
+
+<a href="projetos.html">Projetos</a>
+
+</nav>
+
+</header>
+
+<div class="banner">
+
+<img src="imagens/circuito_fade-in_inicial.jpg">
+
+<div class="banner-texto">
+
+<h2>Efeito Fade-In e Fade-Out</h2>
+
+<p>
+
+Projeto desenvolvido utilizando Arduino UNO para demonstrar os efeitos de aumento e diminuição gradual da intensidade luminosa de um LED através da modulação por largura de pulso (PWM).
+
+</p>
+
+</div>
+
+</div>
+
+<section>
+
+<h2 class="titulo">
+
+Explicação sobre
+
+</h2>
+
+<div class="texto">
+
+<p>
+
+Efeitos Fade-in e Fade-out na Acessibilidade Visual
+
+<br><br>
+
+Os efeitos fade-in e fade-out são animações visuais utilizadas em interfaces digitais para tornar as transições entre elementos mais suaves e confortáveis. O fade-in faz com que um objeto apareça gradualmente na tela, enquanto o fade-out faz com que ele desapareça de forma progressiva. Embora sejam frequentemente utilizados por motivos estéticos, esses efeitos também desempenham um papel importante na acessibilidade, especialmente para pessoas com baixa visão, sensibilidade visual ou dificuldades de percepção.
+
+<br><br>
+
+Quando um elemento surge ou desaparece de maneira instantânea, o usuário pode não perceber a mudança, principalmente se possuir alguma limitação visual. Com o uso do fade-in e do fade-out, o cérebro tem mais tempo para identificar a alteração na interface, facilitando a localização de botões, menus, imagens e mensagens importantes. Isso reduz o esforço visual e melhora a experiência de navegação.
+
+<br><br>
+
+Além do ambiente digital, esse conceito também pode contribuir para a percepção de objetos no mundo real. Pessoas com baixa visão frequentemente necessitam de um tempo maior para localizar e reconhecer objetos ao seu redor. Transições suaves, contrastes graduais e mudanças menos bruscas ajudam o cérebro a direcionar a atenção para um determinado ponto, tornando mais fácil identificar obstáculos, portas, degraus, placas ou outros elementos importantes durante a locomoção.
+
+<br><br>
+
+Em aplicações voltadas à acessibilidade, como sistemas educacionais, mapas interativos, assistentes virtuais e interfaces para pessoas com deficiência visual, os efeitos de fade-in e fade-out podem indicar mudanças de estado sem causar desconforto. Por exemplo, quando uma informação aparece gradualmente ao mesmo tempo em que é narrada por voz ou acompanhada por um intérprete virtual de Libras, o usuário consegue acompanhar a informação de forma mais natural.
+
+<br><br>
+
+Entretanto, é importante que essas animações sejam utilizadas com equilíbrio. Transições muito lentas podem tornar a navegação cansativa, enquanto animações excessivas podem distrair ou causar desconforto em alguns usuários. Por isso, recomenda-se utilizar efeitos rápidos e discretos, normalmente entre 200 e 500 milissegundos, oferecendo uma experiência mais confortável sem comprometer a agilidade da interface.
+
+<br><br>
+
+Dessa forma, os efeitos fade-in e fade-out vão além da estética. Eles são recursos que aumentam a acessibilidade, melhoram a percepção visual das mudanças na interface e podem auxiliar pessoas com dificuldades visuais a identificar informações e objetos com maior facilidade, contribuindo para uma navegação mais segura, intuitiva e inclusiva.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Materiais Utilizados</h2>
+
+<div class="cards-materiais">
+
+<div class="material">
+
+<h3>Arduino UNO</h3>
+
+<p>1 Unidade</p>
+
+</div>
+
+<div class="material">
+
+<h3>Protoboard</h3>
+
+<p>1 Unidade</p>
+
+</div>
+
+<div class="material">
+
+<h3>Jumpers</h3>
+
+<p>2 Unidades</p>
+
+</div>
+
+<div class="material">
+
+<h3>LED</h3>
+
+<p>1 Unidade (cor à sua escolha)</p>
+
+</div>
+
+<div class="material">
+
+<h3>Resistor</h3>
+
+<p>220 Ω</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Circuito no Tinkercad</h2>
+
+<div class="tinkercad">
+
+<img src="imagens/efeito_fade-in.jpg" alt="Circuito Fade-In e Fade-Out">
+
+<p>
+
+A imagem acima apresenta a montagem do circuito desenvolvida no Tinkercad. Nela é possível visualizar a ligação entre o Arduino UNO, o LED, o resistor de 220 Ω e os jumpers utilizados para realizar o efeito Fade-In e Fade-Out utilizando PWM.
+
+</p>
+
+<a href="https://www.tinkercad.com/things/0sKq0ycjGbE/editel?returnTo=%2Fdashboard" target="_blank" class="btn">
+
+Acessar Projeto no Tinkercad
+
+</a>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Códigos Fonte</h2>
+
+<!-- Fade-In -->
+
+<div class="codigo">
+
+<h3>Efeito Fade-In</h3>
+
+<pre><code>
+/* Define a porta PWM 11 como pino do LED.             */
+int pinoLed = 11;
+int incremento = 1;
+int brilho = 0;
+
+void setup() {
+
+  pinMode(pinoLed, OUTPUT);
+
+}
+
+void loop() {
+
+  for (brilho; brilho <= 256; brilho += incremento) {
+
+    analogWrite(pinoLed, brilho);
+
+    delay(100);
+
+  }
+
+}
+</code></pre>
+
+<a href="codigos/fade-in.ino" download class="btn">
+
+Baixar Código Fade-In
+
+</a>
+
+</div>
+
+<br><br>
+
+<!-- Fade-Out -->
+
+<div class="codigo">
+
+<h3>Efeito Fade-Out</h3>
+
+<pre><code>
+/*******************************************************/
+/* Aula 20 - LED Fade-Out                              */
+/*******************************************************/
+
+int pinoLed = 11;
+int decremento = 5;
+int brilho = 255;
+
+void setup() {
+
+  pinMode(pinoLed, OUTPUT);
+
+}
+
+void loop() {
+
+  for (brilho; brilho >= -1; brilho -= decremento) {
+
+    analogWrite(pinoLed, brilho);
+
+    delay(50);
+
+  }
+
+}
+</code></pre>
+
+<a href="codigos/fade-out.ino" download class="btn">
+
+Baixar Código Fade-Out
+
+</a>
+
+</div>
+
+<br><br>
+
+<!-- Fade-In + Fade-Out -->
+
+<div class="codigo">
+
+<h3>Efeito Fade-In e Fade-Out</h3>
+
+<pre><code>
+// LED ligado ao pino 11
+const int led = 11;
+
+int brilho = 0;
+int incremento = 1;
+
+void setup() {
+
+  pinMode(led, OUTPUT);
+
+}
+
+void loop() {
+
+  analogWrite(led, brilho);
+
+  brilho += incremento;
+
+  if (brilho <= 0 || brilho >= 255) {
+
+    incremento = -incremento;
+
+  }
+
+  delay(30);
+
+}
+</code></pre>
+
+<a href="codigos/fade-in-fade-out.ino" download class="btn">
+
+Baixar Código Completo
+
+</a>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Vídeo Demonstrativo</h2>
+
+<div class="video">
+
+<video controls>
+
+<source src="videos/efeito_fade.mp4" type="video/mp4">
+
+Seu navegador não suporta vídeos.
+
+</video>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Biblioteca de Imagens</h2>
+
+<div class="galeria">
+
+<img src="imagens/circuito_fade1.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 1">
+
+<img src="imagens/circuito_fade2.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 2">
+
+<img src="imagens/circuito_fade3.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 3">
+
+</div>
+
+</section>
+
+<!-- Janela da imagem -->
+
+<div id="janelaImagem" class="janela">
+
+<span class="fechar"
+onclick="fecharImagem()">&times;</span>
+
+<img id="imagemGrande">
+
+</div>
+
+<script>
+
+function abrirImagem(src){
+
+document.getElementById("janelaImagem").style.display="flex";
+
+document.getElementById("imagemGrande").src=src;
+
+}
+
+function fecharImagem(){
+
+document.getElementById("janelaImagem").style.display="none";
+
+}
+
+</script>
+
+</body>
+
+<footer>
+
+    <p>
+        Projeto desenvolvido para o IFA - Robótica Educacional<br>
+        © 2026 - Todos os direitos reservados.
+    </p>
+
+</footer>
+
+</html>
