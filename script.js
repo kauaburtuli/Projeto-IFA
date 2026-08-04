@@ -20,3 +20,34 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+// Ler página
+let leitura;
+
+document.getElementById("lerPagina").onclick = () =>{
+
+    speechSynthesis.cancel();
+
+    leitura = new SpeechSynthesisUtterance(document.body.innerText);
+
+    leitura.lang="pt-BR";
+
+    speechSynthesis.speak(leitura);
+
+}
+
+// Pausar
+
+document.getElementById("pausarLeitura").onclick=()=>{
+
+    speechSynthesis.pause();
+
+}
+
+// Parar
+
+document.getElementById("pararLeitura").onclick=()=>{
+
+    speechSynthesis.cancel();
+
+}
