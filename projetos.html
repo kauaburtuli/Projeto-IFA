@@ -223,6 +223,14 @@ footer{
 
 }
 
+:root{
+    --escala-fonte: 100%;
+}
+
+body{
+    font-size: var(--escala-fonte);
+}
+
 </style>
 
 </head>
@@ -264,17 +272,11 @@ Robótica Educacional
 
     <div class="controles-fonte">
 
-        <button id="fonteMais" title="Aumentar">
-            A+
-        </button>
+        <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
 
-        <button id="fontePadrao" title="Padrão">
-            A
-        </button>
+        <button id="fontePadrao" aria-label="Fonte padrão">A</button>
 
-        <button id="fonteMenos" title="Diminuir">
-            A-
-        </button>
+        <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
 
     </div>
 
@@ -294,6 +296,7 @@ Robótica Educacional
 </nav>
 
 </header>
+
 
  <div id="controleLeitura" class="controle-leitura">
 

@@ -99,46 +99,28 @@ const elementos = document.querySelectorAll(
 
 "main, section, section *, footer, footer *"
 
-);
-
-function atualizarFonte(){
-
-    elementos.forEach(elemento=>{
-
-        elemento.style.fontSize = escala + "%";
-
-    });
-
+function atualizarFonte() {
+    document.documentElement.style.setProperty(
+        "--escala-fonte",
+        escala + "%"
+    );
 }
 
-document.getElementById("fonteMais").onclick=()=>{
-
-    if(escala<150){
-
-        escala+=10;
-
+document.getElementById("fonteMais").onclick = () => {
+    if (escala < 150) {
+        escala += 10;
         atualizarFonte();
-
     }
+};
 
-}
-
-document.getElementById("fonteMenos").onclick=()=>{
-
-    if(escala>80){
-
-        escala-=10;
-
+document.getElementById("fonteMenos").onclick = () => {
+    if (escala > 80) {
+        escala -= 10;
         atualizarFonte();
-
     }
+};
 
-}
-
-document.getElementById("fontePadrao").onclick=()=>{
-
-    escala=100;
-
+document.getElementById("fontePadrao").onclick = () => {
+    escala = 100;
     atualizarFonte();
-
-}
+};
