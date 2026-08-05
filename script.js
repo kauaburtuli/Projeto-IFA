@@ -58,21 +58,14 @@ const botao = document.querySelector(".btn-acessibilidade");
 const menu = document.querySelector(".menu-acessibilidade");
 
 botao.addEventListener("click", function(e){
-
     e.stopPropagation();
-
     menu.classList.toggle("ativo");
-
 });
 
 document.addEventListener("click", function(){
-
     menu.classList.remove("ativo");
-
 });
 
 menu.addEventListener("click", function(e){
-
     e.stopPropagation();
-
 });

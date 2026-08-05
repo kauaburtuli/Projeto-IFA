@@ -214,6 +214,7 @@ footer p {
 .dropdown-acessibilidade{
     position: relative;
     display: inline-block;
+    z-index: 10000;
 }
 
 .btn-acessibilidade{
