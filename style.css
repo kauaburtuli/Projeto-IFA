@@ -228,47 +228,39 @@ footer p {
 }
 
 .btn-acessibilidade:hover{
-    color: #64b5f6;
+    color:#64b5f6;
 }
 
 .menu-acessibilidade{
-    position: absolute;
-    top: 50px;
-    right: 0;
+    position:absolute;
+    top:50px;
+    right:0;
 
-    width: 300px;
+    width:290px;
 
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    background:white;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 
-    display: none;
+    display:none;
 
-    overflow: hidden;
-
-    z-index: 9999;
+    z-index:9999;
 }
 
 .menu-acessibilidade.ativo{
-    display: block;
+    display:block;
 }
 
 .menu-acessibilidade button{
-    width: 100%;
-    padding: 14px 18px;
-    background: white;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 15px;
-    transition: .3s;
+    width:100%;
+    padding:14px 18px;
+    border:none;
+    background:white;
+    text-align:left;
+    cursor:pointer;
+    font-size:15px;
 }
 
 .menu-acessibilidade button:hover{
-    background: #e3f2fd;
-}
-
-.menu-acessibilidade hr{
-    border: none;
-    border-top: 1px solid #ddd;
+    background:#e3f2fd;
 }

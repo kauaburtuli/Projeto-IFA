@@ -57,9 +57,9 @@ document.getElementById("pararLeitura").onclick=()=>{
 const botao = document.querySelector(".btn-acessibilidade");
 const menu = document.querySelector(".menu-acessibilidade");
 
-botao.addEventListener("click", function(event){
+botao.addEventListener("click", function(e){
 
-    event.stopPropagation();
+    e.stopPropagation();
 
     menu.classList.toggle("ativo");
 
@@ -71,8 +71,8 @@ document.addEventListener("click", function(){
 
 });
 
-menu.addEventListener("click", function(event){
+menu.addEventListener("click", function(e){
 
-    event.stopPropagation();
+    e.stopPropagation();
 
 });
