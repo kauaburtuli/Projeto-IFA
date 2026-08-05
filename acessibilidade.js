@@ -95,6 +95,10 @@ menu.addEventListener("click", function(e) {
 
 let escala = 100;
 
+document.querySelectorAll(
+"main, section, section *, footer, footer *");
+
+
 function atualizarFonte() {
     document.documentElement.style.setProperty(
         "--escala-fonte",
