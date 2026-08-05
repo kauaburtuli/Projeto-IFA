@@ -12,6 +12,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="acessibilidade.css">
 <style>
 
 * {
@@ -415,9 +416,54 @@ Robótica Educacional
 
 <a href="projetos.html">Projetos</a>
 
+<div class="dropdown-acessibilidade">
+        <button class="btn-acessibilidade">
+            ♿ Acessibilidade ▼
+        </button>
+
+        <div class="menu-acessibilidade">
+
+            <button id="lerPagina">🔊 Ler página</button>
+            
+            <hr>
+
+            <button id="fonteMais">🔍 Aumentar fonte</button>
+            <button id="fonteMenos">🔎 Diminuir fonte</button>
+            <button id="fontePadrao">🔄 Restaurar fonte</button>
+
+            <hr>
+
+            <button id="contraste">🌙 Alto contraste</button>
+            <button id="dislexia">📖 Fonte para dislexia</button>
+            <button id="espacamento">↔️ Aumentar espaçamento</button>
+            <button id="cursor">🖱 Cursor ampliado</button>
+            <button id="animacoes">✨ Reduzir animações</button>
+
+        </div>
+    </div>
+
 </nav>
 
 </header>
+
+ <div id="controleLeitura" class="controle-leitura">
+
+
+     <span id="statusLeitura">
+        🔊 Lendo...
+    </span>
+
+    <div class="botoes-leitura">
+
+        <button id="continuarBtn">▶</button>
+
+        <button id="pausarBtn">⏸</button>
+
+        <button id="pararBtn">⏹</button>
+
+    </div>
+
+</div>
 
 <div class="banner">
 
@@ -743,6 +789,7 @@ onclick="fecharImagem()">&times;</span>
 
 </div>
 
+<script src="acessibilidade.js"></script>
 <script>
 
 function abrirImagem(src){

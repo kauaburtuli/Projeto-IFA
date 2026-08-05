@@ -1,0 +1,147 @@
+/* ========================= */
+/* ACESSIBILIDADE            */
+/* ========================= */
+
+.dropdown-acessibilidade{
+    position: relative;
+    display: inline-block;
+    z-index: 10000;
+}
+
+.btn-acessibilidade{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 25px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-acessibilidade:hover{
+    color:#64b5f6;
+}
+
+.menu-acessibilidade{
+    position:absolute;
+    top:50px;
+    right:0;
+
+    width:290px;
+
+    background:white;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    display:none;
+
+    z-index:9999;
+}
+
+.menu-acessibilidade.ativo{
+    display:block;
+}
+
+.menu-acessibilidade button{
+    width:100%;
+    padding:14px 18px;
+    border:none;
+    background:white;
+    text-align:left;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.menu-acessibilidade button:hover{
+    background:#e3f2fd;
+}
+
+.controle-leitura{
+
+    position:fixed;
+
+    top:78px;
+
+    right:25px;
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:10px 15px;
+
+    display:none;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+    z-index:10000;
+
+    animation:aparecer .25s;
+
+}
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-10px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+#statusLeitura{
+
+    color:#0d47a1;
+
+    font-weight:600;
+
+}
+
+.botoes-leitura{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.botoes-leitura button{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:#e3f2fd;
+
+    transition:.3s;
+
+    font-size:16px;
+
+}
+
+.botoes-leitura button:hover{
+
+    background:#64b5f6;
+    color:white;
+
+}
