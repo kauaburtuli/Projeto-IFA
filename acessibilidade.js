@@ -88,3 +88,43 @@ menu.addEventListener("click", function(e) {
     e.stopPropagation();
 
 });
+
+let tamanhoFonte = 100;
+
+function aplicarFonte(){
+
+    document.body.style.fontSize = tamanhoFonte + "%";
+
+}
+
+document.getElementById("fonteMais").onclick = () =>{
+
+    if(tamanhoFonte < 150){
+
+        tamanhoFonte += 10;
+
+        aplicarFonte();
+
+    }
+
+}
+
+document.getElementById("fonteMenos").onclick = () =>{
+
+    if(tamanhoFonte > 80){
+
+        tamanhoFonte -= 10;
+
+        aplicarFonte();
+
+    }
+
+}
+
+document.getElementById("fontePadrao").onclick = () =>{
+
+    tamanhoFonte = 100;
+
+    aplicarFonte();
+
+}
