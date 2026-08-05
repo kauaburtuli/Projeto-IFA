@@ -51,3 +51,28 @@ document.getElementById("pararLeitura").onclick=()=>{
     speechSynthesis.cancel();
 
 }
+
+// Menu de acessibilidade
+
+const botao = document.querySelector(".btn-acessibilidade");
+const menu = document.querySelector(".menu-acessibilidade");
+
+botao.addEventListener("click", function(event){
+
+    event.stopPropagation();
+
+    menu.classList.toggle("ativo");
+
+});
+
+document.addEventListener("click", function(){
+
+    menu.classList.remove("ativo");
+
+});
+
+menu.addEventListener("click", function(event){
+
+    event.stopPropagation();
+
+});
