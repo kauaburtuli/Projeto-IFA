@@ -89,42 +89,56 @@ menu.addEventListener("click", function(e) {
 
 });
 
-let tamanhoFonte = 100;
+//////////////////////
+// Tamanho da Fonte //
+//////////////////////
 
-function aplicarFonte(){
+let escala = 100;
 
-    document.body.style.fontSize = tamanhoFonte + "%";
+const elementos = document.querySelectorAll(
+
+"main, section, section *, footer, footer *"
+
+);
+
+function atualizarFonte(){
+
+    elementos.forEach(elemento=>{
+
+        elemento.style.fontSize = escala + "%";
+
+    });
 
 }
 
-document.getElementById("fonteMais").onclick = () =>{
+document.getElementById("fonteMais").onclick=()=>{
 
-    if(tamanhoFonte < 150){
+    if(escala<150){
 
-        tamanhoFonte += 10;
+        escala+=10;
 
-        aplicarFonte();
+        atualizarFonte();
 
     }
 
 }
 
-document.getElementById("fonteMenos").onclick = () =>{
+document.getElementById("fonteMenos").onclick=()=>{
 
-    if(tamanhoFonte > 80){
+    if(escala>80){
 
-        tamanhoFonte -= 10;
+        escala-=10;
 
-        aplicarFonte();
+        atualizarFonte();
 
     }
 
 }
 
-document.getElementById("fontePadrao").onclick = () =>{
+document.getElementById("fontePadrao").onclick=()=>{
 
-    tamanhoFonte = 100;
+    escala=100;
 
-    aplicarFonte();
+    atualizarFonte();
 
 }
