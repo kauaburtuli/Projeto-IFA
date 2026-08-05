@@ -21,51 +21,93 @@ window.addEventListener("scroll", () => {
     });
 });
 
-// Ler página
 let leitura;
 
-document.getElementById("lerPagina").onclick = () =>{
+// Elementos
+const botao = document.querySelector(".btn-acessibilidade");
+const menu = document.querySelector(".menu-acessibilidade");
+
+const controle = document.getElementById("controleLeitura");
+const status = document.getElementById("statusLeitura");
+
+// ==========================
+// Ler página
+// ==========================
+
+document.getElementById("lerPagina").onclick = () => {
 
     speechSynthesis.cancel();
 
     leitura = new SpeechSynthesisUtterance(document.body.innerText);
 
-    leitura.lang="pt-BR";
+    leitura.lang = "pt-BR";
 
     speechSynthesis.speak(leitura);
 
-}
+    // Fecha o menu
+    menu.classList.remove("ativo");
+
+    // Mostra o balão
+    controle.style.display = "flex";
+
+    status.innerHTML = "🔊 Lendo...";
+
+};
+
+// ==========================
+// Controles do balão
+// ==========================
 
 // Pausar
 
-document.getElementById("pausarLeitura").onclick=()=>{
+document.getElementById("pausarBtn").onclick = () => {
 
     speechSynthesis.pause();
 
-}
+    status.innerHTML = "⏸ Pausado";
+
+};
+
+// Continuar
+
+document.getElementById("continuarBtn").onclick = () => {
+
+    speechSynthesis.resume();
+
+    status.innerHTML = "🔊 Lendo...";
+
+};
 
 // Parar
 
-document.getElementById("pararLeitura").onclick=()=>{
+document.getElementById("pararBtn").onclick = () => {
 
     speechSynthesis.cancel();
 
-}
+    controle.style.display = "none";
 
+};
+
+// ==========================
 // Menu de acessibilidade
+// ==========================
 
-const botao = document.querySelector(".btn-acessibilidade");
-const menu = document.querySelector(".menu-acessibilidade");
+botao.addEventListener("click", function(e) {
 
-botao.addEventListener("click", function(e){
     e.stopPropagation();
+
     menu.classList.toggle("ativo");
+
 });
 
-document.addEventListener("click", function(){
+document.addEventListener("click", function() {
+
     menu.classList.remove("ativo");
+
 });
 
-menu.addEventListener("click", function(e){
+menu.addEventListener("click", function(e) {
+
     e.stopPropagation();
+
 });
