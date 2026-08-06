@@ -211,6 +211,6 @@ footer p {
     --escala-fonte: 100%;
 }
 
-body{
+#conteudo{
     font-size: var(--escala-fonte);
 }
