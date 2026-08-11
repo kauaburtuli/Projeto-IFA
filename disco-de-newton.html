@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Disco de Newton</title>
+
+<link rel="icon" type="image/png" href="imagens/robo-logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="acessibilidade.css">
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #eef4f9;
+    color: #222;
+}
+
+header {
+    background: #0d47a1;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-robo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #64b5f6;
+}
+
+.banner{
+
+width:100%;
+height:420px;
+overflow:hidden;
+position:relative;
+
+}
+
+.banner img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.banner-texto{
+
+position:absolute;
+left:8%;
+bottom:40px;
+
+background:rgba(13,71,161,.88);
+
+padding:25px;
+
+border-radius:12px;
+
+color:white;
+
+max-width:600px;
+
+}
+
+.banner-texto h2{
+
+font-size:42px;
+margin-bottom:15px;
+
+}
+
+.banner-texto p{
+
+line-height:1.8;
+
+}
+
+section{
+
+padding:70px 8%;
+
+}
+
+.titulo{
+
+font-size:36px;
+color:#0d47a1;
+margin-bottom:30px;
+text-align:center;
+
+}
+
+.texto{
+
+line-height:2;
+font-size:18px;
+text-align:justify;
+
+}
+
+.cards-materiais{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:25px;
+margin-top:40px;
+
+}
+
+.material{
+
+background:white;
+padding:30px;
+text-align:center;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.3s;
+
+}
+
+.material:hover{
+
+transform:translateY(-6px);
+
+}
+
+.material h3{
+
+color:#0d47a1;
+margin-bottom:15px;
+
+}
+
+.material p{
+
+font-size:17px;
+
+}
+
+.tinkercad{
+
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+text-align:center;
+
+}
+
+.tinkercad img{
+
+width:100%;
+max-width:900px;
+border-radius:12px;
+margin-bottom:25px;
+
+}
+
+.tinkercad p{
+
+font-size:18px;
+line-height:1.8;
+margin-bottom:30px;
+text-align:justify;
+
+}
+
+.codigo{
+
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.codigo h3{
+
+color:#0d47a1;
+margin-bottom:20px;
+
+}
+
+.codigo pre{
+
+background:#1e1e1e;
+color:#dcdcdc;
+padding:20px;
+border-radius:10px;
+
+overflow:auto;
+
+font-size:15px;
+
+line-height:1.6;
+
+margin-bottom:25px;
+
+}
+
+.codigo code{
+
+font-family:Consolas, monospace;
+
+}
+
+.video{
+
+background:white;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+.video video{
+
+width:100%;
+
+max-width:900px;
+
+border-radius:12px;
+
+}
+
+.galeria{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:25px;
+
+margin-top:30px;
+
+}
+
+.galeria img{
+
+width:100%;
+
+border-radius:15px;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+.galeria img:hover{
+
+transform:scale(1.04);
+
+}
+
+.janela{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.9);
+
+justify-content:center;
+
+align-items:center;
+
+z-index:9999;
+
+}
+
+.janela img{
+
+max-width:90%;
+
+max-height:90%;
+
+border-radius:12px;
+
+}
+
+.fechar{
+
+position:absolute;
+
+top:20px;
+
+right:40px;
+
+font-size:50px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:14px 30px;
+
+    background:#0d47a1;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    transition:0.3s;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+
+}
+
+.btn:hover{
+
+    background:#1565c0;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+footer{
+
+    margin-top:60px;
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:25px;
+
+}
+
+:root{
+    --escala-fonte: 100%;
+}
+
+body{
+    font-size: var(--escala-fonte);
+}
+
+</style>
+
+</head>
+
+<body>
+
+  <header>
+
+<h1>
+
+<img src="imagens/robo-logo.png" class="logo-robo">
+
+Robótica Educacional
+
+</h1>
+
+<nav>
+
+<a href="index.html">Início</a>
+
+<a href="projetos.html">Projetos</a>
+
+<div class="dropdown-acessibilidade">
+        <button class="btn-acessibilidade">
+            ♿ Acessibilidade ▼
+        </button>
+
+        <div class="menu-acessibilidade">
+
+            <button id="lerPagina">🔊 Ler página</button>
+            
+            <hr>
+
+            <div class="linha-fonte">
+
+    <span class="texto-fonte">
+        🔤 Tamanho da fonte
+    </span>
+
+    <div class="controles-fonte">
+
+        <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+
+        <button id="fontePadrao" aria-label="Fonte padrão">A</button>
+
+        <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+
+    </div>
+
+</div>
+
+            <hr>
+
+            <button id="contraste">🌙 Alto contraste</button>
+            <button id="dislexia">📖 Fonte para dislexia</button>
+            <button id="espacamento">↔️ Aumentar espaçamento</button>
+            <button id="cursor">🖱 Cursor ampliado</button>
+            <button id="animacoes">✨ Reduzir animações</button>
+
+        </div>
+    </div>
+
+</nav>
+
+</header>
+
+ <div id="controleLeitura" class="controle-leitura">
+
+
+     <span id="statusLeitura">
+        🔊 Lendo...
+    </span>
+
+    <div class="botoes-leitura">
+
+        <button id="continuarBtn">▶</button>
+
+        <button id="pausarBtn">⏸</button>
+
+        <button id="pararBtn">⏹</button>
+
+    </div>
+
+</div>
+
+<main>
+
+<div class="banner">
+
+<img src="imagens/circuito_fade-in_inicial.jpg">
+
+<div class="banner-texto">
+
+<h2>Disco de Newton</h2>
+
+<p>
+
+Projeto desenvolvido para demonstrar que a luz branca é composta por diferentes cores. Utilizando um disco com as cores do espectro visível, o experimento mostra que, ao girar rapidamente, as cores se combinam devido à persistência da visão, fazendo o disco aparentar a cor branca ou acinzentada.
+
+</p>
+
+</div>
+
+</div>
+
+<section>
+
+<h2 class="titulo">
+
+O que é?
+
+</h2>
+
+<div class="texto">
+
+<p>
+
+Disco de Newton e a persistência da visão
+
+<br><br>
+
+O <strong>Disco de Newton</strong> é um dispositivo utilizado para demonstrar a composição da luz branca e a forma como as cores do espectro visível se combinam. Seu nome é uma homenagem ao físico e matemático inglês <strong>Isaac Newton</strong>, que, por meio de experimentos com prismas no século XVII, comprovou que a luz branca do Sol é formada pela mistura de diferentes cores.
+
+<br><br>
+
+O disco é dividido em setores coloridos, normalmente com as sete cores do espectro visível: vermelho, laranja, amarelo, verde, azul, índigo e violeta. Quando está parado, é possível observar cada cor separadamente. No entanto, ao girar em alta velocidade, essas cores se sobrepõem na retina do observador. Devido ao fenômeno da <strong>persistência da visão</strong>, o cérebro combina as diferentes cores, criando a sensação de que o disco se tornou branco ou acinzentado.
+
+<br><br>
+
+Esse experimento demonstra, de maneira prática, que a luz branca é composta pela combinação de várias cores. Embora o disco não fique perfeitamente branco — devido às características das tintas, da iluminação e da velocidade de rotação — o resultado é suficiente para ilustrar os princípios da mistura das cores da luz e da percepção visual humana.
+
+<br><br>
+
+Além de seu valor científico, o Disco de Newton é amplamente utilizado em atividades educacionais por facilitar a compreensão de conceitos de Óptica. Ele permite visualizar como a luz pode ser decomposta em diferentes cores por um prisma e como essas mesmas cores podem ser recombinadas para formar novamente a luz branca, reforçando uma das descobertas mais importantes de Isaac Newton.
+
+<br><br>
+
+O funcionamento do Disco de Newton também evidencia que a percepção das cores depende não apenas da luz, mas também da forma como o sistema visual humano processa as imagens. A rápida sucessão das cores durante a rotação faz com que o cérebro não consiga distingui-las individualmente, interpretando sua combinação como uma única cor clara.
+
+<br><br>
+
+Dessa forma, o Disco de Newton é um recurso simples, porém muito eficiente para demonstrar os princípios da composição da luz branca, da mistura das cores e da percepção visual. Seu uso em experimentos e atividades didáticas contribui para tornar o aprendizado sobre Óptica mais prático, intuitivo e acessível.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Materiais Utilizados</h2>
+
+<div class="cards-materiais">
+
+<div class="material">
+
+<h3>Arduino UNO</h3>
+
+<p>1 Unidade</p>
+
+</div>
+
+<div class="material">
+
+<h3>Protoboard</h3>
+
+<p>1 Unidade</p>
+
+</div>
+
+<div class="material">
+
+<h3>Jumpers</h3>
+
+<p>8 Unidades</p>
+
+</div>
+
+<div class="material">
+
+<h3>Ponte H</h3>
+
+<p>1 Unidade</p>
+
+</div>
+
+<div class="material">
+
+<h3>Potenciômetro</h3>
+
+<p>1 Unidade</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Circuito no Tinkercad</h2>
+
+<div class="tinkercad">
+
+<img src="imagens/efeito_fade-in.jpg" alt="Circuito Fade-In e Fade-Out"
+onclick="abrirImagem(this.src)"
+alt="Circuito 1">
+
+<p>
+
+A imagem acima apresenta a montagem do circuito desenvolvida no Tinkercad. Nela é possível visualizar a ligação entre o Arduino UNO, o LED, o resistor de 220 Ω e os jumpers utilizados para realizar o efeito Fade-In e Fade-Out utilizando PWM.
+
+</p>
+
+<a href="https://www.tinkercad.com/things/0sKq0ycjGbE/editel?returnTo=%2Fdashboard" target="_blank" class="btn">
+
+Acessar Projeto no Tinkercad
+
+</a>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Códigos Fonte</h2>
+
+<!-- Fade-In -->
+
+<div class="codigo">
+
+<h3>Efeito Fade-In</h3>
+
+<pre><code>
+/* Define a porta PWM 11 como pino do LED.             */
+int pinoLed = 11;
+int incremento = 1;
+int brilho = 0;
+
+void setup() {
+
+  pinMode(pinoLed, OUTPUT);
+
+}
+
+void loop() {
+
+  for (brilho; brilho <= 256; brilho += incremento) {
+
+    analogWrite(pinoLed, brilho);
+
+    delay(100);
+
+  }
+
+}
+</code></pre>
+
+<a href="codigos/fade-in.ino" download class="btn">
+
+Baixar Código Fade-In
+
+</a>
+
+</div>
+
+<br><br>
+
+<!-- Fade-Out -->
+
+<div class="codigo">
+
+<h3>Efeito Fade-Out</h3>
+
+<pre><code>
+/*******************************************************/
+/* Aula 20 - LED Fade-Out                              */
+/*******************************************************/
+
+int pinoLed = 11;
+int decremento = 5;
+int brilho = 255;
+
+void setup() {
+
+  pinMode(pinoLed, OUTPUT);
+
+}
+
+void loop() {
+
+  for (brilho; brilho >= -1; brilho -= decremento) {
+
+    analogWrite(pinoLed, brilho);
+
+    delay(50);
+
+  }
+
+}
+</code></pre>
+
+<a href="codigos/fade-out.ino" download class="btn">
+
+Baixar Código Fade-Out
+
+</a>
+
+</div>
+
+<br><br>
+
+<!-- Fade-In + Fade-Out -->
+
+<div class="codigo">
+
+<h3>Efeito Fade-In e Fade-Out</h3>
+
+<pre><code>
+// LED ligado ao pino 11
+const int led = 11;
+
+int brilho = 0;
+int incremento = 1;
+
+void setup() {
+
+  pinMode(led, OUTPUT);
+
+}
+
+void loop() {
+
+  analogWrite(led, brilho);
+
+  brilho += incremento;
+
+  if (brilho <= 0 || brilho >= 255) {
+
+    incremento = -incremento;
+
+  }
+
+  delay(30);
+
+}
+</code></pre>
+
+<a href="codigos/fade-in-fade-out.ino" download class="btn">
+
+Baixar Código Completo
+
+</a>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Vídeo Demonstrativo</h2>
+
+<div class="video">
+
+<video controls>
+
+<source src="vídeos/efeito_fade.mp4" type="video/mp4">
+
+Seu navegador não suporta vídeos.
+
+</video>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="titulo">Biblioteca de Imagens</h2>
+
+<div class="galeria">
+
+<img src="imagens/circuito_fade1.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 1">
+
+<img src="imagens/circuito_fade2.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 2">
+
+<img src="imagens/circuito_fade3.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 3">
+
+</div>
+
+</section>
+
+<!-- Janela da imagem -->
+
+<div id="janelaImagem" class="janela">
+
+<span class="fechar"
+onclick="fecharImagem()">&times;</span>
+
+<img id="imagemGrande">
+
+</div>
+
+<script src="acessibilidade.js"></script>
+<script>
+
+function abrirImagem(src){
+
+document.getElementById("janelaImagem").style.display="flex";
+
+document.getElementById("imagemGrande").src=src;
+
+}
+
+function fecharImagem(){
+
+document.getElementById("janelaImagem").style.display="none";
+
+}
+
+</script>
+
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+</body>
+
+</main>
+
+<footer>
+
+    <p>
+        Projeto desenvolvido para o IFA - Robótica Educacional<br>
+        © 2026 - Todos os direitos reservados.
+    </p>
+
+</footer>
+
+</html>
