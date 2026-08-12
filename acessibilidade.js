@@ -93,7 +93,7 @@ menu.addEventListener("click", function(e) {
 // Tamanho da Fonte //
 //////////////////////
 
-let escala = 100;
+let escala = 1;
 
 
 function atualizarFonte() {
