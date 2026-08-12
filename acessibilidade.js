@@ -99,25 +99,25 @@ let escala = 100;
 function atualizarFonte() {
     document.documentElement.style.setProperty(
         "--escala-fonte",
-        escala + "%"
+        escala
     );
 }
 
 document.getElementById("fonteMais").onclick = () => {
-    if (escala < 150) {
-        escala += 10;
+    if (escala < 1.5) {
+        escala += 0.1;
         atualizarFonte();
     }
 };
 
 document.getElementById("fonteMenos").onclick = () => {
-    if (escala > 80) {
-        escala -= 10;
+    if (escala > 0.8) {
+        escala -= 0.1;
         atualizarFonte();
     }
 };
 
 document.getElementById("fontePadrao").onclick = () => {
-    escala = 100;
+    escala = 1;
     atualizarFonte();
 };
