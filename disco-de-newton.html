@@ -491,7 +491,7 @@ Robótica Educacional
 
 <div class="banner">
 
-<img src="imagens/circuito_fade-in_inicial.jpg">
+<img src="imagens/circuito-inicio-disco.jpg">
 
 <div class="banner-texto">
 
@@ -617,23 +617,19 @@ Dessa forma, o Disco de Newton é um recurso simples, porém muito eficiente par
 
 <section>
 
-<h2 class="titulo">Circuito no Tinkercad</h2>
+<h2 class="titulo">Imagem do Circuito</h2>
 
 <div class="tinkercad">
 
-<img src="imagens/efeito_fade-in.jpg" alt="Circuito Fade-In e Fade-Out"
+<img src="imagens/circuito-disco-newton.jpg" alt="Circuito do Disco de Newton"
 onclick="abrirImagem(this.src)"
 alt="Circuito 1">
 
 <p>
 
-A imagem acima apresenta a montagem do circuito desenvolvida no Tinkercad. Nela é possível visualizar a ligação entre o Arduino UNO, o LED, o resistor de 220 Ω e os jumpers utilizados para realizar o efeito Fade-In e Fade-Out utilizando PWM.
+A imagem acima apresenta a montagem do circuito desenvolvido para este projeto. Nela é possível visualizar a ligação entre o Arduino UNO, a Ponte H, o potenciômetro, o motor DC e os jumpers utilizados para realizar o giro do disco e demonstrar o efeito da persistência da visão.
 
 </p>
-
-<a href="https://www.tinkercad.com/things/0sKq0ycjGbE/editel?returnTo=%2Fdashboard" target="_blank" class="btn">
-
-Acessar Projeto no Tinkercad
 
 </a>
 
@@ -645,130 +641,47 @@ Acessar Projeto no Tinkercad
 
 <h2 class="titulo">Códigos Fonte</h2>
 
-<!-- Fade-In -->
+<!--Disco de Newton-->
 
 <div class="codigo">
 
-<h3>Efeito Fade-In</h3>
+<h3>Disco de Newton</h3>
 
 <pre><code>
-/* Define a porta PWM 11 como pino do LED.             */
-int pinoLed = 11;
-int incremento = 1;
-int brilho = 0;
 
-void setup() {
+#include <Arduino.h>
+#include <Wire.h>
+#include <SoftwareSerial.h>
 
-  pinMode(pinoLed, OUTPUT);
+int pinPot = A5;
 
+void _delay(float seconds) {
+  long endTime = millis() + seconds * 1000;
+  while(millis() < endTime) _loop();
 }
 
-void loop() {
+void setup() {
+  pinMode(6,OUTPUT);
+  while(1) {
+    analogWrite(6,map(analogRead(pinPot),0,1023,0,255));
 
-  for (brilho; brilho <= 256; brilho += incremento) {
-
-    analogWrite(pinoLed, brilho);
-
-    delay(100);
-
+  	_loop();
   }
 
 }
-</code></pre>
 
-<a href="codigos/fade-in.ino" download class="btn">
-
-Baixar Código Fade-In
-
-</a>
-
-</div>
-
-<br><br>
-
-<!-- Fade-Out -->
-
-<div class="codigo">
-
-<h3>Efeito Fade-Out</h3>
-
-<pre><code>
-/*******************************************************/
-/* Aula 20 - LED Fade-Out                              */
-/*******************************************************/
-
-int pinoLed = 11;
-int decremento = 5;
-int brilho = 255;
-
-void setup() {
-
-  pinMode(pinoLed, OUTPUT);
-
+void _loop() {
 }
 
 void loop() {
-
-  for (brilho; brilho >= -1; brilho -= decremento) {
-
-    analogWrite(pinoLed, brilho);
-
-    delay(50);
-
-  }
-
+  _loop();
 }
+
 </code></pre>
 
-<a href="codigos/fade-out.ino" download class="btn">
+<a href="disco-de-newton.ino" download class="btn">
 
-Baixar Código Fade-Out
-
-</a>
-
-</div>
-
-<br><br>
-
-<!-- Fade-In + Fade-Out -->
-
-<div class="codigo">
-
-<h3>Efeito Fade-In e Fade-Out</h3>
-
-<pre><code>
-// LED ligado ao pino 11
-const int led = 11;
-
-int brilho = 0;
-int incremento = 1;
-
-void setup() {
-
-  pinMode(led, OUTPUT);
-
-}
-
-void loop() {
-
-  analogWrite(led, brilho);
-
-  brilho += incremento;
-
-  if (brilho <= 0 || brilho >= 255) {
-
-    incremento = -incremento;
-
-  }
-
-  delay(30);
-
-}
-</code></pre>
-
-<a href="codigos/fade-in-fade-out.ino" download class="btn">
-
-Baixar Código Completo
+Baixar Código
 
 </a>
 
@@ -784,7 +697,7 @@ Baixar Código Completo
 
 <video controls>
 
-<source src="vídeos/efeito_fade.mp4" type="video/mp4">
+<source src="vídeos/Disco-newton.mp4" type="video/mp4">
 
 Seu navegador não suporta vídeos.
 
@@ -800,17 +713,21 @@ Seu navegador não suporta vídeos.
 
 <div class="galeria">
 
-<img src="imagens/circuito_fade1.jpg"
+<img src="imagens/Disco_newton1.jpg"
 onclick="abrirImagem(this.src)"
 alt="Circuito 1">
 
-<img src="imagens/circuito_fade2.jpg"
+<img src="imagens/Disco-newton2.jpg"
 onclick="abrirImagem(this.src)"
 alt="Circuito 2">
 
-<img src="imagens/circuito_fade3.jpg"
+<img src="imagens/Disco-newton3.jpg"
 onclick="abrirImagem(this.src)"
 alt="Circuito 3">
+
+<img src="imagens/circuito-inicio-disco.jpg"
+onclick="abrirImagem(this.src)"
+alt="Circuito 4">
 
 </div>
 
