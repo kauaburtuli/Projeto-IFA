@@ -286,24 +286,26 @@ body.alto-contraste footer{
    Alto contraste - Controle da fonte
 ========================== */
 
-body.alto-contraste .linha-fonte{
+body.alto-contraste .menu-acessibilidade{
     background: #000 !important;
+    border: 2px solid #fff;
 }
 
+body.alto-contraste .menu-acessibilidade button{
+    background: #000 !important;
+    color: #fff !important;
+}
+
+body.alto-contraste .menu-acessibilidade button:hover{
+    background: #222 !important;
+}
+
+/* Texto "Tamanho da fonte" */
 body.alto-contraste .texto-fonte{
     color: #fff !important;
 }
 
-body.alto-contraste .controles-fonte{
+/* Linha onde ficam o texto e os botões */
+body.alto-contraste .linha-fonte{
     background: #000 !important;
-}
-
-body.alto-contraste .controles-fonte button{
-    background: #000 !important;
-    color: #fff !important;
-    border: 1px solid #fff !important;
-}
-
-body.alto-contraste .controles-fonte button:hover{
-    background: #222 !important;
 }
