@@ -218,51 +218,66 @@
 
 }
 
-/*.botoes-leitura {
-    --escala-fonte: 1;
+/* ==========================
+   Alto Contraste
+========================== */
+
+body.alto-contraste{
+    background:#000 !important;
+    color:#fff !important;
 }
 
-/* Escala somente o conteúdo do site */
-/*#conteudo .hero h2 {
-    font-size: calc(3.75rem * var(--escala-fonte));
+/* Cabeçalho */
+body.alto-contraste header{
+    background:#000 !important;
+    border-bottom:2px solid #fff;
 }
 
-#conteudo .hero p {
-    font-size: calc(1.25rem * var(--escala-fonte));
+/* Cartões e caixas */
+body.alto-contraste .card,
+body.alto-contraste .item,
+body.alto-contraste .material,
+body.alto-contraste .tinkercad,
+body.alto-contraste .codigo,
+body.alto-contraste .video{
+    background:#111 !important;
+    color:#fff !important;
+    border:2px solid #fff;
 }
 
-#conteudo .btn {
-    font-size: calc(1.125rem * var(--escala-fonte));
+/* Títulos */
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste h4,
+body.alto-contraste h5,
+body.alto-contraste h6{
+    color:#ffff00 !important;
 }
 
-#conteudo .titulo {
-    font-size: calc(2.375rem * var(--escala-fonte));
+/* Parágrafos e listas */
+body.alto-contraste p,
+body.alto-contraste li,
+body.alto-contraste span{
+    color:#fff !important;
 }
 
-#conteudo .sobre p {
-    font-size: calc(1.125rem * var(--escala-fonte));
+/* Links */
+body.alto-contraste a{
+    color:#00ffff !important;
 }
 
-#conteudo .card h3 {
-    font-size: calc(1rem * var(--escala-fonte));
+/* Botões */
+body.alto-contraste .btn,
+body.alto-contraste .botao,
+body.alto-contraste button{
+    background:#000 !important;
+    color:#fff !important;
+    border:2px solid #fff;
 }
 
-#conteudo .card p {
-    font-size: calc(1rem * var(--escala-fonte));
+/* Rodapé */
+body.alto-contraste footer{
+    background:#000 !important;
+    color:#fff !important;
 }
-
-#conteudo .item h3 {
-    font-size: calc(1rem * var(--escala-fonte));
-}
-
-#conteudo .item p {
-    font-size: calc(1rem * var(--escala-fonte));
-}
-
-#conteudo .projeto-card p {
-    font-size: calc(1rem * var(--escala-fonte));
-}
-
-#conteudo footer p {
-    font-size: calc(1rem * var(--escala-fonte));
-}*/
