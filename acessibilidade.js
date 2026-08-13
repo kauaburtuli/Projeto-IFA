@@ -93,31 +93,80 @@ menu.addEventListener("click", function(e) {
 // Tamanho da Fonte //
 //////////////////////
 
+//let escala = 1;
+
+
+// function atualizarFonte() {
+//     document.documentElement.style.setProperty(
+//         "--escala-fonte",
+//         escala
+//     );
+// }
+
+// document.getElementById("fonteMais").onclick = () => {
+//     if (escala < 1.5) {
+//         escala += 0.1;
+//         atualizarFonte();
+//     }
+// };
+
+// document.getElementById("fonteMenos").onclick = () => {
+//     if (escala > 0.8) {
+//         escala -= 0.1;
+//         atualizarFonte();
+//     }
+// }
+
+//////////////////////
+// Tamanho da Fonte //
+//////////////////////
+
 let escala = 1;
 
+// Todos os elementos de texto do conteúdo
+const textos = document.querySelectorAll(
+    "main h1, main h2, main h3, main h4, main h5, main h6, main p, main a, main li, main span, main button"
+);
+
+// Guarda o tamanho original
+textos.forEach(el => {
+    const tamanho = parseFloat(getComputedStyle(el).fontSize);
+    el.dataset.fonteOriginal = tamanho;
+});
 
 function atualizarFonte() {
-    document.documentElement.style.setProperty(
-        "--escala-fonte",
-        escala
-    );
+
+    textos.forEach(el => {
+
+        const original = parseFloat(el.dataset.fonteOriginal);
+
+        el.style.fontSize = (original * escala) + "px";
+
+    });
+
 }
 
 document.getElementById("fonteMais").onclick = () => {
+
     if (escala < 1.5) {
         escala += 0.1;
         atualizarFonte();
     }
+
 };
 
 document.getElementById("fonteMenos").onclick = () => {
+
     if (escala > 0.8) {
         escala -= 0.1;
         atualizarFonte();
     }
+
 };
 
 document.getElementById("fontePadrao").onclick = () => {
+
     escala = 1;
     atualizarFonte();
+
 };

@@ -218,12 +218,12 @@
 
 }
 
-:root {
+/*.botoes-leitura {
     --escala-fonte: 1;
 }
 
 /* Escala somente o conteúdo do site */
-#conteudo .hero h2 {
+/*#conteudo .hero h2 {
     font-size: calc(3.75rem * var(--escala-fonte));
 }
 
@@ -265,4 +265,4 @@
 
 #conteudo footer p {
     font-size: calc(1rem * var(--escala-fonte));
-}
+}*/
