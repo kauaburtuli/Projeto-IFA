@@ -276,6 +276,17 @@ body.alto-contraste button{
     border:2px solid #fff;
 }
 
+body.alto-contraste .btn-acessibilidade{
+ color:#00ffff !important;
+}
+
+body.alto-contraste .controle-leitura{
+      background:#000 !important;
+    color:#fff !important;
+    border:2px solid #fff;
+}
+
+
 /* Rodapé */
 body.alto-contraste footer{
     background:#000 !important;
@@ -288,7 +299,7 @@ body.alto-contraste footer{
 
 body.alto-contraste .menu-acessibilidade{
     background: #000 !important;
-    /*border: 2px solid #fff*/
+    border: 2px solid #fff
 }
 
 body.alto-contraste .menu-acessibilidade button{
