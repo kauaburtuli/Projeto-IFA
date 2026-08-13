@@ -207,6 +207,8 @@ function atualizarFonte() {
 
 // Aplica automaticamente ao abrir a página
 atualizarFonte();
+console.log("Escala:", escala);
+console.log("Storage:", localStorage.getItem("escalaFonte"));
 
 // A+
 document.getElementById("fonteMais").onclick = () => {
@@ -242,28 +244,29 @@ document.getElementById("fontePadrao").onclick = () => {
 
 const botaoContraste = document.getElementById("contraste");
 
-// Verifica se estava ativado
-if(localStorage.getItem("contraste") === "on"){
+if (botaoContraste) {
 
-    document.body.classList.add("alto-contraste");
-    botaoContraste.innerHTML = "☀️ Tema normal";
-
-}
-
-botaoContraste.onclick = () => {
-
-    document.body.classList.toggle("alto-contraste");
-
-    if(document.body.classList.contains("alto-contraste")){
-
+    if (localStorage.getItem("contraste") === "on") {
+        document.body.classList.add("alto-contraste");
         botaoContraste.innerHTML = "☀️ Tema normal";
-        localStorage.setItem("contraste", "on");
-
-    }else{
-
-        botaoContraste.innerHTML = "🌙 Alto contraste";
-        localStorage.setItem("contraste", "off");
-
     }
 
-};
+    botaoContraste.onclick = () => {
+
+        document.body.classList.toggle("alto-contraste");
+
+        if (document.body.classList.contains("alto-contraste")) {
+
+            botaoContraste.innerHTML = "☀️ Tema normal";
+            localStorage.setItem("contraste", "on");
+
+        } else {
+
+            botaoContraste.innerHTML = "🌙 Alto contraste";
+            localStorage.setItem("contraste", "off");
+
+        }
+
+    };
+
+}
