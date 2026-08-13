@@ -276,16 +276,6 @@ body.alto-contraste button{
     border:2px solid #fff;
 }
 
-body.alto-contraste .btn-acessibilidade{
- color:#00ffff !important;
-}
-
-body.alto-contraste .controle-leitura{
-      background:#000 !important;
-    color:#fff !important;
-    border:2px solid #fff;
-}
-
 
 /* Rodapé */
 body.alto-contraste footer{
@@ -320,4 +310,37 @@ body.alto-contraste .texto-fonte{
 body.alto-contraste .linha-fonte{
     background: #000 !important;
     border: 2px solid #fff;
+}
+
+/* Indicador de leitura */
+
+body.alto-contraste .controle-leitura{
+    background:#000 !important;
+    color:#fff !important;
+    border:2px solid #fff;
+}
+
+body.alto-contraste #statusLeitura{
+    color:#fff !important;
+}
+
+body.alto-contraste .controle-leitura button{
+    background:#000 !important;
+    color:#fff !important;
+    border:1px solid #fff;
+}
+
+body.alto-contraste .controle-leitura button:hover{
+    background:#222 !important;
+}
+
+/* Botão Acessibilidade no alto contraste */
+body.alto-contraste .btn-acessibilidade{
+    color: #fff !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+body.alto-contraste .btn-acessibilidade:hover{
+    color: #00ffff !important;
 }
