@@ -3,654 +3,674 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Disco de Newton</title>
+    <title>Disco de Newton</title>
 
-<link rel="icon" type="image/png" href="imagens/robo-logo.png">
+    <link rel="icon" type="image/png" href="imagens/robo-logo.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="acessibilidade.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-}
+        body {
+            background: #eef4f9;
+            color: #222;
+        }
 
-body {
-    background: #eef4f9;
-    color: #222;
-}
+        header {
+            background: #0d47a1;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+        }
 
-header {
-    background: #0d47a1;
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 999;
-    box-shadow: 0 3px 10px rgba(0,0,0,.2);
-}
+        header h1 {
+            color: white;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-header h1 {
-    color: white;
-    font-size: 28px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .logo-robo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
 
-.logo-robo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: .3s;
+        }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
-    transition: .3s;
-}
+        nav a:hover {
+            color: #64b5f6;
+        }
 
-nav a:hover {
-    color: #64b5f6;
-}
+        .banner {
 
-.banner{
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            position: relative;
 
-width:100%;
-height:420px;
-overflow:hidden;
-position:relative;
+        }
 
-}
+        .banner img {
 
-.banner img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
 
-width:100%;
-height:100%;
-object-fit:cover;
+        }
 
-}
+        .banner-texto {
 
-.banner-texto{
+            position: absolute;
+            left: 8%;
+            bottom: 40px;
 
-position:absolute;
-left:8%;
-bottom:40px;
+            background: rgba(13, 71, 161, .88);
 
-background:rgba(13,71,161,.88);
+            padding: 25px;
 
-padding:25px;
+            border-radius: 12px;
 
-border-radius:12px;
+            color: white;
 
-color:white;
+            max-width: 600px;
 
-max-width:600px;
+        }
 
-}
+        .banner-texto h2 {
 
-.banner-texto h2{
+            font-size: 42px;
+            margin-bottom: 15px;
 
-font-size:42px;
-margin-bottom:15px;
+        }
 
-}
+        .banner-texto p {
 
-.banner-texto p{
+            line-height: 1.8;
 
-line-height:1.8;
+        }
 
-}
+        section {
 
-section{
+            padding: 70px 8%;
 
-padding:70px 8%;
+        }
 
-}
+        .titulo {
 
-.titulo{
+            font-size: 36px;
+            color: #0d47a1;
+            margin-bottom: 30px;
+            text-align: center;
 
-font-size:36px;
-color:#0d47a1;
-margin-bottom:30px;
-text-align:center;
+        }
 
-}
+        .texto {
 
-.texto{
+            line-height: 2;
+            font-size: 18px;
+            text-align: justify;
 
-line-height:2;
-font-size:18px;
-text-align:justify;
+        }
 
-}
+        .cards-materiais {
 
-.cards-materiais{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
 
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:25px;
-margin-top:40px;
+        }
 
-}
+        .material {
 
-.material{
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            transition: .3s;
 
-background:white;
-padding:30px;
-text-align:center;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-transition:.3s;
+        }
 
-}
+        .material:hover {
 
-.material:hover{
+            transform: translateY(-6px);
 
-transform:translateY(-6px);
+        }
 
-}
+        .material h3 {
 
-.material h3{
+            color: #0d47a1;
+            margin-bottom: 15px;
 
-color:#0d47a1;
-margin-bottom:15px;
+        }
 
-}
+        .material p {
 
-.material p{
+            font-size: 17px;
 
-font-size:17px;
+        }
 
-}
+        .tinkercad {
 
-.tinkercad{
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            text-align: center;
 
-background:white;
-padding:35px;
-border-radius:18px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-text-align:center;
+        }
 
-}
+        .tinkercad img {
 
-.tinkercad img{
+            width: 100%;
+            max-width: 900px;
+            border-radius: 12px;
+            margin-bottom: 25px;
 
-width:100%;
-max-width:900px;
-border-radius:12px;
-margin-bottom:25px;
+        }
 
-}
+        .tinkercad p {
 
-.tinkercad p{
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
 
-font-size:18px;
-line-height:1.8;
-margin-bottom:30px;
-text-align:justify;
+        }
 
-}
+        .codigo {
 
-.codigo{
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
 
-background:white;
-padding:35px;
-border-radius:18px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+        }
 
-}
+        .codigo h3 {
 
-.codigo h3{
+            color: #0d47a1;
+            margin-bottom: 20px;
 
-color:#0d47a1;
-margin-bottom:20px;
+        }
 
-}
+        .codigo pre {
 
-.codigo pre{
-
-/*background:#1e1e1e;
+            /*background:#1e1e1e;
 /*color:#dcdcdc; */
-background: #dcdcdc;
-padding:20px;
-border-radius:10px;
+            background: #dcdcdc;
+            padding: 20px;
+            border-radius: 10px;
 
-overflow:auto;
+            overflow: auto;
 
-font-size:15px;
+            font-size: 15px;
 
-line-height:1.6;
+            line-height: 1.6;
 
-margin-bottom:25px;
+            margin-bottom: 25px;
 
-}
+        }
 
-.codigo code{
+        .codigo code {
 
-font-family:Consolas, monospace;
+            font-family: Consolas, monospace;
 
-}
+        }
 
-.video{
+        .video {
 
-background:white;
+            background: white;
 
-padding:30px;
+            padding: 30px;
 
-border-radius:18px;
+            border-radius: 18px;
 
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
 
-text-align:center;
+            text-align: center;
 
-}
+        }
 
-.video video{
+        .video video {
 
-width:100%;
+            width: 100%;
 
-max-width:900px;
+            max-width: 900px;
 
-border-radius:12px;
+            border-radius: 12px;
 
-}
+        }
 
-.galeria{
+        .galeria {
 
-display:grid;
+            display: grid;
 
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 
-gap:25px;
+            gap: 25px;
 
-margin-top:30px;
+            margin-top: 30px;
 
-}
+        }
 
-.galeria img{
+        .galeria img {
 
-width:100%;
+            width: 100%;
 
-border-radius:15px;
+            border-radius: 15px;
 
-cursor:pointer;
+            cursor: pointer;
 
-transition:.3s;
+            transition: .3s;
 
-box-shadow:0 8px 20px rgba(0,0,0,.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
 
-}
+        }
 
-.galeria img:hover{
+        .galeria img:hover {
 
-transform:scale(1.04);
+            transform: scale(1.04);
 
-}
+        }
 
-.janela{
+        .janela {
 
-display:none;
+            display: none;
 
-position:fixed;
+            position: fixed;
 
-top:0;
+            top: 0;
 
-left:0;
+            left: 0;
 
-width:100%;
+            width: 100%;
 
-height:100%;
+            height: 100%;
 
-background:rgba(0,0,0,.9);
+            background: rgba(0, 0, 0, .9);
 
-justify-content:center;
+            justify-content: center;
 
-align-items:center;
+            align-items: center;
 
-z-index:9999;
+            z-index: 9999;
 
-}
+        }
 
-.janela img{
+        .janela img {
 
-max-width:90%;
+            max-width: 90%;
 
-max-height:90%;
+            max-height: 90%;
 
-border-radius:12px;
+            border-radius: 12px;
 
-}
+        }
 
-.fechar{
+        .fechar {
 
-position:absolute;
+            position: absolute;
 
-top:20px;
+            top: 20px;
 
-right:40px;
+            right: 40px;
 
-font-size:50px;
+            font-size: 50px;
 
-color:white;
+            color: white;
 
-cursor:pointer;
+            cursor: pointer;
 
-}
+        }
 
-.btn{
+        .btn {
 
-    display:inline-block;
+            display: inline-block;
 
-    margin-top:20px;
+            margin-top: 20px;
 
-    padding:14px 30px;
+            padding: 14px 30px;
 
-    background:#0d47a1;
+            background: #0d47a1;
 
-    color:white;
+            color: white;
 
-    text-decoration:none;
+            text-decoration: none;
 
-    border-radius:30px;
+            border-radius: 30px;
 
-    font-weight:600;
+            font-weight: 600;
 
-    transition:0.3s;
+            transition: 0.3s;
 
-    box-shadow:0 4px 10px rgba(0,0,0,.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
 
-}
+        }
 
-.btn:hover{
+        .btn:hover {
 
-    background:#1565c0;
+            background: #1565c0;
 
-    transform:translateY(-3px);
+            transform: translateY(-3px);
 
-    box-shadow:0 8px 20px rgba(0,0,0,.25);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
 
-}
+        }
 
-footer{
+        footer {
 
-    margin-top:60px;
-    background:#0d47a1;
-    color:white;
-    text-align:center;
-    padding:25px;
+            margin-top: 60px;
+            background: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 25px;
 
-}
+        }
 
-/* :root{
+        /* :root{
     --escala-fonte: 100%;
 }
 
 body{
     font-size: var(--escala-fonte);
 } */
-
-</style>
+    </style>
 
 </head>
 
 <body>
 
-  <header>
+    <header>
 
-<h1>
+        <h1>
 
-<img src="imagens/robo-logo.png" class="logo-robo">
+            <img src="imagens/robo-logo.png" class="logo-robo">
 
-Robótica Educacional
+            Robótica Educacional
 
-</h1>
+        </h1>
 
-<nav>
+        <nav>
 
-<a href="index.html">Início</a>
+            <a href="index.html">Início</a>
 
-<a href="projetos.html">Projetos</a>
+            <a href="projetos.html">Projetos</a>
 
-<div class="dropdown-acessibilidade">
-        <button class="btn-acessibilidade">
-            ♿ Acessibilidade ▼
-        </button>
+            <div class="dropdown-acessibilidade">
+                <button class="btn-acessibilidade">
+                    ♿ Acessibilidade ▼
+                </button>
 
-        <div class="menu-acessibilidade">
+                <div class="menu-acessibilidade">
 
-            <button id="lerPagina">🔊 Ler página</button>
-            
-            <hr>
+                    <button id="lerPagina">🔊 Ler página</button>
 
-            <div class="linha-fonte">
+                    <hr>
 
-    <span class="texto-fonte">
-        🔤 Tamanho da fonte
-    </span>
+                    <div class="linha-fonte">
 
-    <div class="controles-fonte">
+                        <span class="texto-fonte">
+                            🔤 Tamanho da fonte
+                        </span>
 
-        <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+                        <div class="controles-fonte">
 
-        <button id="fontePadrao" aria-label="Fonte padrão">A</button>
+                            <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
 
-        <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+                            <button id="fontePadrao" aria-label="Fonte padrão">A</button>
 
-    </div>
+                            <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
 
-</div>
+                        </div>
 
-            <hr>
+                    </div>
 
-            <button id="contraste">🌙 Alto contraste</button>
-            <button id="dislexia">📖 Fonte para dislexia</button>
-            <button id="espacamento">↔️ Aumentar espaçamento</button>
-            <button id="cursor">🖱 Cursor ampliado</button>
-            <button id="animacoes">✨ Reduzir animações</button>
+                    <hr>
+
+                    <button id="contraste">🌙 Alto contraste</button>
+                    <button id="dislexia">📖 Fonte para dislexia</button>
+                    <button id="espacamento">↔️ Aumentar espaçamento</button>
+                    <button id="cursor">🖱 Cursor ampliado</button>
+                    <button id="animacoes">✨ Reduzir animações</button>
+
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <div id="controleLeitura" class="controle-leitura">
+
+
+        <span id="statusLeitura">
+            🔊 Lendo...
+        </span>
+
+        <div class="botoes-leitura">
+
+            <button id="continuarBtn">▶</button>
+
+            <button id="pausarBtn">⏸</button>
+
+            <button id="pararBtn">⏹</button>
 
         </div>
-    </div>
-
-</nav>
-
-</header>
-
- <div id="controleLeitura" class="controle-leitura">
-
-
-     <span id="statusLeitura">
-        🔊 Lendo...
-    </span>
-
-    <div class="botoes-leitura">
-
-        <button id="continuarBtn">▶</button>
-
-        <button id="pausarBtn">⏸</button>
-
-        <button id="pararBtn">⏹</button>
 
     </div>
 
-</div>
+    <main id="conteudo">
 
-<div class="banner">
+        <div class="banner">
 
-<img src="imagens/circuito-inicio-disco.jpg" alt="Imagem Inicial">
+            <img src="imagens/circuito-inicio-disco.jpg" alt="Imagem Inicial">
 
-<div class="banner-texto">
+            <div class="banner-texto">
 
-<main id="conteudo">
+                <h2>Disco de Newton</h2>
 
-<h2>Disco de Newton</h2>
+                <p>
 
-<p>
+                    Projeto desenvolvido para demonstrar que a luz branca é composta por diferentes cores. Utilizando um
+                    disco com as cores do espectro visível, o experimento mostra que, ao girar rapidamente, as cores se
+                    combinam devido à persistência da visão, fazendo o disco aparentar a cor branca ou acinzentada.
 
-Projeto desenvolvido para demonstrar que a luz branca é composta por diferentes cores. Utilizando um disco com as cores do espectro visível, o experimento mostra que, ao girar rapidamente, as cores se combinam devido à persistência da visão, fazendo o disco aparentar a cor branca ou acinzentada.
+                </p>
 
-</p>
+            </div>
 
-</div>
+        </div>
 
-</div>
+        <section>
 
-<section>
+            <h2 class="titulo">
 
-<h2 class="titulo">
+                O que é?
 
-O que é?
+            </h2>
 
-</h2>
+            <div class="texto">
 
-<div class="texto">
+                <p>
 
-<p>
+                    Disco de Newton e a persistência da visão
 
-Disco de Newton e a persistência da visão
+                    <br><br>
 
-<br><br>
+                    O <strong>Disco de Newton</strong> é um dispositivo utilizado para demonstrar a composição da luz
+                    branca e a forma como as cores do espectro visível se combinam. Seu nome é uma homenagem ao físico e
+                    matemático inglês <strong>Isaac Newton</strong>, que, por meio de experimentos com prismas no século
+                    XVII, comprovou que a luz branca do Sol é formada pela mistura de diferentes cores.
 
-O <strong>Disco de Newton</strong> é um dispositivo utilizado para demonstrar a composição da luz branca e a forma como as cores do espectro visível se combinam. Seu nome é uma homenagem ao físico e matemático inglês <strong>Isaac Newton</strong>, que, por meio de experimentos com prismas no século XVII, comprovou que a luz branca do Sol é formada pela mistura de diferentes cores.
+                    <br><br>
 
-<br><br>
+                    O disco é dividido em setores coloridos, normalmente com as sete cores do espectro visível:
+                    vermelho, laranja, amarelo, verde, azul, índigo e violeta. Quando está parado, é possível observar
+                    cada cor separadamente. No entanto, ao girar em alta velocidade, essas cores se sobrepõem na retina
+                    do observador. Devido ao fenômeno da <strong>persistência da visão</strong>, o cérebro combina as
+                    diferentes cores, criando a sensação de que o disco se tornou branco ou acinzentado.
 
-O disco é dividido em setores coloridos, normalmente com as sete cores do espectro visível: vermelho, laranja, amarelo, verde, azul, índigo e violeta. Quando está parado, é possível observar cada cor separadamente. No entanto, ao girar em alta velocidade, essas cores se sobrepõem na retina do observador. Devido ao fenômeno da <strong>persistência da visão</strong>, o cérebro combina as diferentes cores, criando a sensação de que o disco se tornou branco ou acinzentado.
+                    <br><br>
 
-<br><br>
+                    Esse experimento demonstra, de maneira prática, que a luz branca é composta pela combinação de
+                    várias cores. Embora o disco não fique perfeitamente branco — devido às características das tintas,
+                    da iluminação e da velocidade de rotação — o resultado é suficiente para ilustrar os princípios da
+                    mistura das cores da luz e da percepção visual humana.
 
-Esse experimento demonstra, de maneira prática, que a luz branca é composta pela combinação de várias cores. Embora o disco não fique perfeitamente branco — devido às características das tintas, da iluminação e da velocidade de rotação — o resultado é suficiente para ilustrar os princípios da mistura das cores da luz e da percepção visual humana.
+                    <br><br>
 
-<br><br>
+                    Além de seu valor científico, o Disco de Newton é amplamente utilizado em atividades educacionais
+                    por facilitar a compreensão de conceitos de Óptica. Ele permite visualizar como a luz pode ser
+                    decomposta em diferentes cores por um prisma e como essas mesmas cores podem ser recombinadas para
+                    formar novamente a luz branca, reforçando uma das descobertas mais importantes de Isaac Newton.
 
-Além de seu valor científico, o Disco de Newton é amplamente utilizado em atividades educacionais por facilitar a compreensão de conceitos de Óptica. Ele permite visualizar como a luz pode ser decomposta em diferentes cores por um prisma e como essas mesmas cores podem ser recombinadas para formar novamente a luz branca, reforçando uma das descobertas mais importantes de Isaac Newton.
+                    <br><br>
 
-<br><br>
+                    O funcionamento do Disco de Newton também evidencia que a percepção das cores depende não apenas da
+                    luz, mas também da forma como o sistema visual humano processa as imagens. A rápida sucessão das
+                    cores durante a rotação faz com que o cérebro não consiga distingui-las individualmente,
+                    interpretando sua combinação como uma única cor clara.
 
-O funcionamento do Disco de Newton também evidencia que a percepção das cores depende não apenas da luz, mas também da forma como o sistema visual humano processa as imagens. A rápida sucessão das cores durante a rotação faz com que o cérebro não consiga distingui-las individualmente, interpretando sua combinação como uma única cor clara.
+                    <br><br>
 
-<br><br>
+                    Dessa forma, o Disco de Newton é um recurso simples, porém muito eficiente para demonstrar os
+                    princípios da composição da luz branca, da mistura das cores e da percepção visual. Seu uso em
+                    experimentos e atividades didáticas contribui para tornar o aprendizado sobre Óptica mais prático,
+                    intuitivo e acessível.
 
-Dessa forma, o Disco de Newton é um recurso simples, porém muito eficiente para demonstrar os princípios da composição da luz branca, da mistura das cores e da percepção visual. Seu uso em experimentos e atividades didáticas contribui para tornar o aprendizado sobre Óptica mais prático, intuitivo e acessível.
+                </p>
 
-</p>
+            </div>
 
-</div>
+        </section>
 
-</section>
+        <section>
 
-<section>
+            <h2 class="titulo">Materiais Utilizados</h2>
 
-<h2 class="titulo">Materiais Utilizados</h2>
+            <div class="cards-materiais">
 
-<div class="cards-materiais">
+                <div class="material">
 
-<div class="material">
+                    <h3>Arduino UNO</h3>
 
-<h3>Arduino UNO</h3>
+                    <p>1 Unidade</p>
 
-<p>1 Unidade</p>
+                </div>
 
-</div>
+                <div class="material">
 
-<div class="material">
+                    <h3>Protoboard</h3>
 
-<h3>Protoboard</h3>
+                    <p>1 Unidade</p>
 
-<p>1 Unidade</p>
+                </div>
 
-</div>
+                <div class="material">
 
-<div class="material">
+                    <h3>Jumpers</h3>
 
-<h3>Jumpers</h3>
+                    <p>8 Unidades</p>
 
-<p>8 Unidades</p>
+                </div>
 
-</div>
+                <div class="material">
 
-<div class="material">
+                    <h3>Ponte H</h3>
 
-<h3>Ponte H</h3>
+                    <p>1 Unidade</p>
 
-<p>1 Unidade</p>
+                </div>
 
-</div>
+                <div class="material">
 
-<div class="material">
+                    <h3>Potenciômetro</h3>
 
-<h3>Potenciômetro</h3>
+                    <p>1 Unidade</p>
 
-<p>1 Unidade</p>
+                </div>
 
-</div>
+                <div class="material">
 
-<div class="material">
+                    <h3>Motor DC sem redução</h3>
 
-<h3>Motor DC sem redução</h3>
+                    <p>1 Unidade</p>
 
-<p>1 Unidade</p>
+                </div>
 
-</div>
+                <div class="material">
 
-<div class="material">
+                    <h3>Fonte 9V</h3>
 
-<h3>Fonte 9V</h3>
+                    <p>1 Unidade</p>
 
-<p>1 Unidade</p>
+                </div>
 
-</div>
+        </section>
 
-</section>
+        <section>
 
-<section>
+            <h2 class="titulo">Imagem do Circuito</h2>
 
-<h2 class="titulo">Imagem do Circuito</h2>
+            <div class="tinkercad">
 
-<div class="tinkercad">
+                <img src="imagens/circuito-disco-newton.jpg" alt="Circuito do Disco de Newton"
+                    onclick="abrirImagem(this.src)" alt="Circuito 1">
 
-<img src="imagens/circuito-disco-newton.jpg" alt="Circuito do Disco de Newton"
-onclick="abrirImagem(this.src)"
-alt="Circuito 1">
+                <p>
 
-<p>
+                    A imagem acima apresenta a montagem do circuito desenvolvido para este projeto. Nela é possível
+                    visualizar a ligação entre o Arduino UNO, a Ponte H, o potenciômetro, o motor DC e os jumpers
+                    utilizados para realizar o giro do disco e demonstrar o efeito da persistência da visão.
 
-A imagem acima apresenta a montagem do circuito desenvolvido para este projeto. Nela é possível visualizar a ligação entre o Arduino UNO, a Ponte H, o potenciômetro, o motor DC e os jumpers utilizados para realizar o giro do disco e demonstrar o efeito da persistência da visão.
+                </p>
 
-</p>
+                </a>
 
-</a>
+            </div>
 
-</div>
+        </section>
 
-</section>
+        <section>
 
-<section>
+            <h2 class="titulo">Códigos Fonte</h2>
 
-<h2 class="titulo">Códigos Fonte</h2>
+            <!--Disco de Newton-->
 
-<!--Disco de Newton-->
+            <div class="codigo">
 
-<div class="codigo">
+                <h3>Disco de Newton</h3>
 
-<h3>Disco de Newton</h3>
-
-<pre><code class="language-cpp">
+                <pre><code class="language-cpp">
 
 #include &lt;Arduino.h&gt;
 #include &lt;Wire.h&gt;
@@ -682,101 +702,92 @@ void loop() {
 
 </code></pre>
 
-<a href="disco-de-newton.ino" download class="btn">
+                <a href="disco-de-newton.ino" download class="btn">
 
-Baixar Código
+                    Baixar Código
 
-</a>
+                </a>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<section>
+        <section>
 
-<h2 class="titulo">Vídeo Demonstrativo</h2>
+            <h2 class="titulo">Vídeo Demonstrativo</h2>
 
-<div class="video">
+            <div class="video">
 
-<video controls muted>
+                <video controls muted>
 
-<source src="vídeos/Disco-newton.mp4" type="video/mp4">
+                    <source src="vídeos/Disco-newton.mp4" type="video/mp4">
 
-Seu navegador não suporta vídeos.
+                    Seu navegador não suporta vídeos.
 
-</video>
+                </video>
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<section>
+        <section>
 
-<h2 class="titulo">Biblioteca de Imagens</h2>
+            <h2 class="titulo">Biblioteca de Imagens</h2>
 
-<div class="galeria">
+            <div class="galeria">
 
-<img src="imagens/Disco_newton1.jpg"
-onclick="abrirImagem(this.src)"
-alt="Circuito 1">
+                <img src="imagens/Disco_newton1.jpg" onclick="abrirImagem(this.src)" alt="Circuito 1">
 
-<img src="imagens/Disco-newton2.jpg"
-onclick="abrirImagem(this.src)"
-alt="Circuito 2">
+                <img src="imagens/Disco-newton2.jpg" onclick="abrirImagem(this.src)" alt="Circuito 2">
 
-<img src="imagens/Disco-newton3.jpg"
-onclick="abrirImagem(this.src)"
-alt="Circuito 3">
+                <img src="imagens/Disco-newton3.jpg" onclick="abrirImagem(this.src)" alt="Circuito 3">
 
-<img src="imagens/circuito-inicio-disco.jpg"
-onclick="abrirImagem(this.src)"
-alt="Circuito 4">
+                <img src="imagens/circuito-inicio-disco.jpg" onclick="abrirImagem(this.src)" alt="Circuito 4">
 
-</div>
+            </div>
 
-</section>
+        </section>
 
-<!-- Janela da imagem -->
+        <!-- Janela da imagem -->
 
-<div id="janelaImagem" class="janela">
+        <div id="janelaImagem" class="janela">
 
-<span class="fechar"
-onclick="fecharImagem()">&times;</span>
+            <span class="fechar" onclick="fecharImagem()">&times;</span>
 
-<img id="imagemGrande">
+            <img id="imagemGrande">
 
-</div>
+        </div>
 
-<script src="acessibilidade.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<script>
+        <script src="acessibilidade.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+        <script>
 
-function abrirImagem(src){
+            function abrirImagem(src) {
 
-document.getElementById("janelaImagem").style.display="flex";
+                document.getElementById("janelaImagem").style.display = "flex";
 
-document.getElementById("imagemGrande").src=src;
+                document.getElementById("imagemGrande").src = src;
 
-}
+            }
 
-function fecharImagem(){
+            function fecharImagem() {
 
-document.getElementById("janelaImagem").style.display="none";
+                document.getElementById("janelaImagem").style.display = "none";
 
-}
+            }
 
-</script>
+        </script>
 
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
 
 </body>
 
