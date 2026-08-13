@@ -121,18 +121,18 @@ menu.addEventListener("click", function(e) {
 // Tamanho da Fonte //
 //////////////////////
 
-let escala = 1;
+// let escala = 1;
 
-// Todos os elementos de texto do conteúdo
-const textos = document.querySelectorAll(
-    "main h1, main h2, main h3, main h4, main h5, main h6, main p, main a, main li, main span, main button"
-);
+// // Todos os elementos de texto do conteúdo
+// const textos = document.querySelectorAll(
+//     "main h1, main h2, main h3, main h4, main h5, main h6, main p, main a, main li, main span, main button"
+// );
 
-// Guarda o tamanho original
-textos.forEach(el => {
-    const tamanho = parseFloat(getComputedStyle(el).fontSize);
-    el.dataset.fonteOriginal = tamanho;
-});
+// // Guarda o tamanho original
+// textos.forEach(el => {
+//     const tamanho = parseFloat(getComputedStyle(el).fontSize);
+//     el.dataset.fonteOriginal = tamanho;
+// });
 
 // function atualizarFonte() {
 
