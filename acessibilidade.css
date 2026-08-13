@@ -288,7 +288,7 @@ body.alto-contraste footer{
 
 body.alto-contraste .menu-acessibilidade{
     background: #000 !important;
-    border: 2px solid #fff;
+    /*border: 2px solid #fff*/
 }
 
 body.alto-contraste .menu-acessibilidade button{
