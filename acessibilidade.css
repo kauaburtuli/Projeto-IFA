@@ -308,4 +308,5 @@ body.alto-contraste .texto-fonte{
 /* Linha onde ficam o texto e os botões */
 body.alto-contraste .linha-fonte{
     background: #000 !important;
+    border: 2px solid #fff;
 }
