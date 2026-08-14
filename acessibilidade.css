@@ -265,6 +265,7 @@ body.alto-contraste span{
 /* Links */
 body.alto-contraste a{
     color:#00ffff !important;
+    color: #64b5f6 !important;
 }
 
 /* Botões */
@@ -336,11 +337,11 @@ body.alto-contraste .controle-leitura button:hover{
 
 /* Botão Acessibilidade no alto contraste */
 body.alto-contraste .btn-acessibilidade{
-    color: #fff !important;
+    color: #00ffff !important;
     background: transparent !important;
     border: none !important;
 }
 
 body.alto-contraste .btn-acessibilidade:hover{
-    color: #00ffff !important;
+    color: #64b5f6 !important;
 }
