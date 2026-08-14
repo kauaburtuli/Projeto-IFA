@@ -1,3 +1,31 @@
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("fonts/OpenDyslexic-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("fonts/OpenDyslexic-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("fonts/OpenDyslexic-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("fonts/OpenDyslexic-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
 /* ========================= */
 /* ACESSIBILIDADE            */
 /* ========================= */
@@ -344,4 +372,27 @@ body.alto-contraste .btn-acessibilidade{
 
 body.alto-contraste .btn-acessibilidade:hover{
     color: #64b5f6 !important;
+}
+
+/* Fonte para dislexia */
+
+body.fonte-dislexia,
+body.fonte-dislexia *{
+
+    font-family: "OpenDyslexic", Arial, sans-serif !important;
+
+}
+
+body.alto-contraste #dislexia{
+
+    background:#000 !important;
+    color:#fff !important;
+    border:1px solid #fff;
+
+}
+
+body.alto-contraste #dislexia:hover{
+
+    background:#222 !important;
+
 }

@@ -270,3 +270,35 @@ if (botaoContraste) {
     };
 
 }
+
+/////////////////////////
+// Fonte para Dislexia //
+/////////////////////////
+
+const botaoDislexia = document.getElementById("dislexia");
+
+// Recupera a preferência salva
+if(localStorage.getItem("dislexia") === "on"){
+
+    document.body.classList.add("fonte-dislexia");
+    botaoDislexia.innerHTML = "🔤 Fonte Normal";
+
+}
+
+botaoDislexia.onclick = () => {
+
+    document.body.classList.toggle("fonte-dislexia");
+
+    if(document.body.classList.contains("fonte-dislexia")){
+
+        botaoDislexia.innerHTML = "🔤 Fonte Normal";
+        localStorage.setItem("dislexia", "on");
+
+    }else{
+
+        botaoDislexia.innerHTML = "📖 Fonte para Dislexia";
+        localStorage.setItem("dislexia", "off");
+
+    }
+
+};
