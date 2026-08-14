@@ -293,7 +293,10 @@ body.alto-contraste span{
 /* Links */
 body.alto-contraste a{
     color:#00ffff !important;
-    color: #64b5f6 !important;
+}
+
+body.alto-contraste a:hover{
+    color:#64b5f6 !important;
 }
 
 /* Botões */
