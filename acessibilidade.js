@@ -354,7 +354,7 @@ document.addEventListener("mousemove",(e)=>{
 
 if(localStorage.getItem("cursor") === "on"){
 
-    document.body.classlist.add("cursor-grande");
+    document.body.classlist.add("cursorGrande");
     botaoCursor.innerHTML = "🖱️ Cursor normal";
 
 }
@@ -363,9 +363,9 @@ if(localStorage.getItem("cursor") === "on"){
 
 botaoCursor.onClick = ()=>{
 
-    document.body.classList.toggle("cursor-grande");
+    document.body.classList.toggle("cursorGrande");
 
-    if(document.body.classList.contains("cursor-grande")){
+    if(document.body.classList.contains("cursorGrande")){
 
         botaoCursor.innerHTML = "🖱️ Cursor normal";
 
