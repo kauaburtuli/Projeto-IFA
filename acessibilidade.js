@@ -354,28 +354,29 @@ document.addEventListener("mousemove",(e)=>{
 
 if(localStorage.getItem("cursor") === "on"){
 
-    document.body.classlist.add("cursorGrande");
-    botaoCursor.innerHTML = "🖱️ Cursor normal";
+    document.body.classList.add("cursor-grande");
+    botaoCursor.innerHTML = "🖱 Cursor normal";
 
 }
 
 // Botão
 
-botaoCursor.onClick = ()=>{
+botaoCursor.onclick = ()=>{
 
-    document.body.classList.toggle("cursorGrande");
+    document.body.classList.toggle("cursor-grande");
 
-    if(document.body.classList.contains("cursorGrande")){
+    if(document.body.classList.contains("cursor-grande")){
 
-        botaoCursor.innerHTML = "🖱️ Cursor normal";
-
+        botaoCursor.innerHTML = "🖱 Cursor normal";
         localStorage.setItem("cursor","on");
 
     }else{
-        botaoCursor.innerHTML = "🖱️ Cursor ampliado"
 
-        localStorage.setItem("cursor", "off");
+        botaoCursor.innerHTML = "🖱 Cursor ampliado";
+        localStorage.setItem("cursor","off");
+
     }
+
 };
 
 // Movimento do cursor
@@ -402,6 +403,7 @@ document.querySelectorAll("a, button").forEach(el=>{
         cursor.classList.remove("hover");
 
     });
+
 });
 
 ///////////////////////

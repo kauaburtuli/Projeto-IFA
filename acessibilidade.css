@@ -441,9 +441,9 @@ body.espacamento .material{
     padding: 35px;
 }
 
-/* ======================
+/* ==========================
    Cursor ampliado
-====================== */
+========================== */
 
 #cursorGrande{
 
@@ -469,26 +469,26 @@ body.espacamento .material{
     z-index:999999;
 
     transition:
-    width .15s,
-    height .15s,
-    background .15s,
-    border-color .15s;
+        width .15s,
+        height .15s,
+        background .15s,
+        border-color .15s;
 
 }
 
-body.cursorGrande{
+body.cursor-grande{
     cursor:none;
 }
 
-body.cursorGrande *{
+body.cursor-grande *{
     cursor:none !important;
 }
 
-body.cursorGrande #cursorGrande{
+body.cursor-grande #cursorGrande{
     display:block;
 }
 
-/* Quando passar sobre algo clicável*/
+/* Quando passar sobre algo clicável */
 
 #cursorGrande.hover{
 
@@ -499,7 +499,7 @@ body.cursorGrande #cursorGrande{
 
 }
 
-/* Alto contraste*/
+/* Alto contraste */
 
 body.alto-contraste #cursorGrande{
 
