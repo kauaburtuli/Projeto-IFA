@@ -520,9 +520,9 @@ document.getElementById("restaurarAcessibilidade").onclick = () => {
 
     document.body.classList.remove("reduzir-animacoes");
 
-    localStorage.setItem("reduzir-animacoes", "off");
+    localStorage.setItem("animacoes", "off");
 
-    document.getElementById("reduzir-animacoes").innerHTML = "✨ Reduzir animações";
+    document.getElementById("animacoes").innerHTML = "✨ Reduzir animações";
 
     // Lupa
 
