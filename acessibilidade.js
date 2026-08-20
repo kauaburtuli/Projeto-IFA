@@ -307,8 +307,7 @@ botaoDislexia.onclick = () => {
 // Espaçamento maior //
 ///////////////////////
 
-const botaoEspacamento =
-document.getElementById("espacamento");
+const botaoEspacamento = document.getElementById("espacamento");
 
 //Recupera a preferência salva
 if(localStorage.getItem("espacamento") === "on"){
@@ -341,10 +340,8 @@ botaoEspacamento.onclick = () => {
 // Cursor ampliado //
 /////////////////////
 
-const cursor = 
-document.getElementById("cursorGrande");
-const botaoCursor =
-document.getElementById("cursor");
+const cursor = document.getElementById("cursorGrande");
+const botaoCursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -411,8 +408,7 @@ document.querySelectorAll("a, button").forEach(el=>{
 // Reduzir animações //
 ///////////////////////
 
-const botaoAnimacoes = 
-document.getElementById("animacoes");
+const botaoAnimacoes = document.getElementById("animacoes");
 
 // Recupera a preferência salva
 if(localStorage.getItem(animacoes) === "on"){
@@ -446,10 +442,8 @@ botaoAnimacoes.onclick = () => {
 // Lupa de foco //
 //////////////////
 
-const lupa =
-document.getElementById("lupaFoco");
-const botaoLupa = 
-document.getElementById("lupa");
+const lupa = document.getElementById("lupaFoco");
+const botaoLupa = document.getElementById("lupa");
 
 // Recupera a preferência
 if(localStorage.getItem("lupa") === "on"){
@@ -535,8 +529,7 @@ document.getElementById("restaurarAcessibilidade").onclick = () => {
     document.body.classList.remove("lupa");
 
     localStorage.setItem("lupa", "off");
-    const botaoLupa =
-    document.getElementById("lupa");
+    const botaoLupa = document.getElementById("lupa");
     if(botaoLupa){
         botaoLupa.innerHTML = "🔍 Ativar lupa";
     }
