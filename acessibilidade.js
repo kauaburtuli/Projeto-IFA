@@ -319,7 +319,7 @@ if(localStorage.getItem("espacamento") === "on"){
 }
 
 // Clique no botão
-botaoEspacamento.onClick = () => {
+botaoEspacamento.onclick = () => {
 
     document.body.classList.toggle("espacamento");
 
