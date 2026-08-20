@@ -377,6 +377,17 @@ body.alto-contraste .btn-acessibilidade:hover{
     color: #64b5f6 !important;
 }
 
+body.alto-contraste #espacamento{
+    background: #000 !important;
+    color: #fff !important;
+    border: 1px solid #fff;
+}
+
+body.alto-contraste
+espacamento:hover{
+    background: #222 !important
+}
+
 /* Fonte para dislexia */
 
 body.fonte-dislexia,
@@ -398,4 +409,169 @@ body.alto-contraste #dislexia:hover{
 
     background:#222 !important;
 
+}
+
+body.fonte-dislexia .hero,
+body.fonte-dislexia .banner,
+body.fonte-dislexia main{
+    padding-top: 30px;
+}
+
+/* ==========================
+    Espaçamento aumentado
+===========================*/
+
+body.espacamento p,
+body.espacamento li{
+    line-height: 2.2;
+    letter-spacing: 0.06em;
+    word-spacing: 0.15em;
+}
+
+body.espacamento h1,
+body.espacamento h2,
+body.espacamento h3{
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+}
+
+body.espacamento .card,
+body.espacamento .item,
+body.espacamento .material{
+    padding: 35px;
+}
+
+/* ======================
+   Cursor ampliado
+====================== */
+
+#cursorGrande{
+
+    width:40px;
+    height:40px;
+
+    border:3px solid #0d47a1;
+    background:rgba(13,71,161,.12);
+
+    border-radius:50%;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    transform:translate(-50%,-50%);
+
+    pointer-events:none;
+
+    display:none;
+
+    z-index:999999;
+
+    transition:
+    width .15s,
+    height .15s,
+    background .15s,
+    border-color .15s;
+
+}
+
+body.cursor-grande{
+    cursor:none;
+}
+
+body.cursor-grande *{
+    cursor:none !important;
+}
+
+body.cursor-grande #cursorGrande{
+    display:block;
+}
+
+/* Quando passar sobre algo clicável*/
+
+#cursorGrande.hover{
+
+    width:60px;
+    height:60px;
+
+    background:rgba(13,71,161,.20);
+
+}
+
+/* Alto contraste*/
+
+body.alto-contraste #cursorGrande{
+
+    border-color:white;
+    background:rgba(255,255,255,.12);
+
+}
+
+/* ==========================
+   Reduzir animações
+========================== */
+
+body.reduzir-animaçoes *,
+body.reduzir-animacoes *::before,
+body.reduzir-animacoes *::after{
+
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important
+
+}
+
+body.reduzir-animacoes .card:hover,
+body.reduzir-animacoes .btn:hover,
+body.reduzir-animacoes .galeria
+img:hover{
+
+    transform: none !important
+}
+
+/* ==============
+   Lupa de foco
+===============*/
+
+#lupaFoco{
+
+    width:180px;
+    height:180px;
+
+    border:4px solid #0d47a1;
+    border-radius:50%;
+
+    position:fixed;
+
+    left:0;
+    right:0;
+
+    transform:translate(-50%,-50%);
+
+    pointer-events:none;
+
+    display:none;
+
+    z-index:999999;
+
+    box-shadow: 0 0 0 9999px rgba(0,0,0,.55);
+
+    transition:border-color .2s
+
+}
+
+body.lupa #lupaFoco{
+
+    display:block;
+
+}
+
+/* Alto contraste */
+
+body.alto-contraste #lupaFoco{
+
+    border-color:white;
+    box-shadow:0 0 0 9999px rgba(0,0,0,.8);
+    
 }

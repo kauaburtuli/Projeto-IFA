@@ -302,3 +302,246 @@ botaoDislexia.onclick = () => {
     }
 
 };
+
+///////////////////////
+// Espaçamento maior //
+///////////////////////
+
+const botaoEspaçamento =
+document.getElementById("espacamento");
+
+//Recupera a preferência salva
+if(localStorage.getItem("espacamento") === "on"){
+
+    document.body.classList.add("espacamento");
+    botaoEspacamento.innerHTML = "↔  Espaçamento normal";
+
+}
+
+// Clique no botão
+botaoEspacamento.onClick = () => {
+
+    document.body.classList.toggle("espacamento");
+
+    if(document.body.classList.contains("espacamento")) {
+
+        botaoEspacamento.innerHTML = "↔ Espaçamento normal";
+
+        localStorage.setItem("espacamento", "on");
+
+    }else{
+        botaoEspacamento.innerHTML = "↔ Aumentar espaçamento";
+
+        localStorage.setItem("espacamento", "off");
+
+    }
+};
+
+/////////////////////
+// Cursor ampliado //
+/////////////////////
+
+const cursor = 
+document.getElementById("cursorGrande");
+const botaoCursor =
+document.getElementById("cursor");
+
+document.addEventListener("mousemove",(e)=>{
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+});
+
+// Recupera a preferência
+
+if(localStorage.getItem("cursor") === "on"){
+
+    document.body.classlist.add("cursor-grande");
+    botaoCursor.innerHTML = "🖱️ Cursor normal";
+
+}
+
+// Botão
+
+botaoCursor.onClick = ()=>{
+
+    document.body.classList.toggle("cursor-grande");
+
+    if(document.body.classList.contains("cursor-grande")){
+
+        botaoCursor.innerHTML = "🖱️ Cursor normal";
+
+        localStorage.setItem("cursor","on");
+
+    }else{
+        botaoCursor.innerHTML = "🖱️ Cursor ampliado"
+
+        localStorage.setItem("cursor", "off");
+    }
+};
+
+// Movimento do cursor
+
+document.addEventListener("mousemove",(e)=>{
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY  "px";
+
+});
+
+// Cresce ao passar sobre elementos clicáveis
+
+document.querySelectorAll("a, button").forEach(el=>{
+
+    el.addEventListener("mouseenter",()=>{
+
+        cursor.classList.add("hover");
+
+    });
+
+    el.addEventListener("mouseleave",()=>{
+
+        cursor.classList.remove("hover");
+
+    });
+});
+
+///////////////////////
+// Reduzir animações //
+///////////////////////
+
+const botaoAnimacoes = 
+document.getElementById("animacoes");
+
+// Recupera a preferência salva
+if(localStorage.getItem(animacoes) === "on"){
+
+    document.body.classList.add("reduzir-animacoes");
+    botaoAnimacoes.innerHTML = "✨ Animações normais";
+
+}
+
+// Clique no botão
+botaoAnimacoes.onclick = () => {
+
+    document.body.classList.toggle("reduzir-animacoes");
+
+    if(document.body.classList.contains("reduzir-animacoes")){
+
+        botaoAnimacoes.innerHTML = "✨ Animações normais";
+
+        localStorage.setItem("animacoes","on");
+
+    }else{
+
+        botaoAnimacoes.innerHTML = "✨ Reduzir animações";
+
+        localStorage.setItem("animacoes","off");
+
+    }
+};
+
+//////////////////
+// Lupa de foco //
+//////////////////
+
+const lupa =
+document.getElementById("lupaFoco");
+const botaoLupa = 
+document.getElementById("lupa");
+
+// Recupera a preferência
+if(localStorage.getItem("lupa") === "on"){
+
+    document.body.classList.add("lupa");
+    botaoLupa.innerHTML = "🔍 Desativar lupa";
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+
+    lupa.style.left = e.clientX + "px";
+    lupa.style.top = e.clientY + "px";
+
+});
+
+botaoLupa.onClick = ()=>{
+
+    document.body.classList.toggle("lupa");
+
+    if(document.body.classList.contains("lupa")){
+
+        botaoLupa.innerHTML = "🔍 Desativar lupa";
+
+        localStorage.setItem("lupa","on");
+
+    }else{
+
+        botaoLupa.innerHTML = "🔍 Ativar lupa";
+
+        localStorage.setItem("lupa","off");
+    }
+};
+
+document.getElementById("restaurarAcessibilidade").onclick = () => {
+
+    // Fonte
+    escala = 1;
+    atualizarFonte();
+
+    //Alto contraste
+
+    document.body.classList.remove("alto-contraste");
+
+    localStorage.setItem("contraste","off");
+
+    document.getElementById("contraste").innerHTML = "🌙 Alto contraste";
+
+    // Fonte para dislexia
+
+    document.body.classList.remove("fonte-dislexia");
+
+    localStorage.setItem("dislexia", "off");
+
+    document.getElementById("dislexia").innerHTML = "📖 Fonte para dislexia";
+
+    // Espaçamento
+
+    document.body.classList.remove("espacamento");
+
+    localStorage.setItem("espacamento", "off");
+
+    document.getElementById("espacamento").innerHTML = "↔️ Aumentar espaçamento";
+
+    // Cursor ampliado
+
+    document.body.classList.remove("cursor-grande");
+
+    localStorage.setItem("cursor-grande", "off");
+
+    document.getElementById("cursor-grande").innerHTML = "🖱 Cursor ampliado";
+
+    // Redução de animações
+
+    document.body.classList.remove("reduzir-animacoes");
+
+    localStorage.setItem("reduzir-animacoes", "off");
+
+    document.getElementById("reduzir-animacoes").innerHTML = "✨ Reduzir animações";
+
+    // Lupa
+
+    document.body.classList.remove("lupa");
+
+    localStorage.setItem("lupa", "off");
+    const botaoLupa =
+    document.getElementById("lupa");
+    if(botaoLupa){
+        botaoLupa.innerHTML = "🔍 Ativar lupa";
+    }
+
+    // Fecha o menu
+    menu.classList.remove("ativo");
+
+};
