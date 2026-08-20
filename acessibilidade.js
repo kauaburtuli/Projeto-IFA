@@ -307,7 +307,7 @@ botaoDislexia.onclick = () => {
 // Espaçamento maior //
 ///////////////////////
 
-const botaoEspaçamento =
+const botaoEspac1amento =
 document.getElementById("espacamento");
 
 //Recupera a preferência salva
