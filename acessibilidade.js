@@ -406,17 +406,17 @@ document.querySelectorAll("a, button").forEach(el=>{
 
 });
 
-///////////////////////
+/////////////////////////
 // Reduzir animações //
-///////////////////////
+/////////////////////////
 
 const botaoAnimacoes = document.getElementById("animacoes");
 
 // Recupera a preferência salva
-if(localStorage.getItem(animacoes) === "on"){
+if(localStorage.getItem("animacoes") === "on"){
 
     document.body.classList.add("reduzir-animacoes");
-    botaoAnimacoes.innerHTML = "✨ Animações normais";
+    botaoAnimacoes.innerHTML = "🎞 Animações normais";
 
 }
 
@@ -427,57 +427,16 @@ botaoAnimacoes.onclick = () => {
 
     if(document.body.classList.contains("reduzir-animacoes")){
 
-        botaoAnimacoes.innerHTML = "✨ Animações normais";
-
+        botaoAnimacoes.innerHTML = "🎞 Animações normais";
         localStorage.setItem("animacoes","on");
 
     }else{
 
-        botaoAnimacoes.innerHTML = "✨ Reduzir animações";
-
+        botaoAnimacoes.innerHTML = "🎞 Reduzir animações";
         localStorage.setItem("animacoes","off");
 
     }
-};
 
-//////////////////
-// Lupa de foco //
-//////////////////
-
-const lupa = document.getElementById("lupaFoco");
-const botaoLupa = document.getElementById("lupa");
-
-// Recupera a preferência
-if(localStorage.getItem("lupa") === "on"){
-
-    document.body.classList.add("lupa");
-    botaoLupa.innerHTML = "🔍 Desativar lupa";
-
-}
-
-document.addEventListener("mousemove",(e)=>{
-
-    lupa.style.left = e.clientX + "px";
-    lupa.style.top = e.clientY + "px";
-
-});
-
-botaoLupa.onClick = ()=>{
-
-    document.body.classList.toggle("lupa");
-
-    if(document.body.classList.contains("lupa")){
-
-        botaoLupa.innerHTML = "🔍 Desativar lupa";
-
-        localStorage.setItem("lupa","on");
-
-    }else{
-
-        botaoLupa.innerHTML = "🔍 Ativar lupa";
-
-        localStorage.setItem("lupa","off");
-    }
 };
 
 document.getElementById("restaurarAcessibilidade").onclick = () => {

@@ -512,22 +512,22 @@ body.alto-contraste #cursorGrande{
    Reduzir animações
 ========================== */
 
-body.reduzir-animaçoes *,
+body.reduzir-animacoes *,
 body.reduzir-animacoes *::before,
 body.reduzir-animacoes *::after{
 
     animation: none !important;
     transition: none !important;
-    scroll-behavior: auto !important
+    scroll-behavior: auto !important;
 
 }
 
 body.reduzir-animacoes .card:hover,
 body.reduzir-animacoes .btn:hover,
-body.reduzir-animacoes .galeria
-img:hover{
+body.reduzir-animacoes .galeria img:hover{
 
-    transform: none !important
+    transform: none !important;
+
 }
 
 /* ==============
