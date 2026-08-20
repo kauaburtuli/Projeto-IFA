@@ -476,15 +476,15 @@ body.espacamento .material{
 
 }
 
-body.cursor-grande{
+body.cursorGrande{
     cursor:none;
 }
 
-body.cursor-grande *{
+body.cursorGrande *{
     cursor:none !important;
 }
 
-body.cursor-grande #cursorGrande{
+body.cursorGrande #cursorGrande{
     display:block;
 }
 
