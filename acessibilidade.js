@@ -172,6 +172,10 @@ let lendoTexto = false;
 
 let proximoTexto = null;
 
+let filaLeitura = [];
+
+let indiceFila = 0;
+
 
 // ======================================================
 // FUNÇÃO DE FALA
@@ -208,23 +212,54 @@ const botaoLerPagina =
 
 
 if (botaoLerPagina && modalLeitura) {
+botaoLerPagina.onclick = () => {
 
-    botaoLerPagina.onclick = () => {
+    speechSynthesis.cancel();
 
-        speechSynthesis.cancel();
+    opcaoAtual = 0;
 
-        opcaoAtual = 0;
+    modalLeitura.classList.add("ativo");
+
+    modalLeitura.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    // Explica como utilizar o menu
+
+    const instrucao =
+        "Selecione o tipo de leitura. " +
+        "Use a seta para baixo ou a seta para cima " +
+        "para trocar de opção. " +
+        "Pressione Enter para confirmar. " +
+        "A leitura geral lê toda a página. " +
+        "A leitura por seleção permite clicar no texto " +
+        "que você deseja ouvir.";
+
+
+    const fala =
+        new SpeechSynthesisUtterance(
+            instrucao
+        );
+
+    fala.lang = "pt-BR";
+
+    fala.rate = 1;
+
+    fala.pitch = 1;
+
+
+    fala.onend = () => {
 
         atualizarOpcao();
 
-        modalLeitura.classList.add("ativo");
-
-        modalLeitura.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
     };
+
+
+    speechSynthesis.speak(fala);
+
+};
 
 }
 
@@ -517,218 +552,307 @@ function iniciarLeituraGeral() {
 // INICIAR LEITURA DE UM TEXTO
 // ======================================================
 
-function iniciarLeituraTexto(texto) {
+// 
 
-    if (!texto) {
-
-        return;
-
-    }
-
-
-    speechSynthesis.cancel();
-
-
-    leitura =
-        new SpeechSynthesisUtterance(
-            texto
-        );
-
-
-    leitura.lang = "pt-BR";
-
-    leitura.rate = 1;
-
-    leitura.pitch = 1;
-
-
-    lendoTexto = true;
-
-
-    // ==========================
-    // QUANDO TERMINAR
-    // ==========================
-
-    leitura.onend = () => {
-
-        lendoTexto = false;
-
-
-        // Existe outro texto esperando?
-
-        if (proximoTexto) {
-
-            const novoTexto =
-                proximoTexto;
-
-
-            proximoTexto = null;
-
-
-            iniciarLeituraTexto(
-                novoTexto
-            );
-
-
-            return;
-
-        }
-
-
-        // Terminou tudo
-
-        if (status) {
-
-            status.innerHTML =
-                "✅ Leitura concluída";
-
-        }
-
-    };
-
-
-    // ==========================
-    // COMEÇA A FALAR
-    // ==========================
-
-    speechSynthesis.speak(
-        leitura
-    );
-
-
-    // Fecha menu
-
-    if (menu) {
-
-        menu.classList.remove(
-            "ativo"
-        );
-
-    }
-
-
-    // Mostra controles
-
-    if (controle) {
-
-        controle.style.display =
-            "flex";
-
-    }
-
-
-    if (status) {
-
-        status.innerHTML =
-            "🔊 Lendo...";
-
-    }
-
-}
 
 
 // ======================================================
 // LEITURA POR SELEÇÃO
 // ======================================================
 
-function iniciarLeituraSelecao() {
+// function iniciarLeituraSelecao() {
 
-    modoLeitura = "selecao";
-
-
-    document.body.classList.add(
-        "modo-leitura-selecao"
-    );
+//     modoLeitura = "selecao";
 
 
-    if (indicadorSelecao) {
+//     document.body.classList.add(
+//         "modo-leitura-selecao"
+//     );
 
-        indicadorSelecao.style.display =
-            "block";
+
+//     if (indicadorSelecao) {
+
+//         indicadorSelecao.style.display =
+//             "block";
+
+//     }
+
+
+//     falar(
+//         "Modo leitura por seleção ativado. " +
+//         "Clique no texto que deseja ouvir."
+//     );
+
+
+//     prepararElementos();
+
+// }
+
+
+// // ======================================================
+// // PREPARAR ELEMENTOS PARA SELEÇÃO
+// // ======================================================
+
+// function prepararElementos() {
+
+//     const elementos =
+//         document.querySelectorAll(
+
+//             "a" +
+//             "main h1, " +
+//             "main h2, " +
+//             "main h3, " +
+//             "main h4, " +
+//             "main h5, " +
+//             "main h6, " +
+//             "main p, " +
+//             "main li, " +
+//             "main .texto, " +
+//             "main .titulo, " +
+//             "main .card, " +
+//             "main .item"
+
+//         );
+
+
+//     elementos.forEach(
+//         (el) => {
+
+//             // Evita adicionar duas vezes
+
+//             if (
+//                 el.dataset.leituraAtiva ===
+//                 "true"
+//             ) {
+
+//                 return;
+
+//             }
+
+
+//             el.dataset.leituraAtiva =
+//                 "true";
+
+
+//             // Mouse entrando
+
+//             el.addEventListener(
+//                 "mouseenter",
+//                 destacarElemento
+//             );
+
+
+//             // Mouse saindo
+
+//             el.addEventListener(
+//                 "mouseleave",
+//                 removerDestaque
+//             );
+
+
+//             // Clique
+
+//             el.addEventListener(
+//                 "click",
+//                 selecionarElemento
+//             );
+
+//         }
+//     );
+
+// }
+
+function iniciarLeituraTexto(texto) {
+
+    if (!texto || !texto.trim()) {
+        return;
+    }
+
+    // Para qualquer leitura anterior
+    speechSynthesis.cancel();
+
+    // Divide o texto em frases/partes menores
+    const partes = texto
+        .replace(/\s+/g, " ")
+        .trim()
+        .match(/.{1,180}(?:\s|$)/g);
+
+    if (!partes || partes.length === 0) {
+        return;
+    }
+
+    let indice = 0;
+
+    lendoTexto = true;
+
+
+    // ==========================
+    // Mostra controles
+    // ==========================
+
+    if (menu) {
+
+        menu.classList.remove("ativo");
+
+    }
+
+    if (controle) {
+
+        controle.style.display = "flex";
+
+    }
+
+    if (status) {
+
+        status.innerHTML = "🔊 Lendo...";
 
     }
 
 
-    falar(
-        "Modo leitura por seleção ativado. " +
-        "Clique no texto que deseja ouvir."
-    );
+    // ==========================
+    // Função para falar próxima parte
+    // ==========================
+
+    function falarParte() {
+
+        // Se o usuário apertou PARAR
+        if (!lendoTexto) {
+            return;
+        }
 
 
-    prepararElementos();
+        // Terminou todas as partes
+        if (indice >= partes.length) {
 
-}
+            lendoTexto = false;
 
+            if (status) {
 
-// ======================================================
-// PREPARAR ELEMENTOS PARA SELEÇÃO
-// ======================================================
-
-function prepararElementos() {
-
-    const elementos =
-        document.querySelectorAll(
-
-            "main h1, " +
-            "main h2, " +
-            "main h3, " +
-            "main h4, " +
-            "main h5, " +
-            "main h6, " +
-            "main p, " +
-            "main li, " +
-            "main .texto, " +
-            "main .titulo, " +
-            "main .card, " +
-            "main .item"
-
-        );
-
-
-    elementos.forEach(
-        (el) => {
-
-            // Evita adicionar duas vezes
-
-            if (
-                el.dataset.leituraAtiva ===
-                "true"
-            ) {
-
-                return;
+                status.innerHTML =
+                    "✅ Leitura concluída";
 
             }
 
-
-            el.dataset.leituraAtiva =
-                "true";
-
-
-            // Mouse entrando
-
-            el.addEventListener(
-                "mouseenter",
-                destacarElemento
-            );
+            return;
+        }
 
 
-            // Mouse saindo
-
-            el.addEventListener(
-                "mouseleave",
-                removerDestaque
-            );
+        const textoParte =
+            partes[indice].trim();
 
 
-            // Clique
+        if (!textoParte) {
 
-            el.addEventListener(
-                "click",
-                selecionarElemento
-            );
+            indice++;
+
+            falarParte();
+
+            return;
 
         }
-    );
+
+
+        leitura =
+            new SpeechSynthesisUtterance(
+                textoParte
+            );
+
+
+        leitura.lang = "pt-BR";
+
+        leitura.rate = 1;
+
+        leitura.pitch = 1;
+
+
+        // ==========================
+        // Terminou essa parte
+        // ==========================
+
+        leitura.onend = () => {
+
+            if (!lendoTexto) {
+                return;
+            }
+
+
+            indice++;
+
+
+            // Se existe outro texto
+            // selecionado pelo usuário
+            if (proximoTexto) {
+
+                const novoTexto =
+                    proximoTexto;
+
+                proximoTexto = null;
+
+                iniciarLeituraTexto(
+                    novoTexto
+                );
+
+                return;
+            }
+
+
+            // Pequeno intervalo
+            // antes da próxima parte
+
+            setTimeout(() => {
+
+                falarParte();
+
+            }, 80);
+
+        };
+
+
+        // ==========================
+        // Se ocorrer erro
+        // ==========================
+
+        leitura.onerror = (erro) => {
+
+            console.warn(
+                "Erro na leitura:",
+                erro
+            );
+
+
+            if (!lendoTexto) {
+                return;
+            }
+
+
+            indice++;
+
+
+            setTimeout(() => {
+
+                falarParte();
+
+            }, 100);
+
+        };
+
+
+        // ==========================
+        // Fala
+        // ==========================
+
+        speechSynthesis.speak(
+            leitura
+        );
+
+    }
+
+
+    // ==========================
+    // Começa
+    // ==========================
+
+    falarParte();
 
 }
 
@@ -853,6 +977,7 @@ if (botaoPausar) {
 }
 
 
+
 // ======================================================
 // CONTINUAR
 // ======================================================
@@ -891,21 +1016,72 @@ const botaoParar =
     );
 
 
+// if (botaoParar) {
+
+//     botaoParar.onclick = () => {
+
+//         speechSynthesis.cancel();
+
+
+//         leitura = null;
+
+
+//         lendoTexto = false;
+
+
+//         proximoTexto = null;
+
+
+//         modoLeitura = null;
+
+
+//         document.body.classList.remove(
+//             "modo-leitura-selecao"
+//         );
+
+
+//         if (indicadorSelecao) {
+
+//             indicadorSelecao.style.display =
+//                 "none";
+
+//         }
+
+
+//         if (controle) {
+
+//             controle.style.display =
+//                 "none";
+
+//         }
+
+
+//         if (status) {
+
+//             status.innerHTML =
+//                 "⏹ Parado";
+
+//         }
+
+//     };
+
+//}
+
 if (botaoParar) {
 
     botaoParar.onclick = () => {
 
-        speechSynthesis.cancel();
-
-
-        leitura = null;
-
-
         lendoTexto = false;
-
 
         proximoTexto = null;
 
+        filaLeitura = [];
+
+        indiceFila = 0;
+
+        speechSynthesis.cancel();
+
+        leitura = null;
 
         modoLeitura = null;
 
