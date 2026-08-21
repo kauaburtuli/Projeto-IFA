@@ -1,41 +1,606 @@
+// let leitura;
+
+// // Elementos
+// const botao = document.querySelector(".btn-acessibilidade");
+// const menu = document.querySelector(".menu-acessibilidade");
+
+// const controle = document.getElementById("controleLeitura");
+// const status = document.getElementById("statusLeitura");
+
+// // ==========================
+// // Ler página
+// // ==========================
+
+// document.getElementById("lerPagina").onclick = () => {
+
+//     speechSynthesis.cancel();
+
+//     leitura = new SpeechSynthesisUtterance(document.body.innerText);
+
+//     leitura.lang = "pt-BR";
+
+//     speechSynthesis.speak(leitura);
+
+//     // Fecha o menu
+//     menu.classList.remove("ativo");
+
+//     // Mostra o balão
+//     controle.style.display = "flex";
+
+//     status.innerHTML = "🔊 Lendo...";
+
+// };
+
+// // ==========================
+// // Controles do balão
+// // ==========================
+
+// // Pausar
+
+// document.getElementById("pausarBtn").onclick = () => {
+
+//     speechSynthesis.pause();
+
+//     status.innerHTML = "⏸ Pausado";
+
+// };
+
+// // Continuar
+
+// document.getElementById("continuarBtn").onclick = () => {
+
+//     speechSynthesis.resume();
+
+//     status.innerHTML = "🔊 Lendo...";
+
+// };
+
+// // Parar
+
+// document.getElementById("pararBtn").onclick = () => {
+
+//     speechSynthesis.cancel();
+
+//     controle.style.display = "none";
+
+// };
+
+// =======================================
+// // LEITOR DE PÁGINA
+// // =======================================
+
+// const botaoLerPagina = document.getElementById("lerPagina");
+
+// const modalLeitura = document.getElementById("modalLeitura");
+
+// const cancelarLeitura =
+//     document.getElementById("cancelarLeitura");
+
+// const opcoesLeitura =
+//     document.querySelectorAll(".opcao-leitura");
+
+// const indicadorSelecao =
+//     document.getElementById("indicadorSelecao");
+
+
+// // Opção atualmente selecionada
+// let opcaoLeitura = 0;
+
+
+// // Modo atual
+// let modoLeitura = null;
+
+
+// // Próximo texto
+// let proximoTexto = null;
+
+
+// // Está lendo?
+// let lendoTexto = false;
+
+
+// // =======================================
+// // ABRIR MODAL
+// // =======================================
+
+// botaoLerPagina.onclick = () => {
+
+//     speechSynthesis.cancel();
+
+//     modoLeitura = null;
+
+//     opcaoLeitura = 0;
+
+//     atualizarOpcao();
+
+//     modalLeitura.classList.add("ativo");
+
+//     modalLeitura.setAttribute("aria-hidden", "false");
+
+//     falar(
+//         "Selecione o tipo de leitura. " +
+//         "Leitura geral. " +
+//         "Leitura por seleção. " +
+//         "Use as setas para escolher e Enter para confirmar."
+//     );
+
+// };
+
 let leitura;
 
+// ==========================
 // Elementos
+// ==========================
+
 const botao = document.querySelector(".btn-acessibilidade");
 const menu = document.querySelector(".menu-acessibilidade");
 
 const controle = document.getElementById("controleLeitura");
 const status = document.getElementById("statusLeitura");
 
+const modalLeitura = document.getElementById("modalLeitura");
+const cancelarLeitura = document.getElementById("cancelarLeitura");
+
+const opcoesLeitura =
+    document.querySelectorAll(".opcao-leitura");
+
+const indicadorSelecao =
+    document.getElementById("indicadorSelecao");
+
+
 // ==========================
-// Ler página
+// Variáveis
+// ==========================
+
+let opcaoAtual = 0;
+
+let modoLeitura = null;
+
+let lendoTexto = false;
+
+let proximoTexto = null;
+
+
+// ==========================
+// Função de fala
+// ==========================
+
+function falar(texto) {
+
+    speechSynthesis.cancel();
+
+    const fala = new SpeechSynthesisUtterance(texto);
+
+    fala.lang = "pt-BR";
+
+    fala.rate = 1;
+
+    fala.pitch = 1;
+
+    speechSynthesis.speak(fala);
+
+}
+
+
+// ==========================
+// Botão "Ler página"
 // ==========================
 
 document.getElementById("lerPagina").onclick = () => {
 
     speechSynthesis.cancel();
 
-    leitura = new SpeechSynthesisUtterance(document.body.innerText);
+    opcaoAtual = 0;
+
+    atualizarOpcao();
+
+    modalLeitura.classList.add("ativo");
+
+    modalLeitura.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+};
+
+
+// ==========================
+// Atualizar opção
+// ==========================
+
+function atualizarOpcao() {
+
+    opcoesLeitura.forEach((opcao, index) => {
+
+        opcao.classList.remove("selecionada");
+
+        if (index === opcaoAtual) {
+
+            opcao.classList.add("selecionada");
+
+        }
+
+    });
+
+
+    falar(
+        opcoesLeitura[opcaoAtual].innerText.trim()
+    );
+
+}
+
+
+// ==========================
+// Teclado do modal
+// ==========================
+
+document.addEventListener("keydown", (e) => {
+
+    if (!modalLeitura.classList.contains("ativo")) {
+        return;
+    }
+
+
+    // ↓
+    if (e.key === "ArrowDown") {
+
+        e.preventDefault();
+
+        opcaoAtual++;
+
+        if (opcaoAtual >= opcoesLeitura.length) {
+
+            opcaoAtual = 0;
+
+        }
+
+        atualizarOpcao();
+
+    }
+
+
+    // ↑
+    if (e.key === "ArrowUp") {
+
+        e.preventDefault();
+
+        opcaoAtual--;
+
+        if (opcaoAtual < 0) {
+
+            opcaoAtual = opcoesLeitura.length - 1;
+
+        }
+
+        atualizarOpcao();
+
+    }
+
+
+    // Enter
+    if (e.key === "Enter") {
+
+        e.preventDefault();
+
+        confirmarLeitura();
+
+    }
+
+
+    // ESC
+    if (e.key === "Escape") {
+
+        e.preventDefault();
+
+        fecharModal();
+
+    }
+
+});
+
+
+// ==========================
+// Confirmar leitura
+// ==========================
+
+function confirmarLeitura() {
+
+    const tipo =
+        opcoesLeitura[opcaoAtual].dataset.tipo;
+
+
+    fecharModal();
+
+
+    if (tipo === "geral") {
+
+        iniciarLeituraGeral();
+
+    }
+
+
+    if (tipo === "selecao") {
+
+        iniciarLeituraSelecao();
+
+    }
+
+}
+
+
+// ==========================
+// Fechar modal
+// ==========================
+
+function fecharModal() {
+
+    modalLeitura.classList.remove("ativo");
+
+    modalLeitura.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    speechSynthesis.cancel();
+
+}
+
+
+// ==========================
+// LEITURA GERAL
+// ==========================
+
+function iniciarLeituraGeral() {
+
+    modoLeitura = "geral";
+
+    // Lê TODA a página
+    const texto = document.body.innerText.trim();
+
+
+    if (!texto) {
+
+        falar("Não há texto para leitura.");
+
+        return;
+
+    }
+
+
+    iniciarLeituraTexto(texto);
+
+}
+
+
+// ==========================
+// Iniciar leitura
+// ==========================
+
+function iniciarLeituraTexto(texto) {
+
+    if (!texto) {
+        return;
+    }
+
+
+    speechSynthesis.cancel();
+
+
+    leitura =
+        new SpeechSynthesisUtterance(texto);
+
 
     leitura.lang = "pt-BR";
 
+    leitura.rate = 1;
+
+    leitura.pitch = 1;
+
+
+    lendoTexto = true;
+
+
+    leitura.onend = () => {
+
+        lendoTexto = false;
+
+
+        // Se outro texto foi selecionado
+        if (proximoTexto) {
+
+            const novoTexto =
+                proximoTexto;
+
+            proximoTexto = null;
+
+            iniciarLeituraTexto(novoTexto);
+
+        } else {
+
+            status.innerHTML = "✅ Leitura concluída";
+
+        }
+
+    };
+
+
     speechSynthesis.speak(leitura);
+
 
     // Fecha o menu
     menu.classList.remove("ativo");
+
 
     // Mostra o balão
     controle.style.display = "flex";
 
     status.innerHTML = "🔊 Lendo...";
 
-};
+}
+
 
 // ==========================
-// Controles do balão
+// LEITURA POR SELEÇÃO
 // ==========================
 
-// Pausar
+function iniciarLeituraSelecao() {
+
+    modoLeitura = "selecao";
+
+
+    document.body.classList.add(
+        "modo-leitura-selecao"
+    );
+
+
+    indicadorSelecao.style.display = "block";
+
+
+    falar(
+        "Modo leitura por seleção ativado. " +
+        "Clique no texto que deseja ouvir."
+    );
+
+
+    prepararElementos();
+
+}
+
+
+// ==========================
+// Elementos que podem ser lidos
+// ==========================
+
+function prepararElementos() {
+
+    const elementos =
+        document.querySelectorAll(
+            "main h1, " +
+            "main h2, " +
+            "main h3, " +
+            "main h4, " +
+            "main h5, " +
+            "main h6, " +
+            "main p, " +
+            "main li, " +
+            "main .texto, " +
+            "main .titulo, " +
+            "main .card, " +
+            "main .item"
+        );
+
+
+    elementos.forEach(el => {
+
+        if (
+            el.dataset.leituraAtiva === "true"
+        ) {
+
+            return;
+
+        }
+
+
+        el.dataset.leituraAtiva = "true";
+
+
+        el.addEventListener(
+            "mouseenter",
+            destacarElemento
+        );
+
+
+        el.addEventListener(
+            "mouseleave",
+            removerDestaque
+        );
+
+
+        el.addEventListener(
+            "click",
+            selecionarElemento
+        );
+
+    });
+
+}
+
+
+// ==========================
+// Destacar
+// ==========================
+
+function destacarElemento(e) {
+
+    if (modoLeitura !== "selecao") {
+        return;
+    }
+
+
+    e.currentTarget.classList.add(
+        "leitura-hover"
+    );
+
+}
+
+
+// ==========================
+// Remover destaque
+// ==========================
+
+function removerDestaque(e) {
+
+    e.currentTarget.classList.remove(
+        "leitura-hover"
+    );
+
+}
+
+
+// ==========================
+// Clicar no texto
+// ==========================
+
+function selecionarElemento(e) {
+
+    if (modoLeitura !== "selecao") {
+        return;
+    }
+
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+
+    const texto =
+        e.currentTarget.innerText.trim();
+
+
+    if (!texto) {
+        return;
+    }
+
+
+    // Se já estiver lendo,
+    // espera terminar
+    if (lendoTexto) {
+
+        proximoTexto = texto;
+
+        return;
+
+    }
+
+
+    iniciarLeituraTexto(texto);
+
+}
+
+
+// ==========================
+// PAUSAR
+// ==========================
 
 document.getElementById("pausarBtn").onclick = () => {
 
@@ -45,7 +610,10 @@ document.getElementById("pausarBtn").onclick = () => {
 
 };
 
-// Continuar
+
+// ==========================
+// CONTINUAR
+// ==========================
 
 document.getElementById("continuarBtn").onclick = () => {
 
@@ -55,13 +623,32 @@ document.getElementById("continuarBtn").onclick = () => {
 
 };
 
-// Parar
+
+// ==========================
+// PARAR
+// ==========================
 
 document.getElementById("pararBtn").onclick = () => {
 
     speechSynthesis.cancel();
 
+    lendoTexto = false;
+
+    proximoTexto = null;
+
+    modoLeitura = null;
+
+
+    document.body.classList.remove(
+        "modo-leitura-selecao"
+    );
+
+
+    indicadorSelecao.style.display = "none";
+
     controle.style.display = "none";
+
+    status.innerHTML = "⏹ Parado";
 
 };
 

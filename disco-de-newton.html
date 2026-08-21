@@ -713,14 +713,16 @@ body{
 
                 <p>
 
-                    A imagem acima apresenta como deve ficar o Disco de Newton. Após feito ou impresso o disco, cole-o no papelão e fixe o papelão no eixo do motor DC.
-                    OBS: O disco deve ser colorido com as mesmas cores e na mesma ordem, pois senão o efeito não funcionará.
+                    A imagem acima apresenta como deve ficar o Disco de Newton. Após feito ou impresso o disco, cole-o
+                    no papelão e fixe o papelão no eixo do motor DC.
+                    OBS: O disco deve ser colorido com as mesmas cores e na mesma ordem, pois senão o efeito não
+                    funcionará.
 
                 </p>
 
                 </a>
 
-                 <a href="imagens/download.png" download class="btn">
+                <a href="imagens/download.png" download class="btn">
 
                     Baixar Imagem
 
@@ -828,6 +830,9 @@ void loop() {
 
         </div>
 
+        <div id="cursorGrande"></div>
+        <div id="lupaFoco"></div>
+
         <script src="acessibilidade.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
         <script>
@@ -859,8 +864,45 @@ void loop() {
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
 
-<div id="cursorGrande"></div>
-<div id="lupaFoco"></div>
+        <!-- Modal de escolha da leitura -->
+
+<div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+    <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+        <h2>Selecione o tipo de leitura</h2>
+
+        <div class="opcoes-leitura">
+
+            <div class="opcao-leitura selecionada" data-tipo="geral">
+                ▶ Leitura geral
+            </div>
+
+            <div class="opcao-leitura" data-tipo="selecao">
+                ○ Leitura por seleção
+            </div>
+
+        </div>
+
+        <p class="instrucao-leitura">
+            Use as setas para escolher e Enter para confirmar.
+        </p>
+
+        <button id="cancelarLeitura">
+            Cancelar
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Indicador do modo seleção -->
+
+<div id="indicadorSelecao" class="indicador-selecao">
+
+    👆 Clique no texto que deseja ouvir
+
+</div>
 
 </body>
 

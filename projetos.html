@@ -408,6 +408,9 @@ Voltar para a página inicial
 
 </div>
 
+<div id="cursorGrande"></div>
+<div id="lupaFoco"></div>
+
 </main>
 
 <footer>
@@ -428,8 +431,45 @@ Projeto desenvolvido para o IFA • Robótica Educacional
 </script>
 <script src="acessibilidade.js"></script>
 
-<div id="cursorGrande"></div>
-<div id="lupaFoco"></div>
+<!-- Modal de escolha da leitura -->
+
+<div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+    <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+        <h2>Selecione o tipo de leitura</h2>
+
+        <div class="opcoes-leitura">
+
+            <div class="opcao-leitura selecionada" data-tipo="geral">
+                ▶ Leitura geral
+            </div>
+
+            <div class="opcao-leitura" data-tipo="selecao">
+                ○ Leitura por seleção
+            </div>
+
+        </div>
+
+        <p class="instrucao-leitura">
+            Use as setas para escolher e Enter para confirmar.
+        </p>
+
+        <button id="cancelarLeitura">
+            Cancelar
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Indicador do modo seleção -->
+
+<div id="indicadorSelecao" class="indicador-selecao">
+
+    👆 Clique no texto que deseja ouvir
+
+</div>
 
 </body>
 

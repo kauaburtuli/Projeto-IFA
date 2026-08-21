@@ -575,3 +575,222 @@ body.alto-contraste #lupaFoco{
     box-shadow:0 0 0 9999px rgba(0,0,0,.8);
 
 }
+
+/* =================================
+   MODAL DE ESCOLHA DA LEITURA
+================================= */
+
+.modal-leitura {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, .65);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999999;
+
+}
+
+.modal-leitura.ativo {
+    display: flex;
+}
+
+
+/* Caixa */
+
+.caixa-leitura {
+
+    width: 90%;
+    max-width: 500px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+
+    text-align: center;
+
+}
+
+
+/* Título */
+
+.caixa-leitura h2 {
+
+    color: #0d47a1;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* Opções */
+
+.opcoes-leitura {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+}
+
+.opcao-leitura {
+
+    padding: 16px;
+
+    border-radius: 10px;
+
+    background: #eef4f9;
+
+    text-align: left;
+
+    font-size: 17px;
+
+}
+
+
+/* Opção selecionada */
+
+.opcao-leitura.selecionada {
+
+    background: #0d47a1;
+
+    color: white;
+
+}
+
+
+/* Instrução */
+
+.instrucao-leitura {
+
+    margin-bottom: 20px;
+
+    line-height: 1.6;
+
+}
+
+
+/* Botão cancelar */
+
+#cancelarLeitura {
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: #ddd;
+
+    cursor: pointer;
+
+}
+
+
+/* =================================
+   INDICADOR DA LEITURA POR SELEÇÃO
+================================= */
+
+.indicador-selecao {
+
+    position: fixed;
+
+    top: 90px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #0d47a1;
+
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 25px;
+
+    display: none;
+
+    z-index: 999998;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.25);
+
+}
+
+
+/* Elemento que pode ser selecionado */
+
+.modo-leitura-selecao .leitura-hover {
+
+    outline: 3px solid #29b6f6;
+
+    outline-offset: 4px;
+
+}
+
+
+/* =================================
+   ALTO CONTRASTE
+================================= */
+
+body.alto-contraste .caixa-leitura {
+
+    background: #000;
+
+    color: white;
+
+    border: 2px solid white;
+
+}
+
+body.alto-contraste .caixa-leitura h2 {
+
+    color: #ffff00;
+
+}
+
+body.alto-contraste .opcao-leitura {
+
+    background: #222;
+
+    color: white;
+
+}
+
+body.alto-contraste .opcao-leitura.selecionada {
+
+    background: #000;
+
+    color: #ffff00;
+
+    border: 2px solid white;
+
+}
+
+body.alto-contraste .indicador-selecao {
+
+    background: #000;
+
+    color: white;
+
+    border: 2px solid white;
+
+}
