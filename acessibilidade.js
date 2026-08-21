@@ -560,107 +560,107 @@ function iniciarLeituraGeral() {
 // LEITURA POR SELEÇÃO
 // ======================================================
 
-// function iniciarLeituraSelecao() {
+function iniciarLeituraSelecao() {
 
-//     modoLeitura = "selecao";
-
-
-//     document.body.classList.add(
-//         "modo-leitura-selecao"
-//     );
+    modoLeitura = "selecao";
 
 
-//     if (indicadorSelecao) {
-
-//         indicadorSelecao.style.display =
-//             "block";
-
-//     }
+    document.body.classList.add(
+        "modo-leitura-selecao"
+    );
 
 
-//     falar(
-//         "Modo leitura por seleção ativado. " +
-//         "Clique no texto que deseja ouvir."
-//     );
+    if (indicadorSelecao) {
+
+        indicadorSelecao.style.display =
+            "block";
+
+    }
 
 
-//     prepararElementos();
-
-// }
-
-
-// // ======================================================
-// // PREPARAR ELEMENTOS PARA SELEÇÃO
-// // ======================================================
-
-// function prepararElementos() {
-
-//     const elementos =
-//         document.querySelectorAll(
-
-//             "a" +
-//             "main h1, " +
-//             "main h2, " +
-//             "main h3, " +
-//             "main h4, " +
-//             "main h5, " +
-//             "main h6, " +
-//             "main p, " +
-//             "main li, " +
-//             "main .texto, " +
-//             "main .titulo, " +
-//             "main .card, " +
-//             "main .item"
-
-//         );
+    falar(
+        "Modo leitura por seleção ativado. " +
+        "Clique no texto que deseja ouvir."
+    );
 
 
-//     elementos.forEach(
-//         (el) => {
+    prepararElementos();
 
-//             // Evita adicionar duas vezes
-
-//             if (
-//                 el.dataset.leituraAtiva ===
-//                 "true"
-//             ) {
-
-//                 return;
-
-//             }
+}
 
 
-//             el.dataset.leituraAtiva =
-//                 "true";
+// ======================================================
+// PREPARAR ELEMENTOS PARA SELEÇÃO
+// ======================================================
+
+function prepararElementos() {
+
+    const elementos =
+        document.querySelectorAll(
+
+            "a" +
+            "main h1, " +
+            "main h2, " +
+            "main h3, " +
+            "main h4, " +
+            "main h5, " +
+            "main h6, " +
+            "main p, " +
+            "main li, " +
+            "main .texto, " +
+            "main .titulo, " +
+            "main .card, " +
+            "main .item"
+
+        );
 
 
-//             // Mouse entrando
+    elementos.forEach(
+        (el) => {
 
-//             el.addEventListener(
-//                 "mouseenter",
-//                 destacarElemento
-//             );
+            // Evita adicionar duas vezes
+
+            if (
+                el.dataset.leituraAtiva ===
+                "true"
+            ) {
+
+                return;
+
+            }
 
 
-//             // Mouse saindo
-
-//             el.addEventListener(
-//                 "mouseleave",
-//                 removerDestaque
-//             );
+            el.dataset.leituraAtiva =
+                "true";
 
 
-//             // Clique
+            // Mouse entrando
 
-//             el.addEventListener(
-//                 "click",
-//                 selecionarElemento
-//             );
+            el.addEventListener(
+                "mouseenter",
+                destacarElemento
+            );
 
-//         }
-//     );
 
-// }
+            // Mouse saindo
+
+            el.addEventListener(
+                "mouseleave",
+                removerDestaque
+            );
+
+
+            // Clique
+
+            el.addEventListener(
+                "click",
+                selecionarElemento
+            );
+
+        }
+    );
+
+}
 
 function iniciarLeituraTexto(texto) {
 
