@@ -530,9 +530,9 @@ body.reduzir-animacoes .galeria img:hover{
 
 }
 
-/* ==============
+/* ==========================
    Lupa de foco
-===============*/
+========================== */
 
 #lupaFoco{
 
@@ -545,7 +545,7 @@ body.reduzir-animacoes .galeria img:hover{
     position:fixed;
 
     left:0;
-    right:0;
+    top:0;
 
     transform:translate(-50%,-50%);
 
@@ -555,9 +555,9 @@ body.reduzir-animacoes .galeria img:hover{
 
     z-index:999999;
 
-    box-shadow: 0 0 0 9999px rgba(0,0,0,.55);
+    box-shadow:0 0 0 9999px rgba(0,0,0,.55);
 
-    transition:border-color .2s
+    transition:border-color .2s;
 
 }
 
@@ -573,5 +573,5 @@ body.alto-contraste #lupaFoco{
 
     border-color:white;
     box-shadow:0 0 0 9999px rgba(0,0,0,.8);
-    
+
 }

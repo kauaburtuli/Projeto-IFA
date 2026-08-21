@@ -439,57 +439,81 @@ botaoAnimacoes.onclick = () => {
 
 };
 
+//////////////////
+// Lupa de foco //
+//////////////////
+
+const lupa = document.getElementById("lupaFoco");
+const botaoLupa = document.getElementById("lupa");
+
+// Recupera a preferência
+if(localStorage.getItem("lupa") === "on"){
+
+    document.body.classList.add("lupa");
+    botaoLupa.innerHTML = "🔍 Desativar lupa";
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+
+    lupa.style.left = e.clientX + "px";
+    lupa.style.top = e.clientY + "px";
+
+});
+
+botaoLupa.onclick = ()=>{
+
+    document.body.classList.toggle("lupa");
+
+    if(document.body.classList.contains("lupa")){
+
+        botaoLupa.innerHTML = "🔍 Desativar lupa";
+        localStorage.setItem("lupa","on");
+
+    }else{
+
+        botaoLupa.innerHTML = "🔍 Ativar lupa";
+        localStorage.setItem("lupa","off");
+
+    }
+
+};
+
 document.getElementById("restaurarAcessibilidade").onclick = () => {
 
     // Fonte
     escala = 1;
     atualizarFonte();
 
-    //Alto contraste
-
+    // Alto contraste
     document.body.classList.remove("alto-contraste");
-
     localStorage.setItem("contraste","off");
-
     document.getElementById("contraste").innerHTML = "🌙 Alto contraste";
 
     // Fonte para dislexia
-
     document.body.classList.remove("fonte-dislexia");
-
-    localStorage.setItem("dislexia", "off");
-
+    localStorage.setItem("dislexia","off");
     document.getElementById("dislexia").innerHTML = "📖 Fonte para dislexia";
 
     // Espaçamento
-
     document.body.classList.remove("espacamento");
-
-    localStorage.setItem("espacamento", "off");
-
+    localStorage.setItem("espacamento","off");
     document.getElementById("espacamento").innerHTML = "↔️ Aumentar espaçamento";
 
     // Cursor ampliado
-
     document.body.classList.remove("cursor-grande");
-
-    localStorage.setItem("cursor-grande", "off");
-
-    document.getElementById("cursor-grande").innerHTML = "🖱 Cursor ampliado";
+    localStorage.setItem("cursor","off");
+    document.getElementById("cursor").innerHTML = "🖱 Cursor ampliado";
 
     // Redução de animações
-
     document.body.classList.remove("reduzir-animacoes");
-
-    localStorage.setItem("animacoes", "off");
-
+    localStorage.setItem("animacoes","off");
     document.getElementById("animacoes").innerHTML = "✨ Reduzir animações";
 
-    // Lupa
-
+    // Lupa (se existir)
     document.body.classList.remove("lupa");
+    localStorage.setItem("lupa","off");
 
-    localStorage.setItem("lupa", "off");
     const botaoLupa = document.getElementById("lupa");
     if(botaoLupa){
         botaoLupa.innerHTML = "🔍 Ativar lupa";
