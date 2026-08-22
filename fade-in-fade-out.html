@@ -392,20 +392,6 @@
             padding: 25px;
 
         }
-
-        .material {
-
-            cursor: pointer;
-
-        }
-
-        .material:hover {
-
-            transform: translateY(-6px);
-
-            background: #eaf3ff;
-
-        }
     </style>
 
 </head>
@@ -598,7 +584,7 @@
 
             <div class="cards-materiais">
 
-                <div class="material" onclick="abrirMaterial(imagens/arduino-uno.jpg)" alt="Arduino UNO R3"></div>>
+                <div class="material" onclick="abrirImagem(imagens/arduino-uno.jpg)" alt="Arduino UNO R3"></div>>
 
                 <h3>Arduino UNO R3</h3>
 
@@ -606,7 +592,7 @@
 
             </div>
 
-            <div class="material" onclick="abrirMaterial(imagens/protoboard.jpg)" alt="Protoboard"></div>>
+            <div class="material" onclick="abrirImagem(imagens/protoboard.jpg)" alt="Protoboard"></div>>
 
             <h3>Protoboard</h3>
 
@@ -614,7 +600,7 @@
 
             </div>
 
-            <div class="material" onclick="abrirMaterial(imagens/jumpers.jpg)" alt="Jumpers"></div>>
+            <div class="material" onclick="abrirImagem(imagens/jumpers.jpg)" alt="Jumpers"></div>>
 
             <h3>Jumpers</h3>
 
@@ -622,7 +608,7 @@
 
             </div>
 
-            <div class="material" onclick="abrirMaterial(imagens/led.jpg)" alt="LED"></div>>
+            <div class="material" onclick="abrirImagem(imagens/led.jpg)" alt="LED"></div>>
 
             <h3>LED</h3>
 
@@ -630,7 +616,7 @@
 
             </div>
 
-            <div class="material" onclick="abrirMaterial(imagens/resistor-220-ohms.jpg)" alt="Resistor 220 Ohms"></div>>
+            <div class="material" onclick="abrirImagem(imagens/resistor-220-ohms.jpg)" alt="Resistor 220 Ohms"></div>>
 
             <h3>Resistor</h3>
 
@@ -855,55 +841,56 @@ void loop() {
         <div id="lupaFoco"></div>
 
 
-        <div id="janelaMaterial" class="janela">
 
-            <span class="fechar" onclick="fecharMaterial()">&times;</span>
+        <!-- Modal de escolha da leitura -->
 
-            <img id="imagemMaterial">
+        <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
 
-            <h2 id="tituloMaterial" style="color:white; margin-top:20px;"></h2>
+            <div class="caixa-leitura" role="dialog" aria-modal="true">
 
-            <!-- Modal de escolha da leitura -->
+                <h2>Selecione o tipo de leitura</h2>
 
-            <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+                <div class="opcoes-leitura">
 
-                <div class="caixa-leitura" role="dialog" aria-modal="true">
-
-                    <h2>Selecione o tipo de leitura</h2>
-
-                    <div class="opcoes-leitura">
-
-                        <div class="opcao-leitura selecionada" data-tipo="geral">
-                            ▶ Leitura geral
-                        </div>
-
-                        <div class="opcao-leitura" data-tipo="selecao">
-                            ○ Leitura por seleção
-                        </div>
-
+                    <div class="opcao-leitura selecionada" data-tipo="geral">
+                        ▶ Leitura geral
                     </div>
 
-                    <p class="instrucao-leitura">
-                        Use as setas para escolher e Enter para confirmar.
-                    </p>
-
-                    <button id="cancelarLeitura">
-                        Cancelar
-                    </button>
+                    <div class="opcao-leitura" data-tipo="selecao">
+                        ○ Leitura por seleção
+                    </div>
 
                 </div>
 
-            </div>
+                <p class="instrucao-leitura">
+                    Use as setas para escolher e Enter para confirmar.
+                </p>
 
-            <!-- Indicador do modo seleção -->
-
-            <div id="indicadorSelecao" class="indicador-selecao">
-
-                👆 Clique no texto que deseja ouvir
+                <button id="cancelarLeitura">
+                    Cancelar
+                </button>
 
             </div>
 
         </div>
+
+        <!-- Indicador do modo seleção -->
+
+        <div id="indicadorSelecao" class="indicador-selecao">
+
+            👆 Clique no texto que deseja ouvir
+
+        </div>
+
+        <div class="janela" id="janela">
+
+            <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+            <img id="imagemGrande">
+
+        </div>
+
+
 
         <script src="acessibilidade.js"></script>
         <script>
@@ -933,26 +920,6 @@ void loop() {
         <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
         <script>
             new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
-
-        <script>
-
-            function abrirMaterial(imagem, titulo) {
-
-                document.getElementById("janelaMaterial").style.display = "flex";
-
-                document.getElementById("imagemMaterial").src = imagem;
-
-                document.getElementById("tituloMaterial").innerHTML = titulo;
-
-            }
-
-            function fecharMaterial() {
-
-                document.getElementById("janelaMaterial").style.display = "none";
-
-            }
-
         </script>
 
 
