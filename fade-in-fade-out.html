@@ -393,13 +393,19 @@
 
         }
 
-        /* :root{
-    --escala-fonte: 100%;
-}
+        .material {
 
-body{
-    font-size: var(--escala-fonte);
-} */
+            cursor: pointer;
+
+        }
+
+        .material:hover {
+
+            transform: translateY(-6px);
+
+            background: #eaf3ff;
+
+        }
     </style>
 
 </head>
@@ -588,47 +594,49 @@ body{
 
             <h2 class="titulo">Materiais Utilizados</h2>
 
+            <h6> Clique nos balões para visualizar os componentes</h6>
+
             <div class="cards-materiais">
 
-                <div class="material">
+                <div class="material" onclick="abrirMaterial(imagens/arduino-uno.jpg)" alt="Arduino UNO R3"></div>>
 
-                    <h3>Arduino UNO</h3>
+                <h3>Arduino UNO R3</h3>
 
-                    <p>1 Unidade</p>
+                <p>1 Unidade</p>
 
-                </div>
+            </div>
 
-                <div class="material">
+            <div class="material" onclick="abrirMaterial(imagens/protoboard.jpg)" alt="Protoboard"></div>>
 
-                    <h3>Protoboard</h3>
+            <h3>Protoboard</h3>
 
-                    <p>1 Unidade</p>
+            <p>1 Unidade</p>
 
-                </div>
+            </div>
 
-                <div class="material">
+            <div class="material" onclick="abrirMaterial(imagens/jumpers.jpg)" alt="Jumpers"></div>>
 
-                    <h3>Jumpers</h3>
+            <h3>Jumpers</h3>
 
-                    <p>2 Unidades</p>
+            <p>2 Unidades</p>
 
-                </div>
+            </div>
 
-                <div class="material">
+            <div class="material" onclick="abrirMaterial(imagens/led.jpg)" alt="LED"></div>>
 
-                    <h3>LED</h3>
+            <h3>LED</h3>
 
-                    <p>1 Unidade (cor à sua escolha)</p>
+            <p>1 Unidade (cor à sua escolha)</p>
 
-                </div>
+            </div>
 
-                <div class="material">
+            <div class="material" onclick="abrirMaterial(imagens/resistor-220-ohms.jpg)" alt="Resistor 220 Ohms"></div>>
 
-                    <h3>Resistor</h3>
+            <h3>Resistor</h3>
 
-                    <p>220 Ω</p>
+            <p>220 Ω</p>
 
-                </div>
+            </div>
 
             </div>
 
@@ -846,6 +854,57 @@ void loop() {
         <div id="cursorGrande"></div>
         <div id="lupaFoco"></div>
 
+
+        <div id="janelaMaterial" class="janela">
+
+            <span class="fechar" onclick="fecharMaterial()">&times;</span>
+
+            <img id="imagemMaterial">
+
+            <h2 id="tituloMaterial" style="color:white; margin-top:20px;"></h2>
+
+            <!-- Modal de escolha da leitura -->
+
+            <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+                <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+                    <h2>Selecione o tipo de leitura</h2>
+
+                    <div class="opcoes-leitura">
+
+                        <div class="opcao-leitura selecionada" data-tipo="geral">
+                            ▶ Leitura geral
+                        </div>
+
+                        <div class="opcao-leitura" data-tipo="selecao">
+                            ○ Leitura por seleção
+                        </div>
+
+                    </div>
+
+                    <p class="instrucao-leitura">
+                        Use as setas para escolher e Enter para confirmar.
+                    </p>
+
+                    <button id="cancelarLeitura">
+                        Cancelar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Indicador do modo seleção -->
+
+            <div id="indicadorSelecao" class="indicador-selecao">
+
+                👆 Clique no texto que deseja ouvir
+
+            </div>
+
+        </div>
+
         <script src="acessibilidade.js"></script>
         <script>
 
@@ -876,45 +935,26 @@ void loop() {
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
 
-        <!-- Modal de escolha da leitura -->
+        <script>
 
-<div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+            function abrirMaterial(imagem, titulo) {
 
-    <div class="caixa-leitura" role="dialog" aria-modal="true">
+                document.getElementById("janelaMaterial").style.display = "flex";
 
-        <h2>Selecione o tipo de leitura</h2>
+                document.getElementById("imagemMaterial").src = imagem;
 
-        <div class="opcoes-leitura">
+                document.getElementById("tituloMaterial").innerHTML = titulo;
 
-            <div class="opcao-leitura selecionada" data-tipo="geral">
-                ▶ Leitura geral
-            </div>
+            }
 
-            <div class="opcao-leitura" data-tipo="selecao">
-                ○ Leitura por seleção
-            </div>
+            function fecharMaterial() {
 
-        </div>
+                document.getElementById("janelaMaterial").style.display = "none";
 
-        <p class="instrucao-leitura">
-            Use as setas para escolher e Enter para confirmar.
-        </p>
+            }
 
-        <button id="cancelarLeitura">
-            Cancelar
-        </button>
+        </script>
 
-    </div>
-
-</div>
-
-<!-- Indicador do modo seleção -->
-
-<div id="indicadorSelecao" class="indicador-selecao">
-
-    👆 Clique no texto que deseja ouvir
-
-</div>
 
 </body>
 
