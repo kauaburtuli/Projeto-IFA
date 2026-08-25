@@ -12,9 +12,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="projeto-individual.css">
     <link rel="stylesheet" href="acessibilidade.css">
-    <style>
-        * {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
+    
+        /* * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -398,8 +400,8 @@
             text-align: center;
             padding: 25px;
 
-        }
-    </style>
+        } */
+
 
 </head>
 
@@ -675,30 +677,30 @@
 
                 <h3>Efeito Fade-In</h3>
 
-                <pre><code>
-/* Define a porta PWM 11 como pino do LED.             */
-int pinoLed = 11;
-int incremento = 1;
-int brilho = 0;
+                <pre><code class="language-cpp">
+                /* Define a porta PWM 11 como pino do LED.             */
+                int pinoLed = 11;
+                int incremento = 1;
+                int brilho = 0;
 
-void setup() {
+                void setup() {
 
-  pinMode(pinoLed, OUTPUT);
+                 pinMode(pinoLed, OUTPUT);
 
-}
+                }
 
-void loop() {
+                void loop() {
 
-  for (brilho; brilho <= 256; brilho += incremento) {
+                for (brilho; brilho <= 256; brilho += incremento) {
 
-    analogWrite(pinoLed, brilho);
+                 analogWrite(pinoLed, brilho);
 
-    delay(100);
+                delay(100);
 
-  }
+                 }
 
-}
-</code></pre>
+                }
+                </code></pre>
 
                 <a href="codigos/fade-in.ino" download class="btn">
 
@@ -716,33 +718,30 @@ void loop() {
 
                 <h3>Efeito Fade-Out</h3>
 
-                <pre><code>
-/*******************************************************/
-/* Aula 20 - LED Fade-Out                              */
-/*******************************************************/
+                <pre><code class="language-cpp">
 
-int pinoLed = 11;
-int decremento = 5;
-int brilho = 255;
+                int pinoLed = 11;
+                int decremento = 5;
+                int brilho = 255;
 
-void setup() {
+                void setup() {
 
-  pinMode(pinoLed, OUTPUT);
+                pinMode(pinoLed, OUTPUT);
 
-}
+                }
 
-void loop() {
+                void loop() {
 
-  for (brilho; brilho >= -1; brilho -= decremento) {
+                for (brilho; brilho >= -1; brilho -= decremento) {
 
-    analogWrite(pinoLed, brilho);
+                    analogWrite(pinoLed, brilho);
 
-    delay(50);
+                    delay(50);
 
-  }
+                }
 
-}
-</code></pre>
+                }
+                </code></pre>
 
                 <a href="codigos/fade-out.ino" download class="btn">
 
@@ -760,35 +759,35 @@ void loop() {
 
                 <h3>Efeito Fade-In e Fade-Out</h3>
 
-                <pre><code>
-// LED ligado ao pino 11
-const int led = 11;
+                <pre><code class="language-cpp">
+                // LED ligado ao pino 11
+                const int led = 11;
 
-int brilho = 0;
-int incremento = 1;
+                int brilho = 0;
+                int incremento = 1;
 
-void setup() {
+                void setup() {
 
-  pinMode(led, OUTPUT);
+                pinMode(led, OUTPUT);
 
-}
+                }
 
-void loop() {
+                void loop() {
 
-  analogWrite(led, brilho);
+                analogWrite(led, brilho);
 
-  brilho += incremento;
+                brilho += incremento;
 
-  if (brilho <= 0 || brilho >= 255) {
+                if (brilho <= 0 || brilho >= 255) {
 
-    incremento = -incremento;
+                    incremento = -incremento;
 
-  }
+                }
 
-  delay(30);
+                delay(30);
 
-}
-</code></pre>
+                }
+                </code></pre>
 
                 <a href="codigos/fade-in-fade-out.ino" download class="btn">
 
@@ -898,25 +897,13 @@ void loop() {
         </div>
 
 
-
+        <script src="projeto-individual.js"></script>
         <script src="acessibilidade.js"></script>
-        <script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+        
 
-            function abrirImagem(src) {
-
-                document.getElementById("janelaImagem").style.display = "flex";
-
-                document.getElementById("imagemGrande").src = src;
-
-            }
-
-            function fecharImagem() {
-
-                document.getElementById("janelaImagem").style.display = "none";
-
-            }
-
-        </script>
 
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
