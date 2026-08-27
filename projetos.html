@@ -3,35 +3,34 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Projetos Desenvolvidos</title>
+    <title>Projetos Desenvolvidos</title>
 
-<link rel="icon" type="image/png" href="imagens/robo-logo.png">
+    <link rel="icon" type="image/png" href="imagens/robo-logo.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="acessibilidade.css">
+    <link rel="stylesheet" href="acessibilidade.css">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-    scroll-behavior: smooth;
-}
+        body {
+            background: #eef4f9;
+            color: #222;
+        }
 
-body{
-    background:#eef4f9;
-    color: #222;
-}
+        /* Cabeçalho */
 
-/* Cabeçalho */
-
-/* header{
+        /* header{
     background:#0d47a1;
     color:white;
     padding:18px 8%;
@@ -41,458 +40,489 @@ body{
     align-items:center;
 } */
 
-header{
-    background:#0d47a1;
-    color:white;
-    padding:18px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+        header {
+            background: #0d47a1;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
 
-    z-index:9999;
-    box-shadow:0 3px 10px rgba(0,0,0,.2);
-}
+            z-index: 9999;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+        }
 
-header h1{
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:28px;
-}
+        header h1 {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 28px;
+        }
 
-.logo{
-  width:55px;
-height:55px;
-object-fit:contain;
-}
+        .logo {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+        }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-    font-weight:600;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+        }
 
-nav a:hover{
-    text-decoration:underline;
-}
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-/* Conteúdo */
+        /* Conteúdo */
 
-main{
-    width:90%;
-    max-width:1200px;
-    margin:50px auto;
-    padding-top:100px;
-}
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding-top: 100px;
+        }
 
-main h2{
-    color:#0d47a1;
-    text-align:center;
-    margin-bottom:15px;
-}
+        main h2 {
+            color: #0d47a1;
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-main p{
-    text-align:center;
-    margin-bottom:40px;
-    line-height:1.8;
-}
+        main p {
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
 
-/* Cartões */
+        /* Cartões */
 
-.projetos{
+        .projetos {
 
-    display:grid;
+            display: grid;
 
-    grid-template-columns:repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
 
-    gap:40px;
+            gap: 40px;
 
-    margin-top:50px;
+            margin-top: 50px;
 
-}
+        }
 
-.card{
+        .card {
 
-    background:white;
+            background: white;
 
-    border-radius:18px;
+            border-radius: 18px;
 
-    overflow:hidden;
+            overflow: hidden;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
 
-    transition:.3s;
+            transition: .3s;
 
-}
+        }
 
-.card:hover{
+        .card:hover {
 
-    transform:translateY(-8px);
+            transform: translateY(-8px);
 
-    box-shadow:0 12px 28px rgba(0,0,0,.20);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .20);
 
-}
+        }
 
-.card img{
+        .card img {
 
-    width:100%;
+            width: 100%;
 
-    height:220px;
+            height: 220px;
 
-    object-fit:cover;
+            object-fit: cover;
 
-}
+        }
 
-.card-conteudo{
+        .card-conteudo {
 
-    padding:25px;
+            padding: 25px;
 
-}
+        }
 
-.card h3{
+        .card h3 {
 
-    color:#0d47a1;
+            color: #0d47a1;
 
-    margin-bottom:15px;
+            margin-bottom: 15px;
 
-}
+        }
 
-.card p{
+        .card p {
 
-    line-height:1.8;
+            line-height: 1.8;
 
-    text-align:justify;
+            text-align: justify;
 
-    margin-bottom:25px;
+            margin-bottom: 25px;
 
-}
+        }
 
-.botao{
+        .botao {
 
-    display:inline-block;
+            display: inline-block;
 
-    background:#0d47a1;
+            background: #0d47a1;
 
-    color:white;
+            color: white;
 
-    text-decoration:none;
+            text-decoration: none;
 
-    padding:12px 28px;
+            padding: 12px 28px;
 
-    border-radius:30px;
+            border-radius: 30px;
 
-    transition:.3s;
+            transition: .3s;
 
-}
+        }
 
-.botao:hover{
+        .botao:hover {
 
-    background:#1565c0;
+            background: #1565c0;
 
-}
+        }
 
-/* Celular */
+        /* Celular */
 
-@media(max-width:900px){
+        @media(max-width:900px) {
 
-.projetos{
+            .projetos {
 
-    grid-template-columns:1fr;
+                grid-template-columns: 1fr;
 
-}
+            }
 
-}
+        }
 
 
-.card-conteudo{
+        .card-conteudo {
 
-    padding:20px;
+            padding: 20px;
 
-}
+        }
 
 
 
-.botao:hover{
+        .botao:hover {
 
-    background:#1565c0;
+            background: #1565c0;
 
-}
+        }
 
-.voltar{
+        .voltar {
 
-    text-align:center;
-    margin-top:50px;
+            text-align: center;
+            margin-top: 50px;
 
-}
+        }
 
-footer{
+        footer {
 
-    margin-top:60px;
-    background:#0d47a1;
-    color:white;
-    text-align:center;
-    padding:25px;
+            margin-top: 60px;
+            background: #0d47a1;
+            color: white;
+            text-align: center;
+            padding: 25px;
 
-}
+        }
 
-/* :root{
+        /* :root{
     --escala-fonte: 100%;
 }
 
 body{
     font-size: var(--escala-fonte);
 } */
-
-</style>
+    </style>
 
 </head>
 
 <body>
 
-<header>
+    <header>
 
-<h1>
+        <h1>
 
-<img src="imagens/robo-logo.png" class="logo">
+            <img src="imagens/robo-logo.png" class="logo">
 
-Robótica Educacional
+            Robótica Educacional
 
-</h1>
+        </h1>
 
-<nav>
+        <nav>
 
-<a href="index.html">Início</a>
+            <a href="index.html">Início</a>
 
-<a href="projetos.html">Projetos</a>
+            <a href="projetos.html">Projetos</a>
 
- <div class="dropdown-acessibilidade">
-        <button class="btn-acessibilidade">
-            ♿ Acessibilidade ▼
-        </button>
+            <div class="dropdown-acessibilidade">
+                <button class="btn-acessibilidade">
+                    ♿ Acessibilidade ▼
+                </button>
 
-        <div class="menu-acessibilidade">
+                <div class="menu-acessibilidade">
 
-            <button id="lerPagina">🔊 Ler página</button>
-            
-            <hr>
+                    <button id="lerPagina">🔊 Ler página</button>
 
-            <div class="linha-fonte">
+                    <hr>
 
-    <span class="texto-fonte">
-        🔤 Tamanho da fonte
-    </span>
+                    <div class="linha-fonte">
 
-    <div class="controles-fonte">
+                        <span class="texto-fonte">
+                            🔤 Tamanho da fonte
+                        </span>
 
-        <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+                        <div class="controles-fonte">
 
-        <button id="fontePadrao" aria-label="Fonte padrão">A</button>
+                            <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
 
-        <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+                            <button id="fontePadrao" aria-label="Fonte padrão">A</button>
 
-    </div>
+                            <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
 
-</div>
+                        </div>
 
-            <hr>
+                    </div>
 
-            <button id="contraste">🌙 Alto contraste</button>
-            <button id="dislexia">📖 Fonte para dislexia</button>
-            <button id="espacamento">↔️ Aumentar espaçamento</button>
-            <button id="cursor">🖱 Cursor ampliado</button>
-            <button id="animacoes">✨ Reduzir animações</button>
-            <button id="lupa">🔍 Ativar lupa</button>
-            <button id="restaurarAcessibilidade">Restaurar padrão</button>
+                    <hr>
 
-        </div>
-    </div>
+                    <button id="contraste">🌙 Alto contraste</button>
+                    <button id="dislexia">📖 Fonte para dislexia</button>
+                    <button id="espacamento">↔️ Aumentar espaçamento</button>
+                    <button id="cursor">🖱 Cursor ampliado</button>
+                    <button id="animacoes">✨ Reduzir animações</button>
+                    <button id="lupa">🔍 Ativar lupa</button>
+                    <button id="restaurarAcessibilidade">Restaurar padrão</button>
 
-</nav>
-
-</header>
-
-
- <div id="controleLeitura" class="controle-leitura">
-
-
-     <span id="statusLeitura">
-        🔊 Lendo...
-    </span>
-
-    <div class="botoes-leitura">
-
-        <button id="continuarBtn">▶</button>
-
-        <button id="pausarBtn">⏸</button>
-
-        <button id="pararBtn">⏹</button>
-
-    </div>
-
-</div>
-
-<main id="conteudo">
-
-<h2>Projetos Desenvolvidos</h2>
-
-<p>
-
-Nesta página estão reunidos os projetos desenvolvidos pelo nosso grupo durante o IFA,
-utilizando a Robótica Educacional para desenvolver soluções voltadas à acessibilidade.
-
-</p>
-
-<div class="projetos">
-
-    <!-- Projeto 1 -->
-
-    <div class="card">
-
-        <img src="imagens/circuito_fade-in_inicial.jpg">
-
-        <div class="card-conteudo">
-
-            <h3>Efeito Fade-In e Fade-Out</h3>
-
-            <p>
-                Projeto utilizando Arduino UNO para demonstrar o efeito Fade-In e Fade-Out
-                em um LED através da modulação PWM e sua aplicação na acessibilidade visual.
-            </p>
-
-            <a href="fade-in-fade-out.html" class="botao">
-                Saiba mais
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- Projeto 2 -->
-
-    <div class="card">
-
-        <img src="imagens/circuito-inicio-disco.jpg">
-
-        <div class="card-conteudo">
-
-            <h3>Disco de Newton</h3>
-
-            <p>
-                Projeto desenvolvido para demonstrar que a luz branca é composta por diferentes cores. Utilizando um disco com as cores do espectro visível, o experimento mostra que, ao girar rapidamente, as cores se combinam devido à persistência da visão, fazendo o disco aparentar a cor branca ou acinzentada.
-            </p>
-
-            <a href="disco-de-newton.html" class="botao">
-                Saiba mais
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- Projeto 3 -->
-
-    <div class="card">
-
-        <img src="imagens/circuito-inicio-disco.jpg">
-
-        <div class="card-conteudo">
-
-            <h3>LED RGB</h3>
-
-            <p>
-            Projeto desenvolvido utilizando Arduino UNO para demonstrar o funcionamento de um LED RGB, componente capaz de emitir diferentes cores através da combinação das cores vermelho, verde e azul (RGB). A intensidade de cada cor é controlada individualmente por meio da modulação por largura de pulso (PWM), permitindo a criação de diversas combinações de cores.
-            </p>
-
-            <a href="led_rgb.html" class="botao">
-                Saiba mais
-            </a>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-<div class="voltar">
-
-<a href="index.html" class="botao">
-
-Voltar para a página inicial
-
-</a>
-
-</div>
-
-<div id="cursorGrande"></div>
-<div id="lupaFoco"></div>
-
-</main>
-
-<footer>
-
-Projeto desenvolvido para o IFA • Robótica Educacional
-
-</footer>
-
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
-<script src="acessibilidade.js"></script>
-
-<!-- Modal de escolha da leitura -->
-
-<div id="modalLeitura" class="modal-leitura" aria-hidden="true">
-
-    <div class="caixa-leitura" role="dialog" aria-modal="true">
-
-        <h2>Selecione o tipo de leitura</h2>
-
-        <div class="opcoes-leitura">
-
-            <div class="opcao-leitura selecionada" data-tipo="geral">
-                ▶ Leitura geral
+                </div>
             </div>
 
-            <div class="opcao-leitura" data-tipo="selecao">
-                ○ Leitura por seleção
-            </div>
+        </nav>
+
+    </header>
+
+
+    <div id="controleLeitura" class="controle-leitura">
+
+
+        <span id="statusLeitura">
+            🔊 Lendo...
+        </span>
+
+        <div class="botoes-leitura">
+
+            <button id="continuarBtn">▶</button>
+
+            <button id="pausarBtn">⏸</button>
+
+            <button id="pararBtn">⏹</button>
 
         </div>
 
-        <p class="instrucao-leitura">
-            Use as setas para escolher e Enter para confirmar.
+    </div>
+
+    <main id="conteudo">
+
+        <h2>Projetos Desenvolvidos</h2>
+
+        <p>
+
+            Nesta página estão reunidos os projetos desenvolvidos pelo nosso grupo durante o IFA,
+            utilizando a Robótica Educacional para desenvolver soluções voltadas à acessibilidade.
+
         </p>
 
-        <button id="cancelarLeitura">
-            Cancelar
-        </button>
+        <div class="projetos">
+
+            <!-- Projeto 1 -->
+
+            <div class="card">
+
+                <img src="imagens/circuito_fade-in_inicial.jpg">
+
+                <div class="card-conteudo">
+
+                    <h3>Efeito Fade-In e Fade-Out</h3>
+
+                    <p>
+                        Projeto utilizando Arduino UNO para demonstrar o efeito Fade-In e Fade-Out
+                        em um LED através da modulação PWM e sua aplicação na acessibilidade visual.
+                    </p>
+
+                    <a href="fade-in-fade-out.html" class="botao">
+                        Saiba mais
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Projeto 2 -->
+
+            <div class="card">
+
+                <img src="imagens/circuito-inicio-disco.jpg">
+
+                <div class="card-conteudo">
+
+                    <h3>Disco de Newton</h3>
+
+                    <p>
+                        Projeto desenvolvido para demonstrar que a luz branca é composta por diferentes cores.
+                        Utilizando um disco com as cores do espectro visível, o experimento mostra que, ao girar
+                        rapidamente, as cores se combinam devido à persistência da visão, fazendo o disco aparentar a
+                        cor branca ou acinzentada.
+                    </p>
+
+                    <a href="disco-de-newton.html" class="botao">
+                        Saiba mais
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Projeto 3 -->
+
+            <div class="card">
+
+                <img src="imagens/led-rgb.jpg">
+
+                <div class="card-conteudo">
+
+                    <h3>LED RGB</h3>
+
+                    <p>
+                        Projeto desenvolvido utilizando Arduino UNO para demonstrar o funcionamento de um LED RGB,
+                        componente capaz de emitir diferentes cores através da combinação das cores vermelho, verde e
+                        azul (RGB). A intensidade de cada cor é controlada individualmente por meio da modulação por
+                        largura de pulso (PWM), permitindo a criação de diversas combinações de cores.
+                    </p>
+
+                    <a href="led_rgb.html" class="botao">
+                        Saiba mais
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Projeto 4 -->
+
+            <div class="card">
+
+                <img src="imagens/rgb-sinalizacao1.jpg">
+
+                <div class="card-conteudo">
+
+                    <h3>LED RGB</h3>
+
+                    <p>
+                        Projeto desenvolvido utilizando Arduino UNO para demonstrar um sistema de sinalização com LED
+                        RGB. O circuito alterna automaticamente entre as cores vermelha e azul, simulando um dispositivo
+                        de alerta visual. A troca das cores é realizada por meio do controle independente dos canais do
+                        LED RGB, utilizando modulação por largura de pulso (PWM), proporcionando uma sinalização simples
+                        e eficiente.
+                    </p>
+
+                    <a href="rgb-sinalizacao.html" class="botao">
+                        Saiba mais
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="voltar">
+
+            <a href="index.html" class="botao">
+
+                Voltar para a página inicial
+
+            </a>
+
+        </div>
+
+        <div id="cursorGrande"></div>
+        <div id="lupaFoco"></div>
+
+    </main>
+
+    <footer>
+
+        Projeto desenvolvido para o IFA • Robótica Educacional
+
+    </footer>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="acessibilidade.js"></script>
+
+    <!-- Modal de escolha da leitura -->
+
+    <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+        <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+            <h2>Selecione o tipo de leitura</h2>
+
+            <div class="opcoes-leitura">
+
+                <div class="opcao-leitura selecionada" data-tipo="geral">
+                    ▶ Leitura geral
+                </div>
+
+                <div class="opcao-leitura" data-tipo="selecao">
+                    ○ Leitura por seleção
+                </div>
+
+            </div>
+
+            <p class="instrucao-leitura">
+                Use as setas para escolher e Enter para confirmar.
+            </p>
+
+            <button id="cancelarLeitura">
+                Cancelar
+            </button>
+
+        </div>
 
     </div>
 
-</div>
+    <!-- Indicador do modo seleção -->
 
-<!-- Indicador do modo seleção -->
+    <div id="indicadorSelecao" class="indicador-selecao">
 
-<div id="indicadorSelecao" class="indicador-selecao">
+        👆 Clique no texto que deseja ouvir
 
-    👆 Clique no texto que deseja ouvir
-
-</div>
+    </div>
 
 </body>
 

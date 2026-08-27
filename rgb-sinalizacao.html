@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LED RGB para sinalização</title>
+
+    <link rel="icon" type="image/png" href="imagens/robo-logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="projeto-individual.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
+
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>
+
+            <img src="imagens/robo-logo.png" class="logo-robo">
+
+            Robótica Educacional
+
+        </h1>
+
+        <nav>
+
+            <a href="index.html">Início</a>
+
+            <a href="projetos.html">Projetos</a>
+
+            <div class="dropdown-acessibilidade">
+                <button class="btn-acessibilidade">
+                    ♿ Acessibilidade ▼
+                </button>
+
+                <div class="menu-acessibilidade">
+
+                    <button id="lerPagina">🔊 Ler página</button>
+
+                    <hr>
+
+                    <div class="linha-fonte">
+
+                        <span class="texto-fonte">
+                            🔤 Tamanho da fonte
+                        </span>
+
+                        <div class="controles-fonte">
+
+                            <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+
+                            <button id="fontePadrao" aria-label="Fonte padrão">A</button>
+
+                            <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <button id="contraste">🌙 Alto contraste</button>
+                    <button id="dislexia">📖 Fonte para dislexia</button>
+                    <button id="espacamento">↔️ Aumentar espaçamento</button>
+                    <button id="cursor">🖱 Cursor ampliado</button>
+                    <button id="animacoes">✨ Reduzir animações</button>
+                    <button id="lupa">🔍 Ativar lupa</button>
+                    <button id="restaurarAcessibilidade">Restaurar padrão</button>
+
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <div id="controleLeitura" class="controle-leitura">
+
+
+        <span id="statusLeitura">
+            🔊 Lendo...
+        </span>
+
+        <div class="botoes-leitura">
+
+            <button id="continuarBtn">▶</button>
+
+            <button id="pausarBtn">⏸</button>
+
+            <button id="pararBtn">⏹</button>
+
+        </div>
+
+    </div>
+    <main id="conteudo">
+        <div class="banner">
+
+            <img src="imagens/rgb-sinalizacao.jpg">
+
+            <div class="banner-texto">
+
+
+
+                <h2>LED RGB para sinalização</h2>
+
+                <p>
+
+                    Projeto desenvolvido utilizando Arduino UNO para demonstrar um sistema de sinalização com LED
+                    RGB. O circuito alterna automaticamente entre as cores vermelha e azul, simulando um dispositivo
+                    de alerta visual. A troca das cores é realizada por meio do controle independente dos canais do
+                    LED RGB, utilizando modulação por largura de pulso (PWM), proporcionando uma sinalização simples
+                    e eficiente.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <section>
+
+            <h2 class="titulo">
+
+                O que é?
+
+            </h2>
+
+            <div class="texto">
+
+                <p>
+
+                    LED RGB para sinalização
+
+                    <br><br>
+
+                    Este projeto foi desenvolvido utilizando a plataforma <strong>Arduino UNO</strong> com o objetivo de
+                    demonstrar a aplicação de um <strong>LED RGB</strong> em um sistema de <strong>sinalização
+                        luminosa</strong>, simulando o funcionamento de dispositivos de alerta presentes em equipamentos
+                    eletrônicos, sistemas de segurança e sinalizadores de emergência. A proposta consiste em alternar
+                    automaticamente entre as cores <strong>vermelha e azul</strong>, criando um efeito visual que chama
+                    a atenção e representa um padrão de sinalização simples e eficiente.
+
+                    <br><br>
+
+                    O <strong>LED RGB</strong> é um componente eletrônico composto por três diodos emissores de luz nas
+                    cores <strong>vermelho <em style="color: red">(Red)</em>, verde <em
+                            style="color: green">(Green)</em> e azul <em style="color: blue">(Blue)</em></strong>. Por
+                    meio do acionamento individual de cada um desses canais, é possível produzir uma ampla variedade de
+                    cores. Neste projeto, entretanto, foram utilizados apenas os canais <strong
+                        style="color: red">vermelho</strong> e <strong style="color: blue">azul</strong>, alternando seu
+                    acionamento em intervalos de tempo previamente definidos para gerar um efeito de alerta visual
+                    contínuo.
+
+                    <br><br>
+
+                    O controle do LED é realizado pelo <strong>Arduino UNO</strong>, responsável por executar o programa
+                    e enviar os sinais elétricos necessários para acionar cada cor. A intensidade luminosa dos canais
+                    pode ser controlada através da técnica de <strong>Modulação por Largura de Pulso (PWM – Pulse Width
+                        Modulation)</strong>, que permite variar a quantidade de energia fornecida ao LED sem alterar a
+                    tensão de alimentação. Embora neste projeto as cores sejam utilizadas em intensidade fixa, o uso do
+                    <strong>PWM</strong> possibilita futuras expansões, como efeitos de transição suave entre as cores
+                    ou ajustes de brilho.
+
+                    <br><br>
+
+                    A programação foi desenvolvida na linguagem <strong>C/C++</strong>, utilizada na plataforma Arduino,
+                    empregando estruturas de repetição e comandos de temporização para alternar continuamente entre os
+                    estados do LED. O ciclo de funcionamento mantém a cor <strong style="color: red">vermelha</strong>
+                    acesa durante um determinado intervalo de tempo e, em seguida, realiza a troca para a cor <strong
+                        style="color: blue">azul</strong>, repetindo esse processo indefinidamente enquanto a placa
+                    permanece energizada.
+
+                    <br><br>
+
+                    Além de demonstrar o controle de um <strong>LED RGB</strong>, este projeto permite compreender
+                    conceitos fundamentais da <strong>eletrônica digital</strong>, da <strong>programação
+                        embarcada</strong> e da utilização de <strong>saídas PWM</strong> em microcontroladores. A
+                    atividade também evidencia como componentes simples podem ser empregados na criação de sistemas de
+                    sinalização, servindo como base para aplicações mais complexas, como <strong>semáforos inteligentes,
+                        indicadores de status, sistemas de monitoramento, alarmes</strong> e diversos outros projetos de
+                    <strong>automação</strong> e <strong>robótica</strong>.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Materiais Utilizados</h2>
+
+            <div class="texto-material"> Clique nos balões para visualizar os componentes</div>
+
+            <div class="cards-materiais">
+
+                <div class="material" onclick="abrirImagem('imagens/arduino-uno.jpg')" alt="Arduino UNO R3">
+
+                    <h3>Arduino UNO R3</h3>
+
+                    <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/protoboard.jpg')" alt="Protoboard">
+
+                    <h3>Protoboard</h3>
+
+                    <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/jumpers.jpg')" alt="Jumpers">
+
+                    <h3>Jumpers</h3>
+
+                    <p>2 Unidades</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/led_rgb.jpg')" alt="LED RGB">
+
+                    <h3>LED RGB</h3>
+
+                    <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/resistor-220-ohms.jpg')" alt="Resistor 220 Ohms">
+
+                    <h3>2 Resistores</h3>
+
+                    <p>220 Ω</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/potenciometro_linear.jpg')" alt="Potenciômetro">
+
+                    <h3>Potenciômetro</h3>
+
+                    <p>220 Ω</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Circuito no Tinkercad</h2>
+
+            <div class="tinkercad">
+
+                <img src="imagens/efeito_fade-in.jpg" alt="Circuito Fade-In e Fade-Out" onclick="abrirImagem(this.src)"
+                    alt="Circuito 1">
+
+                <p>
+
+                    A imagem acima apresenta a montagem do circuito desenvolvida no Tinkercad. Nela é possível
+                    visualizar a
+                    ligação entre o Arduino UNO, o LED, o resistor de 220 Ω e os jumpers utilizados para realizar o
+                    efeito
+                    Fade-In e Fade-Out utilizando PWM.
+
+                </p>
+
+                <a href="https://www.tinkercad.com/things/0sKq0ycjGbE/editel?returnTo=%2Fdashboard" target="_blank"
+                    class="btn">
+
+                    Acessar Projeto no Tinkercad
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Código Fonte</h2>
+
+            <!-- Fade-In -->
+
+            <div class="codigo">
+
+                <h3>Sinalização com LED RGB</h3>
+
+                <pre><code class="language-cpp">
+                /*
+
+                ====================================================
+
+                Sistema de Alerta para Situações de Emergência
+
+                Arduino UNO
+
+
+                Vermelho piscando = PERIGO
+
+                Azul piscando = SAÍDA SEGURA
+
+
+                Potenciômetro controla a velocidade do piscar.
+
+                ====================================================
+
+                */
+
+
+                // ------------------------------
+
+                // Pinos do LED RGB
+
+                // ------------------------------
+
+                const int ledVermelho = 9;
+
+                const int ledAzul = 11;
+
+
+                // Potenciômetro
+
+                const int potenciometro = A0;
+
+
+                // Botão para trocar o modo
+
+                const int botao = 2;
+
+
+                // Guarda o modo atual
+
+                // false = vermelho
+
+                // true = azul
+
+                bool modo = false;
+
+
+                // Guarda o estado do LED
+
+                bool estadoLED = false;
+
+
+                // Tempo da última troca
+
+                unsigned long tempoAnterior = 0;
+
+
+                void setup()
+
+                {
+
+                    // Configura os LEDs como saída
+
+                    pinMode(ledVermelho, OUTPUT);
+
+                    pinMode(ledAzul, OUTPUT);
+
+
+                    // Configura botão
+
+                    pinMode(botao, INPUT_PULLUP);
+
+
+                    Serial.begin(9600);
+
+                }
+
+
+                void loop()
+
+                {
+
+                    // ----------------------------
+
+                    // Verifica se o botão foi apertado
+
+                    // ----------------------------
+
+
+                    if (digitalRead(botao) == LOW)
+
+                    {
+
+                        modo = !modo;
+
+
+                        delay(300);
+
+                    }
+
+
+                    // ----------------------------
+
+                    // Lê potenciômetro
+
+                    // ----------------------------
+
+
+                    int leitura = analogRead(potenciometro);
+
+
+                    // Converte para tempo
+
+                    int velocidade = map(leitura, 0, 1023, 1000, 100);
+
+
+                    // ----------------------------
+
+                    // Pisca LED
+
+                    // ----------------------------
+
+
+                    if (millis() - tempoAnterior >= velocidade)
+
+                    {
+
+                        tempoAnterior = millis();
+
+
+                        estadoLED = !estadoLED;
+
+
+                        if (modo == false)
+
+                        {
+
+                            // PERIGO
+
+
+                            if (estadoLED)
+
+                            {
+
+                                analogWrite(ledVermelho, 255);
+
+                            }
+
+                            else
+
+                            {
+
+                                analogWrite(ledVermelho, 0);
+
+                            }
+
+
+                            analogWrite(ledAzul, 0);
+
+                        }
+
+                        else
+
+                        {
+
+                            // SAÍDA SEGURA
+
+
+                            if (estadoLED)
+
+                            {
+
+                                analogWrite(ledAzul, 255);
+
+                            }
+
+                            else
+
+                            {
+
+                                analogWrite(ledAzul, 0);
+
+                            }
+
+
+                            analogWrite(ledVermelho, 0);
+
+                        }
+
+                    }
+
+                }
+                </code></pre>
+
+                <a href="codigos/rgb-sinalizacao.ino" download class="btn">
+
+                    Baixar Código Fade-In
+
+                </a>
+
+            </div>
+
+            <br><br>
+
+        <section>
+
+            <h2 class="titulo">Vídeo Demonstrativo</h2>
+
+            <div class="video">
+
+                <video controls>
+
+                    <source src="vídeos/rgb-sinalizacao1.mp4" type="video/mp4">
+
+                    Seu navegador não suporta vídeos.
+
+                </video>
+
+            </div>
+
+            <div class="video">
+
+                <video controls>
+
+                    <source src="vídeos/rgb-sinalizacao2.mp4" type="video/mp4">
+
+                    Seu navegador não suporta vídeos.
+
+                </video>
+
+            </div>
+
+            <div class="video">
+
+                <video controls>
+
+                    <source src="vídeos/rgb-sinalizacao3.mp4" type="video/mp4">
+
+                    Seu navegador não suporta vídeos.
+
+                </video>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Biblioteca de Imagens</h2>
+
+            <div class="galeria">
+
+                <img src="imagens/rgb-sinalizacao.jpg" onclick="abrirImagem(this.src)" alt="Circuito 1">
+
+                <img src="imagens/rgb-sinalizacao1.jpg" onclick="abrirImagem(this.src)" alt="Circuito 2">
+
+            </div>
+
+        </section>
+
+        <!-- Janela da imagem -->
+
+        <div id="janelaImagem" class="janela">
+
+            <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+            <img id="imagemGrande">
+
+        </div>
+
+        <div id="cursorGrande"></div>
+        <div id="lupaFoco"></div>
+
+
+
+        <!-- Modal de escolha da leitura -->
+
+        <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+            <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+                <h2>Selecione o tipo de leitura</h2>
+
+                <div class="opcoes-leitura">
+
+                    <div class="opcao-leitura selecionada" data-tipo="geral">
+                        ▶ Leitura geral
+                    </div>
+
+                    <div class="opcao-leitura" data-tipo="selecao">
+                        ○ Leitura por seleção
+                    </div>
+
+                </div>
+
+                <p class="instrucao-leitura">
+                    Use as setas para escolher e Enter para confirmar.
+                </p>
+
+                <button id="cancelarLeitura">
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Indicador do modo seleção -->
+
+        <div id="indicadorSelecao" class="indicador-selecao">
+
+            👆 Clique no texto que deseja ouvir
+
+        </div>
+
+        <div class="janela" id="janela">
+
+            <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+            <img id="imagemGrande">
+
+        </div>
+
+
+        <script src="projeto-individual.js"></script>
+        <script src="acessibilidade.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+
+
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+
+
+</body>
+
+</main>
+
+<footer>
+
+    <p>
+        Projeto desenvolvido para o IFA - Robótica Educacional<br>
+        © 2026 - Todos os direitos reservados.
+    </p>
+
+</footer>
+
+</html>
