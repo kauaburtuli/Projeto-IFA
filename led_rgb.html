@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LED RGB</title>
+
+    <link rel="icon" type="image/png" href="imagens/robo-logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="projeto-individual.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
+
+
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>
+
+            <img src="imagens/robo-logo.png" class="logo-robo">
+
+            Robótica Educacional
+
+        </h1>
+
+        <nav>
+
+            <a href="index.html">Início</a>
+
+            <a href="projetos.html">Projetos</a>
+
+            <div class="dropdown-acessibilidade">
+                <button class="btn-acessibilidade">
+                    ♿ Acessibilidade ▼
+                </button>
+
+                <div class="menu-acessibilidade">
+
+                    <button id="lerPagina">🔊 Ler página</button>
+
+                    <hr>
+
+                    <div class="linha-fonte">
+
+                        <span class="texto-fonte">
+                            🔤 Tamanho da fonte
+                        </span>
+
+                        <div class="controles-fonte">
+
+                            <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+
+                            <button id="fontePadrao" aria-label="Fonte padrão">A</button>
+
+                            <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <button id="contraste">🌙 Alto contraste</button>
+                    <button id="dislexia">📖 Fonte para dislexia</button>
+                    <button id="espacamento">↔️ Aumentar espaçamento</button>
+                    <button id="cursor">🖱 Cursor ampliado</button>
+                    <button id="animacoes">✨ Reduzir animações</button>
+                    <button id="lupa">🔍 Ativar lupa</button>
+                    <button id="restaurarAcessibilidade">Restaurar padrão</button>
+
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <div id="controleLeitura" class="controle-leitura">
+
+
+        <span id="statusLeitura">
+            🔊 Lendo...
+        </span>
+
+        <div class="botoes-leitura">
+
+            <button id="continuarBtn">▶</button>
+
+            <button id="pausarBtn">⏸</button>
+
+            <button id="pararBtn">⏹</button>
+
+        </div>
+
+    </div>
+
+    <main id="conteudo">
+
+        <div class="banner">
+
+            <img src="imagens/circuito-inicio-disco.jpg" alt="Imagem Inicial">
+
+            <div class="banner-texto">
+
+                <h2>LED RGB</h2>
+
+                <p>
+
+                    Projeto desenvolvido utilizando Arduino UNO para demonstrar o funcionamento de um LED RGB,
+                    componente capaz de emitir diferentes cores através da combinação das cores vermelho, verde e azul
+                    (RGB). A intensidade de cada cor é controlada individualmente por meio da modulação por largura de
+                    pulso (PWM), permitindo a criação de diversas combinações de cores.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <section>
+
+            <h2 class="titulo">
+
+                O que é?
+
+            </h2>
+
+            <div class="texto">
+
+                <p>
+
+                    O <strong>LED RGB</strong> é um componente eletrônico utilizado para produzir luz em diferentes
+                    cores. Ele é parecido com um LED comum, mas possui <strong>três LEDs dentro de um único
+                        componente</strong>: um vermelho <em>(Red)</em>, um verde <em>(Green)</em> e um azul
+                    <em>(Blue)</em>. Por isso, recebe o nome <strong>RGB</strong>, que vem das iniciais dessas três
+                    cores.
+
+                    <br><br>
+
+                    Cada uma das três cores pode ser controlada separadamente. Ao aumentar ou diminuir a intensidade de
+                    cada LED interno, é possível fazer uma <strong>mistura de cores</strong>, criando uma grande
+                    variedade de tonalidades. Por exemplo, quando o vermelho e o verde são acesos juntos, podemos obter
+                    amarelo. Quando o vermelho e o azul são combinados, podemos produzir roxo.
+
+                    <br><br>
+
+                    O LED RGB normalmente possui <strong>quatro terminais</strong>: um para cada uma das três cores e um
+                    terminal comum. Esse terminal comum pode ser do tipo <strong>ânodo comum</strong> ou <strong>cátodo
+                        comum</strong>, dependendo do modelo do LED. A forma de ligação e de controle muda de acordo com
+                    o tipo utilizado.
+
+                    <br><br>
+
+                    Uma característica importante do LED RGB é que <strong>cada cor pode ter sua intensidade controlada
+                        individualmente</strong>. Em projetos com Arduino, por exemplo, é possível utilizar a técnica
+                    chamada <strong>PWM</strong> para controlar a quantidade de energia enviada para cada cor. Dessa
+                    forma, em vez de apenas ligar ou desligar o LED, podemos controlar o brilho de cada uma das três
+                    cores e conseguir diferentes combinações.
+
+                    <br><br>
+
+                    Por ser pequeno, simples de controlar e capaz de produzir várias cores, o LED RGB é bastante
+                    utilizado em <strong>projetos eletrônicos, robótica, iluminação, indicadores e sistemas
+                        interativos</strong>. Ele também é muito utilizado em projetos com Arduino para demonstrar
+                    conceitos de programação e eletrônica.
+
+                    <br><br>
+
+                    Em resumo, o <strong>LED RGB reúne três fontes de luz — vermelho, verde e azul — em um único
+                        componente</strong>, permitindo criar diversas cores por meio da combinação e do controle da
+                    intensidade de cada uma delas.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            
+            <h2 class="titulo">Materiais Utilizados</h2>
+
+            <div class="texto-material"> Clique nos balões para visualizar os componentes</div>
+
+            <div class="cards-materiais">
+
+                <div class="material" onclick="abrirImagem('imagens/arduino-uno.jpg')" alt="Arduino UNO R3">
+
+                <h3>Arduino UNO R3</h3>
+
+                <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/protoboard.jpg')" alt="Protoboard">
+
+                <h3>Protoboard</h3>
+
+                <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/cabo_usb.jpg')" alt="Cabo USB">
+
+                <h3>Cabo USB</h3>
+
+                <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/jumpers.jpg')" alt="Jumpers">
+
+                <h3>Jumpers</h3>
+
+                <p>9 Unidades</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/potenciometro_linear.jpg')" alt="Potenciômetro Linear">
+
+                <h3>Potenciômetro Linear</h3>
+
+                <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/led_rgb.jpg')" alt="LED RGB">
+
+                <h3>LED RGB;</h3>
+
+                <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/resistor-220-ohms.jpg')" alt="Resistor 220 Ohms">
+
+                <h3>Resistor</h3>
+
+                <p>220 Ω</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Imagem do Circuito</h2>
+
+            <div class="tinkercad">
+
+                <img src="imagens/circuito-led-rgb.jpg" alt="Circuito do Led RGB"
+                    onclick="abrirImagem(this.src)" alt="Circuito 1">
+
+                <p>
+
+                    A imagem acima apresenta a montagem do circuito desenvolvido para este projeto. Nela é possível
+                    visualizar a ligação entre o Arduino UNO, a protoboard, o potenciômetro, o resistor, o Led RGB e os jumpers
+                    utilizados para demonstrar as três cores base que o Led consegue emitir.
+
+                </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Código Fonte</h2>
+
+            <!--Led RGB-->
+
+            <div class="codigo">
+
+                <h3>LED RGB</h3>
+
+                <pre><code class="language-cpp">
+
+                /*                    ATENÇÃO!                                 */
+                /* Nas duas primeiras linhas deste código, você deverá informar*/
+                /* se o LED RGB utilizado é de ânodo comum ou cátodo           */
+                /* comum para o correto funcionamento deste protótipo          */
+                /* descomentando(removendo as barras) da linha                 */
+                /* correspondente ao seu LED RGB.                              */
+                /***************************************************************/
+
+                // char modelo[] = "Ânodo Comum";
+                // char modelo[] = "Cátodo Comum";
+
+                /* Define o pino analógico A0 para o potenciômetro.      */
+                int Pin_pot = A0;
+                /* Variável que armazenará os dados do potenciômetro.    */
+                int Pot = 0;
+                /* Define o pino digital 2 para o LED Vermelho.          */
+                int Led_R = 2;
+                /* Define o pino digital 3 para o LED Verde.             */
+                int Led_G = 3;
+                /* Define o pino digital 4 para o LED Azul.              */
+                int Led_B = 4;
+                /* Variáveis para controle dos LEDs.                     */
+                int ligar;
+                int desligar;
+
+                void setup() {
+                /* Define o pino Led_R como SAÍDA.                     */
+                pinMode(Led_R, OUTPUT);
+                /* Define o pino Led_G como SAÍDA.                     */
+                pinMode(Led_G, OUTPUT);
+                /* Define o pino Led_B como SAÍDA.                     */
+                pinMode(Led_B, OUTPUT);
+
+                /* Rotina que verifica o tipo de LED RGB utilizado e   */
+                /* adequa os parâmetros para ligar e desligar o LED.   */
+                if (modelo[0] != 'C') {
+                    ligar = 0;
+                    desligar = 1;
+                } else {
+                    ligar = 1;
+                    desligar = 0;
+                }
+                /* Inicia com os LEDs desligados.                      */
+                digitalWrite(Led_R, desligar);
+                digitalWrite(Led_G, desligar);
+                digitalWrite(Led_B, desligar);
+                }
+                void loop() {
+                /* Armazena os dados do potenciômetro na variável Pot. */
+                Pot = analogRead(Pin_pot);
+                /* Se Pot estiver entre 0 e 341, faça...               */
+                if (Pot >= 0 && Pot <= 341) {
+                    /* Ligue o LED Vermelho.                             */
+                    digitalWrite(Led_R, ligar);
+                    /* Senão...                                          */
+                } else {
+                    /* Desligue o LED Vermelho.                          */
+                    digitalWrite(Led_R, desligar);
+                }
+                /* Se Pot estiver entre 342 e 682, faça...             */
+                if (Pot >= 342 && Pot <= 682) {
+                    /* Ligue o LED Verde.                                */
+                    digitalWrite(Led_G, ligar);
+                    /* Senão...                                          */
+                } else {
+                    /* Desligue o LED Verde.                             */
+                    digitalWrite(Led_G, desligar);
+                }
+                /* Se Pot estiver entre 686 e 1023, faça...            */
+                if (Pot >= 683 && Pot <= 1023) {
+                    /* Ligue o LED Azul.                                 */
+                    digitalWrite(Led_B, ligar);
+                    /* Senão...                                          */
+                } else {
+                    /* Desligue o LED Azul.                              */
+                    digitalWrite(Led_B, desligar);
+                }
+                }
+
+
+                </code></pre>
+
+                <a href="led-rgb.ino" download class="btn">
+
+                    Baixar Código
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Vídeo Demonstrativo</h2>
+
+            <div class="video">
+
+                <video controls muted>
+
+                    <source src="vídeos/Disco-newton.mp4" type="video/mp4">
+
+                    Seu navegador não suporta vídeos.
+
+                </video>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Biblioteca de Imagens</h2>
+
+            <div class="galeria">
+
+                <img src="imagens/Disco_newton1.jpg" onclick="abrirImagem(this.src)" alt="Circuito 1">
+
+                <img src="imagens/Disco-newton2.jpg" onclick="abrirImagem(this.src)" alt="Circuito 2">
+
+                <img src="imagens/Disco-newton3.jpg" onclick="abrirImagem(this.src)" alt="Circuito 3">
+
+                <img src="imagens/circuito-inicio-disco.jpg" onclick="abrirImagem(this.src)" alt="Circuito 4">
+
+            </div>
+
+        </section>
+
+        <!-- Janela da imagem -->
+
+        <div id="janelaImagem" class="janela">
+
+            <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+            <img id="imagemGrande">
+
+        </div>
+
+        <div id="cursorGrande"></div>
+        <div id="lupaFoco"></div>
+
+        <!-- Modal de escolha da leitura -->
+
+        <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+            <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+                <h2>Selecione o tipo de leitura</h2>
+
+                <div class="opcoes-leitura">
+
+                    <div class="opcao-leitura selecionada" data-tipo="geral">
+                        ▶ Leitura geral
+                    </div>
+
+                    <div class="opcao-leitura" data-tipo="selecao">
+                        ○ Leitura por seleção
+                    </div>
+
+                </div>
+
+                <p class="instrucao-leitura">
+                    Use as setas para escolher e Enter para confirmar.
+                </p>
+
+                <button id="cancelarLeitura">
+                    Cancelar
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Indicador do modo seleção -->
+
+        <div id="indicadorSelecao" class="indicador-selecao">
+
+            👆 Clique no texto que deseja ouvir
+
+        </div>
+
+        <script src="projeto-individual.js"></script>
+        <script src="acessibilidade.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+
+
+</body>
+
+</main>
+
+<footer>
+
+    <p>
+        Projeto desenvolvido para o IFA - Robótica Educacional<br>
+        © 2026 - Todos os direitos reservados.
+    </p>
+
+</footer>
+
+</html>

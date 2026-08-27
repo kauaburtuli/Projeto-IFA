@@ -390,8 +390,8 @@ espacamento:hover{
 
 /* Fonte para dislexia */
 
-body.fonte-dislexia,
-body.fonte-dislexia *{
+body.fonte-dislexia main,
+body.fonte-dislexia main *{
 
     font-family: "OpenDyslexic", Arial, sans-serif !important;
 
@@ -794,3 +794,4 @@ body.alto-contraste .indicador-selecao {
     border: 2px solid white;
 
 }
+
