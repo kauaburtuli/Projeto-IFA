@@ -297,200 +297,109 @@
 
                 <pre><code class="language-cpp">
                 /*
-
                 ====================================================
-
                 Sistema de Alerta para Situações de Emergência
+                Arduino UNO R3
 
-                Arduino UNO
+                Vermelho Piscando -> Perigo
+                Azul Piscando -> Saída Segura
 
-
-                Vermelho piscando = PERIGO
-
-                Azul piscando = SAÍDA SEGURA
-
-
-                Potenciômetro controla a velocidade do piscar.
+                Potenciômetro:
+                Controla o brilho do LED através de PWM.
 
                 ====================================================
-
                 */
 
+                // -------------------------------
+                // Definição dos pinos do LED RGB
+                // -------------------------------
+                const int ledVermelho = 9;     // PWM
+                const int ledVerde = 10;       // PWM (não será utilizado)
+                const int ledAzul = 11;        // PWM
 
-                // ------------------------------
-
-                // Pinos do LED RGB
-
-                // ------------------------------
-
-                const int ledVermelho = 9;
-
-                const int ledAzul = 11;
-
-
+                // -------------------------------
                 // Potenciômetro
-
+                // -------------------------------
                 const int potenciometro = A0;
 
+                // -------------------------------
+                // Variáveis
+                // -------------------------------
+                int brilho = 255;
 
-                // Botão para trocar o modo
+                // Estado atual
+                bool perigo = true;
 
-                const int botao = 2;
-
-
-                // Guarda o modo atual
-
-                // false = vermelho
-
-                // true = azul
-
-                bool modo = false;
-
-
-                // Guarda o estado do LED
-
-                bool estadoLED = false;
-
-
-                // Tempo da última troca
-
+                // Controle do tempo
                 unsigned long tempoAnterior = 0;
 
+                // Alternância entre estados
+                const unsigned long intervalo = 5000;
 
                 void setup()
-
                 {
-
-                    // Configura os LEDs como saída
-
+                    // Configura os pinos do LED como saída
                     pinMode(ledVermelho, OUTPUT);
-
+                    pinMode(ledVerde, OUTPUT);
                     pinMode(ledAzul, OUTPUT);
 
-
-                    // Configura botão
-
-                    pinMode(botao, INPUT_PULLUP);
-
-
-                    Serial.begin(9600);
-
+                    // Potenciômetro como entrada
+                    pinMode(potenciometro, INPUT);
                 }
 
-
                 void loop()
-
                 {
+                    // ==================================================
+                    // Lê o potenciômetro
+                    // Valor de 0 a 1023
+                    // ==================================================
+                    int leitura = analogRead(potenciometro);
 
-                    // ----------------------------
+                    // ==================================================
+                    // Converte para brilho PWM
+                    // PWM varia de 0 até 255
+                    // ==================================================
+                    brilho = map(leitura, 0, 1023, 0, 255);
 
-                    // Verifica se o botão foi apertado
-
-                    // ----------------------------
-
-
-                    if (digitalRead(botao) == LOW)
-
+                    // ==================================================
+                    // Alterna entre perigo e saída segura
+                    // a cada 5 segundos
+                    // ==================================================
+                    if (millis() - tempoAnterior >= intervalo)
                     {
+                        perigo = !perigo;
+                        tempoAnterior = millis();
+                    }
 
-                        modo = !modo;
-
+                    // ==================================================
+                    // Estado PERIGO
+                    // ==================================================
+                    if (perigo)
+                    {
+                        analogWrite(ledVermelho, brilho);
+                        analogWrite(ledAzul, 0);
 
                         delay(300);
 
+                        analogWrite(ledVermelho, 0);
+
+                        delay(300);
                     }
 
-
-                    // ----------------------------
-
-                    // Lê potenciômetro
-
-                    // ----------------------------
-
-
-                    int leitura = analogRead(potenciometro);
-
-
-                    // Converte para tempo
-
-                    int velocidade = map(leitura, 0, 1023, 1000, 100);
-
-
-                    // ----------------------------
-
-                    // Pisca LED
-
-                    // ----------------------------
-
-
-                    if (millis() - tempoAnterior >= velocidade)
-
+                    // ==================================================
+                    // Estado SAÍDA SEGURA
+                    // ==================================================
+                    else
                     {
+                        analogWrite(ledAzul, brilho);
+                        analogWrite(ledVermelho, 0);
 
-                        tempoAnterior = millis();
+                        delay(300);
 
+                        analogWrite(ledAzul, 0);
 
-                        estadoLED = !estadoLED;
-
-
-                        if (modo == false)
-
-                        {
-
-                            // PERIGO
-
-
-                            if (estadoLED)
-
-                            {
-
-                                analogWrite(ledVermelho, 255);
-
-                            }
-
-                            else
-
-                            {
-
-                                analogWrite(ledVermelho, 0);
-
-                            }
-
-
-                            analogWrite(ledAzul, 0);
-
-                        }
-
-                        else
-
-                        {
-
-                            // SAÍDA SEGURA
-
-
-                            if (estadoLED)
-
-                            {
-
-                                analogWrite(ledAzul, 255);
-
-                            }
-
-                            else
-
-                            {
-
-                                analogWrite(ledAzul, 0);
-
-                            }
-
-
-                            analogWrite(ledVermelho, 0);
-
-                        }
-
+                        delay(300);
                     }
-
                 }
                 </code></pre>
 
