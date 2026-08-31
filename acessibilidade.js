@@ -1433,11 +1433,11 @@ botaoEspacamento.onclick = () => {
 /////////////////////////
 
 const botaoCursor =
-document.getElementById("cursorGrande");
+document.getElementById("cursor");
 
 // Recupera preferência
 
-if(localStorage.getItem("cursorGrande") === "on"){
+if(localStorage.getItem("cursor") === "on"){
 
     document.body.classList.add("cursor-grande");
 
@@ -1459,7 +1459,7 @@ botaoCursor.onclick = () => {
     )){
 
         localStorage.setItem(
-            "cursorGrande",
+            "cursor",
             "on"
         );
 
@@ -1469,7 +1469,7 @@ botaoCursor.onclick = () => {
     }else{
 
         localStorage.setItem(
-            "cursorGrande",
+            "cursor",
             "off"
         );
 
