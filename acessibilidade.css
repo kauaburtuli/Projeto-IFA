@@ -445,68 +445,47 @@ body.espacamento .material{
    Cursor ampliado
 ========================== */
 
-#cursorGrande{
 
-    width:40px;
-    height:40px;
+/* Cursor padrão */
 
-    border:3px solid #0d47a1;
-    background:rgba(13,71,161,.12);
-
-    border-radius:50%;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    transform:translate(-50%,-50%);
-
-    pointer-events:none;
-
-    display:none;
-
-    z-index:999999;
-
-    transition:
-        width .15s,
-        height .15s,
-        background .15s,
-        border-color .15s;
-
-}
-
-body.cursor-grande{
-    cursor:none;
-}
-
+body.cursor-grande,
 body.cursor-grande *{
-    cursor:none !important;
-}
 
-body.cursor-grande #cursorGrande{
-    display:block;
-}
-
-/* Quando passar sobre algo clicável */
-
-#cursorGrande.hover{
-
-    width:60px;
-    height:60px;
-
-    background:rgba(13,71,161,.20);
+    cursor:url("cursores/cursor-normal.cur"), auto;
 
 }
 
-/* Alto contraste */
+/* Links e botões */
 
-body.alto-contraste #cursorGrande{
+body.cursor-grande a,
+body.cursor-grande button,
+body.cursor-grande input[type="submit"],
+body.cursor-grande input[type="button"],
+body.cursor-grande .btn,
+body.cursor-grande [role="button"]{
 
-    border-color:white;
-    background:rgba(255,255,255,.12);
+    cursor:url("cursores/cursor-mao.cur"), pointer;
 
 }
+
+/* Campos de texto */
+
+body.cursor-grande input,
+body.cursor-grande textarea,
+body.cursor-grande select{
+
+    cursor:url("cursores/cursor-texto.cur"), text;
+
+}
+
+/* Enquanto estiver carregando 
+
+body.cursor-grande.carregando,
+body.cursor-grande .carregando{
+
+    cursor:url("cursores/wait.cur"), wait;
+
+} */
 
 /* ==========================
    Reduzir animações

@@ -1428,71 +1428,57 @@ botaoEspacamento.onclick = () => {
 // Cursor ampliado //
 /////////////////////
 
-const cursor = document.getElementById("cursorGrande");
-const botaoCursor = document.getElementById("cursor");
+/////////////////////////
+// Cursor Ampliado
+/////////////////////////
 
-document.addEventListener("mousemove",(e)=>{
+const botaoCursor =
+document.getElementById("cursorGrande");
 
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
+// Recupera preferência
 
-});
-
-// Recupera a preferência
-
-if(localStorage.getItem("cursor") === "on"){
+if(localStorage.getItem("cursorGrande") === "on"){
 
     document.body.classList.add("cursor-grande");
-    botaoCursor.innerHTML = "🖱 Cursor normal";
+
+    botaoCursor.innerHTML =
+    "🖱 Cursor normal";
 
 }
 
-// Botão
+// Clique
 
-botaoCursor.onclick = ()=>{
+botaoCursor.onclick = () => {
 
-    document.body.classList.toggle("cursor-grande");
+    document.body.classList.toggle(
+        "cursor-grande"
+    );
 
-    if(document.body.classList.contains("cursor-grande")){
+    if(document.body.classList.contains(
+        "cursor-grande"
+    )){
 
-        botaoCursor.innerHTML = "🖱 Cursor normal";
-        localStorage.setItem("cursor","on");
+        localStorage.setItem(
+            "cursorGrande",
+            "on"
+        );
+
+        botaoCursor.innerHTML =
+        "🖱 Cursor normal";
 
     }else{
 
-        botaoCursor.innerHTML = "🖱 Cursor ampliado";
-        localStorage.setItem("cursor","off");
+        localStorage.setItem(
+            "cursorGrande",
+            "off"
+        );
+
+        botaoCursor.innerHTML =
+        "🖱 Cursor ampliado";
 
     }
 
 };
-
-// Movimento do cursor
-
-document.addEventListener("mousemove",(e)=>{
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-});
-
-// Cresce ao passar sobre elementos clicáveis
-
-document.querySelectorAll("a, button").forEach(el=>{
-
-    el.addEventListener("mouseenter",()=>{
-
-        cursor.classList.add("hover");
-
-    });
-
-    el.addEventListener("mouseleave",()=>{
-
-        cursor.classList.remove("hover");
-
-    });
-
-});
 
 /////////////////////////
 // Reduzir animações //
