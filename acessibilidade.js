@@ -1459,7 +1459,7 @@ botaoCursor.onclick = () => {
     )){
 
         localStorage.setItem(
-            "cursor",
+            "cursorGrande",
             "on"
         );
 
@@ -1469,7 +1469,7 @@ botaoCursor.onclick = () => {
     }else{
 
         localStorage.setItem(
-            "cursor",
+            "cursorGrande",
             "off"
         );
 
