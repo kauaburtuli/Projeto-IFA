@@ -1,0 +1,156 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#eef4f9;
+    color:#222;
+}
+
+/* Cabeçalho */
+
+header{
+    background:#0d47a1;
+    color:white;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+header h1{
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:28px;
+}
+
+.logo-robo{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:600;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* Conteúdo */
+
+main{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+}
+
+.titulo{
+    color:#0d47a1;
+    font-size:38px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.texto{
+    text-align:center;
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:50px;
+}
+
+/* Lista de matérias */
+
+.lista-noticias{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+/* Card da matéria */
+
+.materia{
+    background:white;
+    border-left:8px solid #0d47a1;
+    border-radius:14px;
+    padding:22px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+}
+
+.materia:hover{
+    background:#f4f8ff;
+    transform:translateX(10px);
+}
+
+.info h3{
+    color:#0d47a1;
+    margin-bottom:8px;
+}
+
+.info p{
+    color:#666;
+    font-size:15px;
+}
+
+.seta{
+    font-size:32px;
+    color:#0d47a1;
+    font-weight:bold;
+}
+
+/* Rodapé */
+
+footer{
+    margin-top:70px;
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* Responsividade */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:15px;
+    }
+
+    nav a{
+        margin:0;
+    }
+
+    .materia{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .seta{
+        align-self:flex-end;
+    }
+
+}
