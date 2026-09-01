@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="informacoes.css">
+<link rel="stylesheet" href="acessibilidade.css"
 
 </head>
 
@@ -37,11 +38,73 @@ Robótica Educacional
 
 <a href="noticias.html">Notícias</a>
 
+<div class="dropdown-acessibilidade">
+<button class="btn-acessibilidade">
+    ♿ Acessibilidade ▼
+</button>
+
+<div class="menu-acessibilidade">
+
+    <button id="lerPagina">🔊 Ler página</button>
+
+<hr>
+
+<div class="linha-fonte">
+
+<span class="texto-fonte">
+    🔤 Tamanho da fonte
+</span>
+
+<div class="controles-fonte">
+
+<button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+
+<button id="fontePadrao" aria-label="Fonte padrão">A</button>
+
+<button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+
+</div>
+
+</div>
+
+<hr>
+
+<button id="contraste">🌙 Alto contraste</button>
+<button id="dislexia">📖 Fonte para dislexia</button>
+<button id="espacamento">↔️ Aumentar espaçamento</button>
+<button id="cursor">🖱 Cursor ampliado</button>
+<button id="animacoes">✨ Reduzir animações</button>
+<button id="lupa">🔍 Ativar lupa</button>
+<button id="restaurarAcessibilidade">Restaurar padrão</button>
+
+</div>
+</div>
+        
+
 </nav>
 
 </header>
 
-<main>
+<div id="controleLeitura" class="controle-leitura">
+
+
+        <span id="statusLeitura">
+            🔊 Lendo...
+        </span>
+
+        <div class="botoes-leitura">
+
+            <button id="pausarBtn">⏸</button>
+
+            <button id="continuarBtn">▶</button>
+
+            <button id="pararBtn">⏹</button>
+
+        </div>
+
+    </div>
+
+<main id="conteudo">
 
 <h2 class="titulo">
 
@@ -58,13 +121,13 @@ pelo grupo de Robótica Educacional.
 
 <div class="lista-noticias">
 
-<div class="materia" onclick="abrirMateria('materia1.html')">
+<div class="materia" onclick="abrirMateria('smartphones-acessibilidade.html')">
 
 <div>
 
-<h3>Primeira matéria</h3>
+<h3>Como os smartphones ampliam a acessibilidade para pessoas cegas ou com baixa visão?</h3>
 
-<span>08/09/2025</span>
+<span> Publicado em 08/09/2025 • Tecnologia e Acessibilidade </span>
 
 </div>
 
@@ -122,6 +185,50 @@ Projeto desenvolvido para o IFA • Robótica Educacional
 
 </footer>
 
+<div id="cursorGrande"></div>
+    <div id="lupaFoco"></div>
+
+    <!-- Modal de escolha da leitura -->
+
+<div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+    <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+        <h2>Selecione o tipo de leitura</h2>
+
+        <div class="opcoes-leitura">
+
+            <div class="opcao-leitura selecionada" data-tipo="geral">
+                ▶ Leitura geral
+            </div>
+
+            <div class="opcao-leitura" data-tipo="selecao">
+                ○ Leitura por seleção
+            </div>
+
+        </div>
+
+        <p class="instrucao-leitura">
+            Use as setas para escolher e Enter para confirmar.
+        </p>
+
+        <button id="cancelarLeitura">
+            Cancelar
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Indicador do modo seleção -->
+
+<div id="indicadorSelecao" class="indicador-selecao">
+
+    👆 Clique no texto que deseja ouvir
+
+</div>
+
+
 <script>
 
 function abrirMateria(pagina){
@@ -131,6 +238,20 @@ window.location.href=pagina;
 }
 
 </script>
+<script src="acessibilidade.js"></script>
+
+ <!-- Início do Widget VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <!-- Fim do Widget VLibras -->
 
 </body>
 

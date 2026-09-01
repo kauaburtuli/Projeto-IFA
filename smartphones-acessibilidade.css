@@ -1,0 +1,250 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#eef4f9;
+    color:#222;
+}
+
+/* Cabeçalho */
+
+header{
+    background:#0d47a1;
+    color:white;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+header h1{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:white;
+    font-size:28px;
+}
+
+.logo-robo{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:600;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* Banner */
+
+.banner{
+    width:100%;
+    height:420px;
+    position:relative;
+    overflow:hidden;
+}
+
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.banner-texto{
+    position:absolute;
+    left:8%;
+    bottom:40px;
+    background:rgba(13,71,161,.88);
+    color:white;
+    padding:25px;
+    border-radius:15px;
+    max-width:650px;
+}
+
+.banner-texto h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.banner-texto p{
+    line-height:1.8;
+}
+
+/* Conteúdo */
+
+main{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+}
+
+section{
+    margin-bottom:70px;
+}
+
+.autor{
+    text-align:center;
+    line-height:2;
+    font-size:18px;
+}
+
+.titulo{
+    text-align:center;
+    color:#0d47a1;
+    font-size:36px;
+    margin-bottom:30px;
+}
+
+.texto{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    line-height:2;
+    font-size:18px;
+    text-align:justify;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.texto-centro{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+/* Imagens */
+
+.imagem-materia{
+    display:block;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Vídeo */
+
+.video-materia{
+    display:block;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Áudio */
+
+.audio-materia{
+    display:block;
+    width:100%;
+    max-width:700px;
+    margin:30px auto;
+}
+
+/* Créditos */
+
+.creditos{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.creditos p{
+    line-height:2;
+    font-size:18px;
+    margin-bottom:12px;
+}
+
+/* Botão */
+
+.voltar{
+    text-align:center;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#0d47a1;
+    color:white;
+    text-decoration:none;
+    border-radius:35px;
+    transition:.3s;
+    font-weight:600;
+}
+
+.btn:hover{
+    background:#1565c0;
+    transform:translateY(-4px);
+}
+
+/* Rodapé */
+
+footer{
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:60px;
+}
+
+/* Responsividade */
+
+@media(max-width:900px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    .banner{
+        height:320px;
+    }
+
+    .banner-texto{
+        left:5%;
+        right:5%;
+        bottom:20px;
+        max-width:100%;
+    }
+
+    .banner-texto h2{
+        font-size:28px;
+    }
+
+    .titulo{
+        font-size:30px;
+    }
+
+    .texto{
+        font-size:17px;
+    }
+
+}
+
+.tempo-leitura{
+    text-align:center;
+    color:#666;
+    margin-top:10px;
+    font-size:16px;
+}
+

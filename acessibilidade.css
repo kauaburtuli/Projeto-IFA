@@ -774,3 +774,403 @@ body.alto-contraste .indicador-selecao {
 
 }
 
+/* ===========================
+   NOTÍCIAS - ALTO CONTRASTE
+=========================== */
+
+body.alto-contraste #noticias{
+
+    background:#000;
+
+}
+
+body.alto-contraste .noticia-recente{
+
+    background:#000;
+
+    border:3px solid #FFF;
+
+    border-left:3px solid #FFF;
+
+    color:#FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste .categoria{
+
+    background:#0056FF;
+
+    color:#FFF;
+
+    border:2px solid #FFF;
+
+}
+
+body.alto-contraste .noticia-recente h3{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste .noticia-recente p{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste .btn-noticia{
+
+    background:#0056FF;
+
+    color:#FFF;
+
+    border:2px solid #FFF;
+
+}
+
+body.alto-contraste .btn-noticia:hover{
+
+    background:#2196F3;
+
+    color:#FFF;
+
+}
+
+/* ===================================== */
+/* ALTO CONTRASTE */
+/* ===================================== */
+
+body.alto-contraste{
+
+    background:#000;
+    color:#FFF;
+
+}
+
+/* Cabeçalho */
+
+body.alto-contraste header{
+
+    background:#000;
+
+    border-bottom:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste header h1{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste nav a{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste nav a:hover{
+
+    color:#00FFFF;
+
+    text-decoration:none;
+
+}
+
+/* Banner */
+
+body.alto-contraste .banner{
+
+    border-top:3px solid #FFF;
+
+    border-bottom:3px solid #FFF;
+
+}
+
+body.alto-contraste .banner-texto{
+
+    background:#000;
+
+    border:3px solid #FFF;
+
+    color:#FFF;
+
+}
+
+/* Conteúdo */
+
+body.alto-contraste .titulo{
+
+    color:#00FFFF;
+
+}
+
+body.alto-contraste .tempo-leitura{
+
+    color:#FFF;
+
+}
+
+/* Cards */
+
+body.alto-contraste .texto{
+
+    background:#000;
+
+    color:#FFF;
+
+    border:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste .creditos{
+
+    background:#000;
+
+    color:#FFF;
+
+    border:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste .creditos p{
+
+    color:#FFF;
+
+}
+
+/* Imagens */
+
+body.alto-contraste .imagem-materia{
+
+    border:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste .video-materia{
+
+    border:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste .audio-materia{
+
+    filter:invert(1);
+
+}
+
+/* Botão */
+
+body.alto-contraste .btn{
+
+    background:#0056FF;
+
+    color:#FFF;
+
+    border:2px solid #FFF;
+
+}
+
+body.alto-contraste .btn:hover{
+
+    background:#2196F3;
+
+    transform:none;
+
+}
+
+/* Links */
+
+body.alto-contraste a{
+
+    color:#00FFFF;
+
+}
+
+body.alto-contraste a:hover{
+
+    color:#FFFF00;
+
+}
+
+/* Rodapé */
+
+body.alto-contraste footer{
+
+    background:#000;
+
+    color:#FFF;
+
+    border-top:3px solid #FFF;
+
+}
+
+/* Seleção */
+
+body.alto-contraste ::selection{
+
+    background:#FFF;
+
+    color:#000;
+
+}
+
+/* ===================================== */
+/* ALTO CONTRASTE */
+/* ===================================== */
+
+body.alto-contraste{
+
+    background:#000;
+
+    color:#FFF;
+
+}
+
+/* Cabeçalho */
+
+body.alto-contraste header{
+
+    background:#000;
+
+    color:#FFF;
+
+    border-bottom:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste header h1{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste nav a{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste nav a:hover{
+
+    color:#00FFFF;
+
+    text-decoration:none;
+
+}
+
+/* Conteúdo */
+
+body.alto-contraste .titulo{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste .texto{
+
+    color:#FFF;
+
+}
+
+/* Lista */
+
+body.alto-contraste .lista-noticias{
+
+    background:transparent;
+
+}
+
+/* Card */
+
+body.alto-contraste .materia{
+
+    background:#000;
+
+    color:#FFF;
+
+    border:3px solid #FFF;
+
+    box-shadow:none;
+
+}
+
+body.alto-contraste .materia:hover{
+
+    background:#111;
+
+    transform:none;
+
+}
+
+/* Informações */
+
+body.alto-contraste .info h3{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste .info p{
+
+    color:#FFF;
+
+}
+
+/* Seta */
+
+body.alto-contraste .seta{
+
+    color:#0056FF;
+
+}
+
+/* Links */
+
+body.alto-contraste a{
+
+    color:#FFF;
+
+}
+
+body.alto-contraste a:hover{
+
+    color:#00FFFF;
+
+}
+
+/* Rodapé */
+
+body.alto-contraste footer{
+
+    background:#000;
+
+    color:#FFF;
+
+    border-top:3px solid #FFF;
+
+}
+
+/* Seleção */
+
+body.alto-contraste ::selection{
+
+    background:#FFF;
+
+    color:#000;
+
+}
