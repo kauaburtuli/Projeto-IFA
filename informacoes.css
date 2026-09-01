@@ -13,13 +13,16 @@ body{
 /* Cabeçalho */
 
 header{
-    background:#0d47a1;
-    color:white;
-    padding:18px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.2);
+    background: #0d47a1;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
 }
 
 header h1{

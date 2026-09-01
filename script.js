@@ -20,3 +20,9 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+function abrirMateria(pagina){
+
+window.location.href=pagina;
+
+};

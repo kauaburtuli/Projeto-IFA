@@ -292,3 +292,9 @@ footer p {
     background:#1565c0;
 
 }
+
+.lista-noticias{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
