@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Efeito Fade-In e Fade-Out</title>
+    <title>Arco Íris com LED RGB</title>
 
     <link rel="icon" type="image/png" href="imagens/robo-logo.png">
 
@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="projeto-individual.css">
     <link rel="stylesheet" href="acessibilidade.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
-    
-      
+
+
 </head>
 
 <body>
@@ -104,7 +104,7 @@
     <main id="conteudo">
         <div class="banner">
 
-            <img src="imagens/circuito_fade-in_inicial.jpg">
+            <img src="imagens/inicio-arco-iris-rgb.jpg">
 
             <div class="banner-texto">
 
@@ -114,7 +114,9 @@
 
                 <p>
 
-                    Este projeto utiliza um Arduino UNO e um LED RGB para criar diferentes combinações de cores, por meio da variação de um potenciômetro. As cores são formadas pela mistura das luzes vermelha, verde e azul, permitindo produzir várias tonalidades.
+                    Este projeto utiliza um Arduino UNO e um LED RGB para criar diferentes combinações de cores, por
+                    meio da variação de um potenciômetro. As cores são formadas pela mistura das luzes vermelha, verde e
+                    azul, permitindo produzir várias tonalidades.
 
                 </p>
 
@@ -134,23 +136,48 @@
 
                 <p>
 
-                    Este projeto foi desenvolvido utilizando a plataforma <strong>Arduino UNO</strong> com o objetivo de demonstrar o funcionamento de um <strong>LED RGB</strong> por meio da criação de um efeito visual de <strong>arco-íris</strong>, obtido pela combinação das cores <strong>vermelha <em style="color: red">(Red)</em>, verde <em style="color: green">(Green)</em> e azul <em style="color: blue">(Blue)</em></strong>. O sistema realiza a transição automática entre diversas tonalidades, produzindo um efeito contínuo e suave que evidencia o princípio da <strong>mistura aditiva de cores</strong>, amplamente utilizado em dispositivos eletrônicos, sistemas de iluminação e equipamentos digitais.
+                    Este projeto foi desenvolvido utilizando a plataforma <strong>Arduino UNO</strong> com o objetivo de
+                    demonstrar o funcionamento de um <strong>LED RGB</strong> por meio da criação de um efeito visual de
+                    <strong>arco-íris</strong>, obtido pela combinação das cores <strong>vermelha <em
+                            style="color: red">(Red)</em>, verde <em style="color: green">(Green)</em> e azul <em
+                            style="color: blue">(Blue)</em></strong>. O sistema realiza a transição automática entre
+                    diversas tonalidades, produzindo um efeito contínuo e suave que evidencia o princípio da
+                    <strong>mistura aditiva de cores</strong>, amplamente utilizado em dispositivos eletrônicos,
+                    sistemas de iluminação e equipamentos digitais.
 
                     <br><br>
 
-                    O <strong>LED RGB</strong> é formado por três diodos emissores de luz independentes, um para cada cor primária do sistema RGB. Ao controlar individualmente a intensidade luminosa de cada um desses canais, é possível gerar uma grande variedade de cores e efeitos visuais. Neste projeto, a programação foi desenvolvida para realizar a variação gradual da intensidade de cada canal, permitindo que as cores se misturem de forma harmoniosa e criem o conhecido efeito de <strong>arco-íris</strong>.
+                    O <strong>LED RGB</strong> é formado por três diodos emissores de luz independentes, um para cada
+                    cor primária do sistema RGB. Ao controlar individualmente a intensidade luminosa de cada um desses
+                    canais, é possível gerar uma grande variedade de cores e efeitos visuais. Neste projeto, a
+                    programação foi desenvolvida para realizar a variação gradual da intensidade de cada canal,
+                    permitindo que as cores se misturem de forma harmoniosa e criem o conhecido efeito de
+                    <strong>arco-íris</strong>.
 
                     <br><br>
 
-                    Para controlar a intensidade luminosa de cada cor, o <strong>Arduino UNO</strong> utiliza a técnica de <strong>Modulação por Largura de Pulso (PWM – Pulse Width Modulation)</strong>. Essa técnica permite variar o brilho do LED alterando o tempo em que cada canal permanece ligado durante um ciclo, sem modificar a tensão de alimentação. Dessa forma, as transições entre as cores ocorrem de maneira suave, tornando o efeito visual mais agradável e demonstrando uma das principais aplicações das saídas PWM presentes nos microcontroladores.
+                    Para controlar a intensidade luminosa de cada cor, o <strong>Arduino UNO</strong> utiliza a técnica
+                    de <strong>Modulação por Largura de Pulso (PWM – Pulse Width Modulation)</strong>. Essa técnica
+                    permite variar o brilho do LED alterando o tempo em que cada canal permanece ligado durante um
+                    ciclo, sem modificar a tensão de alimentação. Dessa forma, as transições entre as cores ocorrem de
+                    maneira suave, tornando o efeito visual mais agradável e demonstrando uma das principais aplicações
+                    das saídas PWM presentes nos microcontroladores.
 
                     <br><br>
 
-                    A programação foi desenvolvida na linguagem <strong>C/C++</strong>, utilizando estruturas de repetição, variáveis e funções responsáveis por aumentar e diminuir gradualmente a intensidade das cores vermelha, verde e azul. Durante a execução do programa, enquanto uma cor reduz sua intensidade, outra aumenta progressivamente, formando uma sequência contínua de cores que se repete indefinidamente. Esse processo evidencia conceitos importantes de programação embarcada, como controle de tempo, manipulação de variáveis e utilização de portas de saída PWM.
+                    A programação foi desenvolvida na linguagem <strong>C/C++</strong>, utilizando estruturas de
+                    repetição, variáveis e funções responsáveis por aumentar e diminuir gradualmente a intensidade das
+                    cores vermelha, verde e azul. Durante a execução do programa, enquanto uma cor reduz sua
+                    intensidade, outra aumenta progressivamente, formando uma sequência contínua de cores que se repete
+                    indefinidamente. Esse processo evidencia conceitos importantes de programação embarcada, como
+                    controle de tempo, manipulação de variáveis e utilização de portas de saída PWM.
 
                     <br><br>
 
-                    Além de seu caráter didático, o projeto possui aplicações práticas em áreas como <strong>automação residencial, robótica, decoração, iluminação inteligente, painéis luminosos, efeitos visuais, sistemas de entretenimento e dispositivos eletrônicos</strong> que utilizam iluminação dinâmica para fornecer informações ao usuário ou melhorar a experiência visual.
+                    Além de seu caráter didático, o projeto possui aplicações práticas em áreas como <strong>automação
+                        residencial, robótica, decoração, iluminação inteligente, painéis luminosos, efeitos visuais,
+                        sistemas de entretenimento e dispositivos eletrônicos</strong> que utilizam iluminação dinâmica
+                    para fornecer informações ao usuário ou melhorar a experiência visual.
 
                     <br><br>
 
@@ -158,12 +185,22 @@
 
                     <br><br>
 
-                    Embora o objetivo principal do projeto seja demonstrar o controle de um <strong>LED RGB</strong>, ele também apresenta uma importante relação com a <strong>acessibilidade</strong>. Sistemas baseados em iluminação colorida podem ser utilizados para complementar ou substituir alertas sonoros, auxiliando principalmente pessoas com <strong>deficiência auditiva</strong>. Diferentes cores ou padrões de iluminação podem indicar notificações, mudanças de estado de um equipamento, alarmes ou outras informações importantes, tornando a comunicação mais visual e acessível.
+                    Embora o objetivo principal do projeto seja demonstrar o controle de um <strong>LED RGB</strong>,
+                    ele também apresenta uma importante relação com a <strong>acessibilidade</strong>. Sistemas baseados
+                    em iluminação colorida podem ser utilizados para complementar ou substituir alertas sonoros,
+                    auxiliando principalmente pessoas com <strong>deficiência auditiva</strong>. Diferentes cores ou
+                    padrões de iluminação podem indicar notificações, mudanças de estado de um equipamento, alarmes ou
+                    outras informações importantes, tornando a comunicação mais visual e acessível.
 
                     <br><br>
 
-                    O efeito de transição entre cores também pode ser aplicado em dispositivos que utilizam <strong>feedback visual</strong>, permitindo que usuários identifiquem diferentes condições de funcionamento sem depender exclusivamente de sons ou mensagens escritas. Dessa forma, este projeto demonstra como uma tecnologia simples e de baixo custo pode servir como base para o desenvolvimento de soluções mais <strong>inclusivas</strong>, contribuindo para a criação de sistemas eletrônicos que atendam às necessidades de um público mais amplo e promovam maior acessibilidade.
-                
+                    O efeito de transição entre cores também pode ser aplicado em dispositivos que utilizam
+                    <strong>feedback visual</strong>, permitindo que usuários identifiquem diferentes condições de
+                    funcionamento sem depender exclusivamente de sons ou mensagens escritas. Dessa forma, este projeto
+                    demonstra como uma tecnologia simples e de baixo custo pode servir como base para o desenvolvimento
+                    de soluções mais <strong>inclusivas</strong>, contribuindo para a criação de sistemas eletrônicos
+                    que atendam às necessidades de um público mais amplo e promovam maior acessibilidade.
+
                 </p>
 
             </div>
@@ -180,41 +217,50 @@
 
                 <div class="material" onclick="abrirImagem('imagens/arduino-uno.jpg')" alt="Arduino UNO R3">
 
-                <h3>Arduino UNO R3</h3>
+                    <h3>Arduino UNO R3</h3>
 
-                <p>1 Unidade</p>
+                    <p>1 Unidade</p>
 
                 </div>
 
                 <div class="material" onclick="abrirImagem('imagens/protoboard.jpg')" alt="Protoboard">
 
-                <h3>Protoboard</h3>
+                    <h3>Protoboard</h3>
 
-                <p>1 Unidade</p>
+                    <p>1 Unidade</p>
 
                 </div>
 
                 <div class="material" onclick="abrirImagem('imagens/jumpers.jpg')" alt="Jumpers">
 
-                <h3>Jumpers</h3>
+                    <h3>Jumpers</h3>
 
-                <p>2 Unidades</p>
+                    <p>9 Unidades</p>
 
                 </div>
 
                 <div class="material" onclick="abrirImagem('imagens/led.jpg')" alt="LED">
 
-                <h3>LED</h3>
+                    <h3>LED RGB</h3>
 
-                <p>1 Unidade (cor à sua escolha)</p>
+                    <p>1 Unidade</p>
 
                 </div>
 
                 <div class="material" onclick="abrirImagem('imagens/resistor-220-ohms.jpg')" alt="Resistor 220 Ohms">
 
-                <h3>Resistor</h3>
+                    <h3>3 Resistores</h3>
 
-                <p>220 Ω</p>
+                    <p>220 Ω</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/potenciometro_linear.jpg')"
+                    alt="Potenciômetro Linear">
+
+                    <h3>Potenciômetro</h3>
+
+                    <p>1 Unidade</p>
 
                 </div>
 
@@ -228,21 +274,21 @@
 
             <div class="tinkercad">
 
-                <img src="imagens/efeito_fade-in.jpg" alt="Circuito Fade-In e Fade-Out" onclick="abrirImagem(this.src)"
+                <img src="imagens/circuito-relogio-rgb.jpg" alt="Circuito Arco Íris" onclick="abrirImagem(this.src)"
                     alt="Circuito 1">
 
                 <p>
 
                     A imagem acima apresenta a montagem do circuito desenvolvida no Tinkercad. Nela é possível
                     visualizar a
-                    ligação entre o Arduino UNO, o LED, o resistor de 220 Ω e os jumpers utilizados para realizar o
-                    efeito
-                    Fade-In e Fade-Out utilizando PWM.
+                    ligação entre o Arduino UNO, o LED, o resistor de 220 Ω, os jumpers e o potenciômetro utilizados
+                    para realizar o
+                    efeito de arco-íris, para visualizar as 7 cores.
 
                 </p>
 
-                <a href="https://www.tinkercad.com/things/0sKq0ycjGbE-circuito-para-led-fade-in-e-fade-out?sharecode=yssj1j-UO59XprfraZV2ES5ucCveDHerO_2istrtz2c" target="_blank"
-                    class="btn">
+                <a href="https://www.tinkercad.com/things/cS2hy0rf91K-arco-iris-com-led-rgb?sharecode=T_32qD3m6uhNPH43WW8dDG0cIwzzufyxW34zvQpunEM"
+                    target="_blank" class="btn">
 
                     Acessar Projeto no Tinkercad
 
@@ -254,252 +300,318 @@
 
         <section>
 
-            <h2 class="titulo">Códigos Fonte</h2>
+            <h2 class="titulo">Código Fonte</h2>
 
             <!-- Fade-In -->
 
             <div class="codigo">
 
-                <h3>Efeito Fade-In</h3>
+                <h3>Arco Íris com LED RGB</h3>
 
                 <pre><code class="language-cpp">
-                /* Define a porta PWM 11 como pino do LED.             */
-                int pinoLed = 11;
-                int incremento = 1;
-                int brilho = 0;
+
+                /*                    ATENÇÃO!                                 */
+                /* Nas linhas 14 ou 15 deste código, você deverá informar se o */
+                /* LED RGB utilizado é de ânodo comum ou cátodo comum para o   */
+                /* correto funcionamento deste protótipo descomentando a linha */
+                /* correspondente ao seu LED RGB.                              */
+                /***************************************************************/
+
+                //char modelo[] = "Ânodo Comum";
+                char modelo[] = "Cátodo Comum";
+
+                /* Variável que armazena os dados do potenciômetro.            */
+                int Pot = 0;
+                /* Define a porta analógica A0 como pino do potenciômetro.     */
+                int Pin_pot = A0;
+                /* Define a porta digital 3 (PWM) no controle do LED Vermelho. */
+                int Led_R = 3;
+                /* Define a porta digital 5 (PWM) no controle do LED Verde.  */
+                int Led_G = 5;
+                /* Define a porta digital 6 (PWM) no controle do LED Azul.   */
+                int Led_B = 6;
 
                 void setup() {
-
-                 pinMode(pinoLed, OUTPUT);
-
+                /* Define o pino do LED Vermelho (Red) como SAÍDA.  */
+                pinMode(Led_R, OUTPUT);
+                /* Define o pino do LED Verde (Green) como SAÍDA.   */
+                pinMode(Led_G, OUTPUT);
+                /* Define o pino do LED Azul (Blue) como SAÍDA.     */
+                pinMode(Led_B, OUTPUT);
                 }
 
                 void loop() {
+                /* Mapeia o valor lido no potenciômetro (0 à 1023) para    */
+                /* sete valores (1 à 7).                                   */
+                Pot = map(analogRead(Pin_pot), 0, 1023, 1, 7);
 
-                for (brilho; brilho <= 256; brilho += incremento) {
+                /* Se o modelo do LED é cátodo comum, faça...                */
+                if (modelo[0] == 'C') {
+                    /* Se o valor de Pot for igual a 1, acenda VERMELHO      */
+                    if (Pot == 1) {
+                    /* Enviando o sinal PWM 255 no LED Vermelho.           */
+                    analogWrite(Led_R, 255);
+                    /* Enviando o sinal PWM 0 no LED Verde.                */
+                    analogWrite(Led_G, 0);
+                    /* Enviando o sinal PWM 0 no LED Azul.                 */
+                    analogWrite(Led_B, 0);
+                    }
+                    /* Se o valor de Pot for igual a 2, acenda LARANJA       */
+                    if (Pot == 2) {
+                    /* Enviando o sinal PWM 255 no LED Vermelho.           */
+                    analogWrite(Led_R, 255);
+                    /* Enviando o sinal PWM 100 no LED Verde.              */
+                    analogWrite(Led_G, 100);
+                    /* Enviando o sinal PWM 0 no LED Azul.                 */
+                    analogWrite(Led_B, 0);
+                    }
+                    /* Se o valor de Pot for igual a 3, acenda AMARELO */
+                    if (Pot == 3) {
+                    /* Enviando o sinal PWM 255 no LED Vermelho.     */
+                    analogWrite(Led_R, 255);
+                    /* Enviando o sinal PWM 255 no LED Verde.        */
+                    analogWrite(Led_G, 255);
+                    /* Enviando o sinal PWM 0 no LED Azul.           */
+                    analogWrite(Led_B, 0);
+                    }
+                    /* Se o valor de Pot for igual a 4, acenda VERDE  */
+                    if (Pot == 4) {
+                    /* Enviando o sinal PWM 0 no LED Vermelho.      */
+                    analogWrite(Led_R, 0);
+                    /* Enviando o sinal PWM 255 no LED Verde.       */
+                    analogWrite(Led_G, 255);
+                    /* Enviando o sinal PWM 0 no LED Azul.          */
+                    analogWrite(Led_B, 0);
+                    }
+                    /* Se o valor de Pot for igual a 5, acenda AZUL   */
+                    if (Pot == 5) {
+                    /* Enviando o sinal PWM 0 no LED Vermelho.      */
+                    analogWrite(Led_R, 0);
+                    /* Enviando o sinal PWM 0 no LED Verde.         */
+                    analogWrite(Led_G, 0);
+                    /* Enviando o sinal PWM 255 no LED Azul.        */
+                    analogWrite(Led_B, 255);
+                    }
+                    /* Se o valor de Pot for igual a 6, acenda ANIL  */
+                    if (Pot == 6) {
+                    /* Enviando o sinal PWM 75 no LED Vermelho.    */
+                    analogWrite(Led_R, 75);
+                    /* Enviando o sinal PWM 0 no LED Verde.        */
+                    analogWrite(Led_G, 0);
+                    /* Enviando o sinal PWM 130 no LED Azul.       */
+                    analogWrite(Led_B, 130);
+                    }
+                    /* Se o valor de Pot for igual a 7, acenda VIOLETA  */
+                    if (Pot == 7) {
+                    /* Enviando o sinal PWM 255 no LED Vermelho.      */
+                    analogWrite(Led_R, 255);
+                    /* Enviando o sinal PWM 0 no LED Verde.           */
+                    analogWrite(Led_G, 0);
+                    /* Enviando o sinal PWM 255 no LED Azul.          */
+                    analogWrite(Led_B, 255);
+                    }
 
-                 analogWrite(pinoLed, brilho);
-
-                delay(100);
-
-                 }
-
+                } else { /* Senão ... (LED com ânodo comum, faça...)   */
+                    /* Se o valor de Pot for igual a 1, acenda VERMELHO  */
+                    if (Pot == 1) {
+                    /* Enviando o sinal PWM 0 no LED Vermelho.         */
+                    analogWrite(Led_R, 0);
+                    /* Enviando o sinal PWM 255 no LED Verde.          */
+                    analogWrite(Led_G, 255);
+                    /* Enviando o sinal PWM 255 no LED Azul.           */
+                    analogWrite(Led_B, 255);
+                    }
+                    /* Se o valor de Pot for igual a 2, acenda LARANJA */
+                    if (Pot == 2) {
+                    /* Enviando o sinal PWM 0 no LED Vermelho.       */
+                    analogWrite(Led_R, 0);
+                    /* Enviando o sinal PWM 155 no LED Verde.        */
+                    analogWrite(Led_G, 155);
+                    /* Enviando o sinal PWM 255 no LED Azul.         */
+                    analogWrite(Led_B, 255);
+                    }
+                    /* Se o valor de Pot for igual a 3, acenda AMARELO */
+                    if (Pot == 3) {
+                    /* Enviando o sinal PWM 0 no LED Vermelho.       */
+                    analogWrite(Led_R, 0);
+                    /* Enviando o sinal PWM 0 no LED Verde.          */
+                    analogWrite(Led_G, 0);
+                    /* Enviando o sinal PWM 255 no LED Azul.         */
+                    analogWrite(Led_B, 255);
+                    }
+                    /* Se o valor de Pot for igual a 4, acenda VERDE */
+                    if (Pot == 4) {
+                    /* Enviando o sinal PWM 255 no LED Vermelho.   */
+                    analogWrite(Led_R, 255);
+                    /* Enviando o sinal PWM 0 no LED Verde.        */
+                    analogWrite(Led_G, 0);
+                    /* Enviando o sinal PWM 255 no LED Azul.       */
+                    analogWrite(Led_B, 255);
+                    }
+                    /* Se o valor de Pot for igual a 5, acenda AZUL  */
+                    if (Pot == 5) {
+                    /* Enviando o sinal PWM 255 no LED Vermelho.   */
+                    analogWrite(Led_R, 255);
+                    /* Enviando o sinal PWM 255 no LED Verde.      */
+                    analogWrite(Led_G, 255);
+                    /* Enviando o sinal PWM 0 no LED Azul.         */
+                    analogWrite(Led_B, 0);
+                    }
+                    /* Se o valor de Pot for igual a 6, acenda ANIL */
+                    if (Pot == 6) {
+                    /* Enviando o sinal PWM 180 no LED Vermelho.  */
+                    analogWrite(Led_R, 180);
+                    /* Enviando o sinal PWM 255 no LED Verde.     */
+                    analogWrite(Led_G, 255);
+                    /* Enviando o sinal PWM 125 no LED Azul.      */
+                    analogWrite(Led_B, 125);
+                    }
+                    /* Se o valor de Pot for igual a 7, acenda VIOLETA */
+                    if (Pot == 7) {
+                    /* Enviando o sinal PWM 0 no LED Vermelho.       */
+                    analogWrite(Led_R, 0);
+                    /* Enviando o sinal PWM 255 no LED Verde.        */
+                    analogWrite(Led_G, 255);
+                    /* Enviando o sinal PWM 0 no LED Azul.            */
+                    analogWrite(Led_B, 0);
+                    }
+                }
                 }
                 </code></pre>
 
-                <a href="codigos/fade-in.ino" download class="btn">
+                <a href="codigos/arco-iris-rgb.ino" download class="btn">
 
-                    Baixar Código Fade-In
+                    Baixar Código Arco Íris RGB
 
                 </a>
 
             </div>
 
-            <br><br>
 
-            <!-- Fade-Out -->
+            <section>
 
-            <div class="codigo">
+                <h2 class="titulo">Vídeo Demonstrativo</h2>
 
-                <h3>Efeito Fade-Out</h3>
+                <div class="video">
 
-                <pre><code class="language-cpp">
+                    <video controls>
 
-                int pinoLed = 11;
-                int decremento = 5;
-                int brilho = 255;
+                        <source src="vídeos/arco-iris-rgb1.mp4" type="video/mp4">
 
-                void setup() {
+                        Seu navegador não suporta vídeos.
 
-                pinMode(pinoLed, OUTPUT);
-
-                }
-
-                void loop() {
-
-                for (brilho; brilho >= -1; brilho -= decremento) {
-
-                    analogWrite(pinoLed, brilho);
-
-                    delay(50);
-
-                }
-
-                }
-                </code></pre>
-
-                <a href="codigos/fade-out.ino" download class="btn">
-
-                    Baixar Código Fade-Out
-
-                </a>
-
-            </div>
-
-            <br><br>
-
-            <!-- Fade-In + Fade-Out -->
-
-            <div class="codigo">
-
-                <h3>Efeito Fade-In e Fade-Out</h3>
-
-                <pre><code class="language-cpp">
-                // LED ligado ao pino 11
-                const int led = 11;
-
-                int brilho = 0;
-                int incremento = 1;
-
-                void setup() {
-
-                pinMode(led, OUTPUT);
-
-                }
-
-                void loop() {
-
-                analogWrite(led, brilho);
-
-                brilho += incremento;
-
-                if (brilho <= 0 || brilho >= 255) {
-
-                    incremento = -incremento;
-
-                }
-
-                delay(30);
-
-                }
-                </code></pre>
-
-                <a href="codigos/fade-in-fade-out.ino" download class="btn">
-
-                    Baixar Código Completo
-
-                </a>
-
-            </div>
-
-        </section>
-
-        <section>
-
-            <h2 class="titulo">Vídeo Demonstrativo</h2>
-
-            <div class="video">
-
-                <video controls>
-
-                    <source src="vídeos/efeito_fade.mp4" type="video/mp4">
-
-                    Seu navegador não suporta vídeos.
-
-                </video>
-
-            </div>
-
-        </section>
-
-        <section>
-
-            <h2 class="titulo">Biblioteca de Imagens</h2>
-
-            <div class="galeria">
-
-                <img src="imagens/circuito_fade1.jpg" onclick="abrirImagem(this.src)" alt="Circuito 1">
-
-                <img src="imagens/circuito_fade2.jpg" onclick="abrirImagem(this.src)" alt="Circuito 2">
-
-                <img src="imagens/circuito_fade3.jpg" onclick="abrirImagem(this.src)" alt="Circuito 3">
-
-            </div>
-
-        </section>
-
-        <!-- Janela da imagem -->
-
-        <div id="janelaImagem" class="janela">
-
-            <span class="fechar" onclick="fecharImagem()">&times;</span>
-
-            <img id="imagemGrande">
-
-        </div>
-
-        <div id="cursorGrande"></div>
-        <div id="lupaFoco"></div>
-
-
-
-        <!-- Modal de escolha da leitura -->
-
-        <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
-
-            <div class="caixa-leitura" role="dialog" aria-modal="true">
-
-                <h2>Selecione o tipo de leitura</h2>
-
-                <div class="opcoes-leitura">
-
-                    <div class="opcao-leitura selecionada" data-tipo="geral">
-                        ▶ Leitura geral
-                    </div>
-
-                    <div class="opcao-leitura" data-tipo="selecao">
-                        ○ Leitura por seleção
-                    </div>
+                    </video>
 
                 </div>
 
-                <p class="instrucao-leitura">
-                    Use as setas para escolher e Enter para confirmar.
-                </p>
+                <div class="video">
 
-                <button id="cancelarLeitura">
-                    Cancelar
-                </button>
+                    <video controls>
+
+                        <source src="vídeos/arco-iris-rgb2.mp4" type="video/mp4">
+
+                        Seu navegador não suporta vídeos.
+
+                    </video>
+
+                </div>
+
+            </section>
+
+            <section>
+
+                <h2 class="titulo">Biblioteca de Imagens</h2>
+
+                <div class="galeria">
+
+                    <img src="imagens/inicio-arco-iris-rgb.jpg" onclick="abrirImagem(this.src)" alt="Circuito 1">
+
+                </div>
+
+            </section>
+
+            <!-- Janela da imagem -->
+
+            <div id="janelaImagem" class="janela">
+
+                <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+                <img id="imagemGrande">
 
             </div>
 
-        </div>
-
-        <!-- Indicador do modo seleção -->
-
-        <div id="indicadorSelecao" class="indicador-selecao">
-
-            👆 Clique no texto que deseja ouvir
-
-        </div>
-
-        <div class="janela" id="janela">
-
-            <span class="fechar" onclick="fecharImagem()">&times;</span>
-
-            <img id="imagemGrande">
-
-        </div>
+            <div id="cursorGrande"></div>
+            <div id="lupaFoco"></div>
 
 
-        <script src="projeto-individual.js"></script>
-        <script src="acessibilidade.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
-        
 
+            <!-- Modal de escolha da leitura -->
 
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
+            <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+                <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+                    <h2>Selecione o tipo de leitura</h2>
+
+                    <div class="opcoes-leitura">
+
+                        <div class="opcao-leitura selecionada" data-tipo="geral">
+                            ▶ Leitura geral
+                        </div>
+
+                        <div class="opcao-leitura" data-tipo="selecao">
+                            ○ Leitura por seleção
+                        </div>
+
+                    </div>
+
+                    <p class="instrucao-leitura">
+                        Use as setas para escolher e Enter para confirmar.
+                    </p>
+
+                    <button id="cancelarLeitura">
+                        Cancelar
+                    </button>
+
+                </div>
+
             </div>
-        </div>
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
+
+            <!-- Indicador do modo seleção -->
+
+            <div id="indicadorSelecao" class="indicador-selecao">
+
+                👆 Clique no texto que deseja ouvir
+
+            </div>
+
+            <div class="janela" id="janela">
+
+                <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+                <img id="imagemGrande">
+
+            </div>
+
+
+            <script src="projeto-individual.js"></script>
+            <script src="acessibilidade.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+
+
+            <div vw class="enabled">
+                <div vw-access-button class="active"></div>
+                <div vw-plugin-wrapper>
+                    <div class="vw-plugin-top-wrapper"></div>
+                </div>
+            </div>
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+            <script>
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            </script>
 
 
 </body>

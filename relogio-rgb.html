@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relógio Visual com LED RGB</title>
+
+    <link rel="icon" type="image/png" href="imagens/robo-logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="projeto-individual.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
+
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>
+
+            <img src="imagens/robo-logo.png" class="logo-robo">
+
+            Robótica Educacional
+
+        </h1>
+
+        <nav>
+
+            <a href="index.html">Início</a>
+
+            <a href="projetos.html">Projetos</a>
+
+            <div class="dropdown-acessibilidade">
+                <button class="btn-acessibilidade">
+                    ♿ Acessibilidade ▼
+                </button>
+
+                <div class="menu-acessibilidade">
+
+                    <button id="lerPagina">🔊 Ler página</button>
+
+                    <hr>
+
+                    <div class="linha-fonte">
+
+                        <span class="texto-fonte">
+                            🔤 Tamanho da fonte
+                        </span>
+
+                        <div class="controles-fonte">
+
+                            <button id="fonteMais" aria-label="Aumentar fonte">A+</button>
+
+                            <button id="fontePadrao" aria-label="Fonte padrão">A</button>
+
+                            <button id="fonteMenos" aria-label="Diminuir fonte">A−</button>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <button id="contraste">🌙 Alto contraste</button>
+                    <button id="dislexia">📖 Fonte para dislexia</button>
+                    <button id="espacamento">↔️ Aumentar espaçamento</button>
+                    <button id="cursor">🖱 Cursor ampliado</button>
+                    <button id="animacoes">✨ Reduzir animações</button>
+                    <button id="lupa">🔍 Ativar lupa</button>
+                    <button id="restaurarAcessibilidade">Restaurar padrão</button>
+
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <div id="controleLeitura" class="controle-leitura">
+
+
+        <span id="statusLeitura">
+            🔊 Lendo...
+        </span>
+
+        <div class="botoes-leitura">
+
+            <button id="continuarBtn">▶</button>
+
+            <button id="pausarBtn">⏸</button>
+
+            <button id="pararBtn">⏹</button>
+
+        </div>
+
+    </div>
+    <main id="conteudo">
+        <div class="banner">
+
+            <img src="imagens/circuito-inicio-relogio-rgb.jpg">
+
+            <div class="banner-texto">
+
+
+
+                <h2>Relógio Visual por Cores com LED RGB</h2>
+
+                <p>
+
+                    O Relógio Visual por Cores utiliza um LED RGB para representar os períodos do dia por meio de cores,
+                    facilitando a identificação da manhã, tarde e noite. Essa abordagem torna a informação mais
+                    intuitiva e acessível, especialmente para pessoas que possuem dificuldade em interpretar relógios
+                    convencionais.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <section>
+
+            <h2 class="titulo">
+
+                O que é?
+
+            </h2>
+
+            <div class="texto">
+
+                <p>
+
+                    O <strong>Relógio Visual por Cores</strong> é um protótipo desenvolvido utilizando a plataforma
+                    Arduino Uno R3, um LED RGB, resistores, jumpers e uma protoboard, com o objetivo de representar os
+                    períodos do dia por meio de diferentes cores. Em vez de utilizar números, ponteiros ou displays para
+                    informar o horário, o sistema faz uso de estímulos visuais simples, associando <strong><em
+                            style="color: blue">azul</em> à manhã, <em style="color: green">verde</em> à tarde e <em
+                            style="color: red">vermelho</em> à noite</strong>. Dessa forma, o usuário consegue
+                    identificar rapidamente em qual período do dia se encontra apenas observando a cor emitida pelo LED.
+
+                    <br><br>
+
+                    Como o Arduino Uno R3 não possui um <strong>Relógio de Tempo Real (RTC)</strong> integrado, a
+                    passagem do tempo é simulada utilizando a função <span
+                        style="font-family: 'Consolas', monospace;">millis()</span>. Essa função registra o tempo, em
+                    milissegundos, desde que a placa foi ligada. Com base nesse contador, o programa divide o
+                    funcionamento em ciclos previamente definidos, alternando automaticamente entre as cores que
+                    representam manhã, tarde e noite. Ao final do ciclo, o sistema reinicia a contagem e repete
+                    continuamente a sequência, simulando a passagem dos períodos do dia de forma simples e eficiente.
+
+                    <br><br>
+
+                    Além de demonstrar conceitos fundamentais de programação, lógica computacional e eletrônica
+                    embarcada, o projeto possui um forte caráter <strong>educacional</strong> e
+                    <strong>inclusivo</strong>. Durante seu desenvolvimento, os estudantes aprendem sobre variáveis,
+                    estruturas condicionais, controle de tempo com <span
+                        style="font-family: 'Consolas', monospace;">millis()</span>, manipulação de portas digitais e
+                    funcionamento de LEDs RGB, compreendendo como componentes eletrônicos podem ser utilizados para
+                    resolver problemas do cotidiano.
+                    <br><br>
+
+                    O principal diferencial do projeto está em sua relação com a <strong>acessibilidade</strong>. Muitas
+                    pessoas apresentam dificuldades para interpretar relógios analógicos ou mesmo relógios digitais,
+                    seja por limitações cognitivas, dificuldades de aprendizagem, idade ou outros fatores. Ao substituir
+                    a leitura de horas por uma linguagem baseada em cores, o sistema torna a informação muito mais
+                    intuitiva e de rápida compreensão, reduzindo a necessidade de interpretar números ou ponteiros.
+
+                    <br><br>
+
+                    Essa solução pode beneficiar, por exemplo, <strong>crianças em fase de alfabetização</strong>, que
+                    ainda estão aprendendo a reconhecer as horas; <strong>idosos</strong>, que podem apresentar
+                    dificuldades visuais ou cognitivas; e <strong>pessoas com deficiência intelectual ou transtornos do
+                        desenvolvimento</strong>, que frequentemente respondem melhor a estímulos visuais simples e
+                    repetitivos. A associação entre uma cor e um período do dia facilita a criação de uma rotina,
+                    permitindo que o usuário compreenda quando é momento de estudar, trabalhar, descansar ou realizar
+                    outras atividades diárias.
+
+                    <br><br>
+
+                    Outro aspecto importante é que o projeto demonstra como a tecnologia pode ser utilizada para
+                    desenvolver recursos de <strong>Tecnologia Assistiva</strong>, ou seja, soluções que promovem maior
+                    autonomia, inclusão e qualidade de vida para diferentes públicos. Embora seja um protótipo simples e
+                    de baixo custo, ele evidencia que pequenos recursos tecnológicos podem tornar informações do
+                    cotidiano mais acessíveis, contribuindo para a participação de todos em atividades educacionais e
+                    sociais.
+
+                    <br><br>
+
+                    Além disso, o sistema pode ser facilmente expandido em versões futuras, incorporando novos recursos
+                    como um módulo RTC para informar o horário real, um display LCD ou OLED para exibir informações
+                    complementares, um buzzer para emitir sinais sonoros, motores vibratórios para fornecer retorno
+                    tátil ou até integração com sensores e dispositivos inteligentes. Essas melhorias permitiriam
+                    atender diferentes perfis de usuários, ampliando ainda mais a acessibilidade do projeto.
+
+                    <br><br>
+
+                    Portanto, o <strong>Relógio Visual por Cores</strong> vai além de um simples circuito com LED RGB.
+                    Ele representa uma aplicação prática dos conhecimentos adquiridos em programação e eletrônica,
+                    demonstrando como a tecnologia pode ser utilizada para criar soluções inclusivas, intuitivas e de
+                    baixo custo. Ao transformar a informação do tempo em um código de cores de fácil interpretação, o
+                    projeto incentiva o desenvolvimento de sistemas mais acessíveis, reforçando a importância da
+                    inovação tecnológica voltada para a inclusão e para a melhoria da qualidade de vida das pessoas.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Materiais Utilizados</h2>
+
+            <div class="texto-material"> Clique nos balões para visualizar os componentes</div>
+
+            <div class="cards-materiais">
+
+                <div class="material" onclick="abrirImagem('imagens/arduino-uno.jpg')" alt="Arduino UNO R3">
+
+                    <h3>Arduino UNO R3</h3>
+
+                    <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/protoboard.jpg')" alt="Protoboard">
+
+                    <h3>Protoboard</h3>
+
+                    <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/jumpers.jpg')" alt="Jumpers">
+
+                    <h3>Jumpers</h3>
+
+                    <p>5 Unidades</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/led.jpg')" alt="LED">
+
+                    <h3>LED RGB</h3>
+
+                    <p>1 Unidade</p>
+
+                </div>
+
+                <div class="material" onclick="abrirImagem('imagens/resistor-220-ohms.jpg')" alt="Resistor 220 Ohms">
+
+                    <h3>3 Resistores</h3>
+
+                    <p>220 Ω</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Circuito no Tinkercad</h2>
+
+            <div class="tinkercad">
+
+                <img src="imagens/circuito-relogio-rgb1.jpg" alt="Circuito Arco Íris" onclick="abrirImagem(this.src)"
+                    alt="Circuito 1">
+
+                <p>
+
+                    A imagem acima apresenta a montagem do circuito desenvolvida no Tinkercad. Nela é possível
+                    visualizar a
+                    ligação entre o Arduino UNO, o LED, o resistor de 220 Ω e os jumpers utilizados
+                    para o funcionamento do relógio visual por cores.
+
+                </p>
+
+                <a href="https://www.tinkercad.com/things/cvlpP6c0x3k-relogio-visual-com-led-rgb?sharecode=undefined"
+                    target="_blank" class="btn">
+
+                    Acessar Projeto no Tinkercad
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2 class="titulo">Código Fonte</h2>
+
+            <!-- Fade-In -->
+
+            <div class="codigo">
+
+                <h3>Relógio Visual por Cores com LED RGB</h3>
+
+                <pre><code class="language-cpp">
+
+                // ==========================================================
+                // RELÓGIO VISUAL POR CORES
+                // Arduino Uno R3 + LED RGB
+                // ==========================================================
+
+                // Define o pino conectado à cor vermelha do LED RGB
+                const int LED_VERMELHO = 9;
+
+                // Define o pino conectado à cor verde do LED RGB
+                const int LED_VERDE = 10;
+
+                // Define o pino conectado à cor azul do LED RGB
+                const int LED_AZUL = 11;
+
+
+                // ----------------------------------------------------------
+                // CONFIGURAÇÃO DOS TEMPOS
+                // ----------------------------------------------------------
+
+                // Define quanto tempo cada período irá durar.
+                // O valor é dado em milissegundos.
+
+                // 10 segundos = 10000 milissegundos
+                const unsigned long TEMPO_MANHA = 10000;
+
+                // 10 segundos = 10000 milissegundos
+                const unsigned long TEMPO_TARDE = 10000;
+
+                // 10 segundos = 10000 milissegundos
+                const unsigned long TEMPO_NOITE = 10000;
+
+
+                // Soma todos os períodos para formar um ciclo completo
+                const unsigned long TEMPO_CICLO =
+                TEMPO_MANHA + TEMPO_TARDE + TEMPO_NOITE;
+
+
+                // ----------------------------------------------------------
+                // VARIÁVEL PARA CONTROLAR O TEMPO
+                // ----------------------------------------------------------
+
+                // Guarda o momento em que o ciclo começou
+                unsigned long inicioCiclo = 0;
+
+
+                // ==========================================================
+                // FUNÇÃO SETUP
+                // Executada apenas uma vez quando o Arduino é ligado
+                // ==========================================================
+
+                void setup() {
+
+                // Define o pino vermelho como saída
+                pinMode(LED_VERMELHO, OUTPUT);
+
+                // Define o pino verde como saída
+                pinMode(LED_VERDE, OUTPUT);
+
+                // Define o pino azul como saída
+                pinMode(LED_AZUL, OUTPUT);
+
+                // Garante que o LED comece apagado
+                apagarLED();
+
+                // Guarda o tempo inicial do Arduino
+                inicioCiclo = millis();
+                }
+
+
+                // ==========================================================
+                // FUNÇÃO LOOP
+                // Executada continuamente pelo Arduino
+                // ==========================================================
+
+                void loop() {
+
+                // Obtém o tempo atual desde que o Arduino foi ligado
+                unsigned long tempoAtual = millis();
+
+                // Calcula quanto tempo passou desde o início do ciclo
+                unsigned long tempoDecorrido =
+                    tempoAtual - inicioCiclo;
+
+
+                // --------------------------------------------------------
+                // VERIFICA SE ESTAMOS NO PERÍODO DA MANHÃ
+                // --------------------------------------------------------
+
+                if (tempoDecorrido < TEMPO_MANHA) {
+
+                    // Acende o LED na cor azul
+                    mostrarAzul();
+                }
+
+
+                // --------------------------------------------------------
+                // VERIFICA SE ESTAMOS NO PERÍODO DA TARDE
+                // --------------------------------------------------------
+
+                else if (tempoDecorrido <
+                        TEMPO_MANHA + TEMPO_TARDE) {
+
+                    // Acende o LED na cor verde
+                    mostrarVerde();
+                }
+
+
+                // --------------------------------------------------------
+                // CASO CONTRÁRIO, É O PERÍODO DA NOITE
+                // --------------------------------------------------------
+
+                else {
+
+                    // Acende o LED na cor vermelha
+                    mostrarVermelho();
+                }
+
+
+                // --------------------------------------------------------
+                // VERIFICA SE O CICLO TERMINOU
+                // --------------------------------------------------------
+
+                if (tempoDecorrido >= TEMPO_CICLO) {
+
+                    // Reinicia o contador do ciclo
+                    inicioCiclo = tempoAtual;
+                }
+                }
+
+
+                // ==========================================================
+                // FUNÇÃO PARA MOSTRAR A COR AZUL
+                // Representa a MANHÃ
+                // ==========================================================
+
+                void mostrarAzul() {
+
+                // Vermelho desligado
+                digitalWrite(LED_VERMELHO, LOW);
+
+                // Verde desligado
+                digitalWrite(LED_VERDE, LOW);
+
+                // Azul ligado
+                digitalWrite(LED_AZUL, HIGH);
+                }
+
+
+                // ==========================================================
+                // FUNÇÃO PARA MOSTRAR A COR VERDE
+                // Representa a TARDE
+                // ==========================================================
+
+                void mostrarVerde() {
+
+                // Vermelho desligado
+                digitalWrite(LED_VERMELHO, LOW);
+
+                // Verde ligado
+                digitalWrite(LED_VERDE, HIGH);
+
+                // Azul desligado
+                digitalWrite(LED_AZUL, LOW);
+                }
+
+
+                // ==========================================================
+                // FUNÇÃO PARA MOSTRAR A COR VERMELHA
+                // Representa a NOITE
+                // ==========================================================
+
+                void mostrarVermelho() {
+
+                // Vermelho ligado
+                digitalWrite(LED_VERMELHO, HIGH);
+
+                // Verde desligado
+                digitalWrite(LED_VERDE, LOW);
+
+                // Azul desligado
+                digitalWrite(LED_AZUL, LOW);
+                }
+
+
+                // ==========================================================
+                // FUNÇÃO PARA APAGAR O LED
+                // ==========================================================
+
+                void apagarLED() {
+
+                // Desliga o vermelho
+                digitalWrite(LED_VERMELHO, LOW);
+
+                // Desliga o verde
+                digitalWrite(LED_VERDE, LOW);
+
+                // Desliga o azul
+                digitalWrite(LED_AZUL, LOW);
+                }
+                </code></pre>
+
+                <a href="codigos/arco-iris-rgb.ino" download class="btn">
+
+                    Baixar Código Arco Íris RGB
+
+                </a>
+
+            </div>
+
+
+            <section>
+
+                <h2 class="titulo">Vídeo Demonstrativo</h2>
+
+                <div class="video">
+
+                    <video controls>
+
+                        <source src="vídeos/relogio-rgb.mp4" type="video/mp4">
+
+                        Seu navegador não suporta vídeos.
+
+                    </video>
+
+                </div>
+
+            </section>
+
+            <section>
+
+                <h2 class="titulo">Biblioteca de Imagens</h2>
+
+                <div class="galeria">
+
+                    <img src="imagens/circuito-inicio-relogio-rgb.jpg" onclick="abrirImagem(this.src)" alt="Circuito 1">
+
+                </div>
+
+            </section>
+
+            <!-- Janela da imagem -->
+
+            <div id="janelaImagem" class="janela">
+
+                <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+                <img id="imagemGrande">
+
+            </div>
+
+            <div id="cursorGrande"></div>
+            <div id="lupaFoco"></div>
+
+
+
+            <!-- Modal de escolha da leitura -->
+
+            <div id="modalLeitura" class="modal-leitura" aria-hidden="true">
+
+                <div class="caixa-leitura" role="dialog" aria-modal="true">
+
+                    <h2>Selecione o tipo de leitura</h2>
+
+                    <div class="opcoes-leitura">
+
+                        <div class="opcao-leitura selecionada" data-tipo="geral">
+                            ▶ Leitura geral
+                        </div>
+
+                        <div class="opcao-leitura" data-tipo="selecao">
+                            ○ Leitura por seleção
+                        </div>
+
+                    </div>
+
+                    <p class="instrucao-leitura">
+                        Use as setas para escolher e Enter para confirmar.
+                    </p>
+
+                    <button id="cancelarLeitura">
+                        Cancelar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Indicador do modo seleção -->
+
+            <div id="indicadorSelecao" class="indicador-selecao">
+
+                👆 Clique no texto que deseja ouvir
+
+            </div>
+
+            <div class="janela" id="janela">
+
+                <span class="fechar" onclick="fecharImagem()">&times;</span>
+
+                <img id="imagemGrande">
+
+            </div>
+
+
+            <script src="projeto-individual.js"></script>
+            <script src="acessibilidade.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+
+
+            <div vw class="enabled">
+                <div vw-access-button class="active"></div>
+                <div vw-plugin-wrapper>
+                    <div class="vw-plugin-top-wrapper"></div>
+                </div>
+            </div>
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+            <script>
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
+            </script>
+
+
+</body>
+
+</main>
+
+<footer>
+
+    <p>
+        Projeto desenvolvido para o IFA - Robótica Educacional<br>
+        © 2026 - Todos os direitos reservados.
+    </p>
+
+</footer>
+
+</html>
