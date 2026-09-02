@@ -357,37 +357,37 @@
 
                 <pre><code class="language-cpp">
 
-#include &lt;Arduino.h&gt;
-#include &lt;Wire.h&gt;
-#include &lt;SoftwareSerial.h&gt;
+                #include &lt;Arduino.h&gt;
+                #include &lt;Wire.h&gt;
+                #include &lt;SoftwareSerial.h&gt;
 
-int pinPot = A5;
+                int pinPot = A5;
 
-void _delay(float seconds) {
-  long endTime = millis() + seconds * 1000;
-  while(millis() < endTime) _loop();
-}
+                void _delay(float seconds) {
+                long endTime = millis() + seconds * 1000;
+                while(millis() < endTime) _loop();
+                }
 
-void setup() {
-  pinMode(6,OUTPUT);
-  while(1) {
-    analogWrite(6,map(analogRead(pinPot),0,1023,0,255));
+                void setup() {
+                pinMode(6,OUTPUT);
+                while(1) {
+                    analogWrite(6,map(analogRead(pinPot),0,1023,0,255));
 
-  	_loop();
-  }
+                    _loop();
+                }
 
-}
+                }
 
-void _loop() {
-}
+                void _loop() {
+                }
 
-void loop() {
-  _loop();
-}
+                void loop() {
+                _loop();
+                }
 
-</code></pre>
+                </code></pre>
 
-                <a href="disco-de-newton.ino" download class="btn">
+                <a href="códigos/disco-de-newton.ino" download class="btn">
 
                     Baixar Código
 
