@@ -108,6 +108,14 @@ section{
     margin-bottom:30px;
 }
 
+.titulo-noticia{
+    text-align:center;
+    color:#0d47a1;
+    font-size:36px;
+    margin-top: 70px;
+    margin-bottom:30px;
+}
+
 .texto{
     background:white;
     padding:35px;
