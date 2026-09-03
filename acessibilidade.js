@@ -1506,7 +1506,7 @@ botaoAnimacoes.onclick = () => {
 
     }else{
 
-        botaoAnimacoes.innerHTML = "🎞 Reduzir animações";
+        botaoAnimacoes.innerHTML = "✨ Reduzir animações";
         localStorage.setItem("animacoes","off");
 
     }
