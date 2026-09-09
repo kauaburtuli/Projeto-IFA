@@ -6,7 +6,7 @@ const GITHUB = {
 
     branch: "main",
 
-    token: ""
+    token: "kzb2011"
 
 };
 
