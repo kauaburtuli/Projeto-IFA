@@ -241,13 +241,123 @@
 
         }
 
-        /* :root{
-    --escala-fonte: 100%;
+        .admin-bar{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin:120px 8% 30px;
+
 }
 
-body{
-    font-size: var(--escala-fonte);
-} */
+#btnNovoProjeto{
+
+    background:#0d47a1;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.7);
+
+    z-index:99999;
+
+    overflow:auto;
+
+}
+
+.modal-conteudo{
+
+    width:90%;
+
+    max-width:900px;
+
+    margin:50px auto;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:30px;
+
+}
+
+.modal input,
+.modal textarea{
+
+    width:100%;
+
+    margin:10px 0;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    border:1px solid #ccc;
+
+}
+
+.modal textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+
+#blocos{
+
+    margin:25px 0;
+
+}
+
+.bloco{
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+}
+
+#fecharModal{
+
+    float:right;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+}
+    
     </style>
 
 </head>
@@ -346,6 +456,12 @@ body{
             utilizando a Robótica Educacional para desenvolver soluções voltadas à acessibilidade.
 
         </p>
+
+        <div class="admin-bar">
+    <button id="btnNovoProjeto">
+        ➕ Adicionar Projeto
+    </button>
+</div>
 
         <div class="projetos">
 
@@ -498,8 +614,9 @@ body{
 
             </div>
 
+            
 
-        </div>
+        </div><!--FIM_PROJETOS-->
 
         <div class="voltar">
 
@@ -522,17 +639,7 @@ body{
 
     </footer>
 
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-    <script src="acessibilidade.js"></script>
+    
 
     <!-- Modal de escolha da leitura -->
 
@@ -573,6 +680,352 @@ body{
         👆 Clique no texto que deseja ouvir
 
     </div>
+
+   <div id="modalProjeto" class="modal">
+
+    <div class="modal-conteudo">
+
+        <span id="fecharModal">&times;</span>
+
+        <h2>Novo Projeto</h2>
+
+        <input id="titulo" type="text" placeholder="Título do projeto">
+
+        <input id="slug" type="text" placeholder="Nome do HTML (ex: fade-in)">
+
+        <textarea id="descricao"
+        placeholder="Descrição curta"></textarea>
+
+        <h3>Banner</h3>
+
+        <input id="banner" type="file" accept="image/*">
+
+        <hr>
+
+        <div id="blocos"></div>
+
+        <button id="novoTexto">
+            + Texto
+        </button>
+
+        <button id="novoCodigo">
+            + Código
+        </button>
+
+        <button id="novaGaleria">
+            + Galeria
+        </button>
+
+        <button id="novoVideo">
+            + Vídeo
+        </button>
+
+        <button id="novoMaterial">
+            + Materiais
+        </button>
+
+        <button id="novoTinkercad">
+            + Tinkercad
+        </button>
+
+        <br><br>
+
+        <button id="publicarProjeto">
+            🚀 Publicar
+        </button>
+
+    </div>
+
+</div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="acessibilidade.js"></script>
+
+   <script>
+    const modal = document.getElementById("modalProjeto");
+
+document.getElementById("btnNovoProjeto").onclick = () => {
+
+    modal.style.display = "block";
+
+};
+
+document.getElementById("fecharModal").onclick = () => {
+
+    modal.style.display = "none";
+
+};
+
+window.onclick = (e)=>{
+
+    if(e.target===modal){
+
+        modal.style.display="none";
+
+    }
+
+};
+
+const blocos = document.getElementById("blocos");
+
+function criarBloco(tipo){
+
+    const bloco = document.createElement("div");
+    bloco.className = "bloco";
+    bloco.dataset.tipo = tipo;
+
+    if(tipo==="texto"){
+
+        bloco.innerHTML=`
+
+            <h3>📝 Texto</h3>
+
+            <input class="titulo-bloco"
+            placeholder="Título">
+
+            <textarea class="conteudo-bloco"
+            placeholder="Digite o texto..."></textarea>
+
+            <button class="remover">
+                Remover
+            </button>
+
+        `;
+
+    }
+
+    if(tipo==="codigo"){
+
+        bloco.innerHTML=`
+
+            <h3>💻 Código</h3>
+
+            <input class="titulo-codigo"
+            placeholder="Título">
+
+            <select class="linguagem">
+
+                <option value="cpp">C++</option>
+                <option value="c">C</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+
+            </select>
+
+            <textarea class="codigo"
+            placeholder="Cole o código"></textarea>
+
+            <h4>Arquivo .ino</h4>
+
+            <input class="arquivo-ino"
+            type="file"
+            accept=".ino">
+
+            <button class="remover">
+                Remover
+            </button>
+
+        `;
+
+    }
+
+    if(tipo==="galeria"){
+
+        bloco.innerHTML=`
+
+            <h3>🖼️ Galeria</h3>
+
+            <input class="galeria"
+            type="file"
+            accept="image/*"
+            multiple>
+
+            <button class="remover">
+                Remover
+            </button>
+
+        `;
+
+    }
+
+    if(tipo==="video"){
+
+        bloco.innerHTML=`
+
+            <h3>🎥 Vídeo</h3>
+
+            <input class="video"
+            type="file"
+            accept="video/*">
+
+            <button class="remover">
+                Remover
+            </button>
+
+        `;
+
+    }
+
+    if(tipo==="materiais"){
+
+        bloco.innerHTML=`
+
+            <h3>📦 Materiais</h3>
+
+            <div class="listaMateriais"></div>
+
+            <button class="novoMaterial">
+                + Material
+            </button>
+
+            <button class="remover">
+                Remover bloco
+            </button>
+
+        `;
+
+    }
+
+    if(tipo==="tinkercad"){
+
+        bloco.innerHTML=`
+
+            <h3>🌐 Projeto Tinkercad</h3>
+
+            <input class="imagemTinkercad"
+            type="file"
+            accept="image/*">
+
+            <input class="linkTinkercad"
+            placeholder="Link do projeto">
+
+            <textarea class="descricaoTinkercad"
+            placeholder="Descrição"></textarea>
+
+            <button class="remover">
+                Remover
+            </button>
+
+        `;
+
+    }
+
+    bloco.querySelector(".remover").onclick=()=>{
+
+        bloco.remove();
+
+    };
+
+    blocos.appendChild(bloco);
+
+}
+
+novoTexto.onclick=()=>criarBloco("texto");
+
+novoCodigo.onclick=()=>criarBloco("codigo");
+
+novaGaleria.onclick=()=>criarBloco("galeria");
+
+novoVideo.onclick=()=>criarBloco("video");
+
+novoMaterial.onclick=()=>criarBloco("materiais");
+
+novoTinkercad.onclick=()=>criarBloco("tinkercad");
+
+document.addEventListener("click",(e)=>{
+
+    if(e.target.classList.contains("novoMaterial")){
+
+        const lista=e.target.parentElement.querySelector(".listaMateriais");
+
+        const div=document.createElement("div");
+
+        div.className="itemMaterial";
+
+        div.innerHTML=`
+
+            <input class="nomeMaterial"
+            placeholder="Nome">
+
+            <input class="quantidadeMaterial"
+            placeholder="Quantidade">
+
+            <input class="imagemMaterial"
+            type="file"
+            accept="image/*">
+
+            <button class="excluirMaterial">
+                ❌
+            </button>
+
+        `;
+
+        div.querySelector(".excluirMaterial").onclick=()=>{
+
+            div.remove();
+
+        };
+
+        lista.appendChild(div);
+
+    }
+
+});
+
+function inserirCard(html){
+
+    const card = gerarCard();
+
+    return html.replace(
+
+        "</div><!--FIM_PROJETOS-->",
+
+        card + "\n</div><!--FIM_PROJETOS-->"
+
+    );
+
+}
+
+async function atualizarProjetos(){
+
+    const arquivo = await lerArquivo(
+
+        "projetos.html"
+
+    );
+
+    const html = atob(
+
+        arquivo.content.replace(/\n/g,"")
+
+    );
+
+    const novoHTML = inserirCard(html);
+
+    await atualizarArquivo(
+
+        "projetos.html",
+
+        novoHTML,
+
+        "Adicionar projeto",
+
+        arquivo.sha
+
+    );
+
+}
+
+</script>
 
 </body>
 
