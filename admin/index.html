@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administração — Robótica Educacional</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <main class="pagina-login">
+
+        <section class="cartao-login">
+
+            <div class="logo-login">
+                <img src="../imagens/robo-logo.png" alt="Mascote da Robótica Educacional">
+            </div>
+
+            <h1>Área administrativa</h1>
+
+            <p class="subtitulo">
+                Publicação de projetos da Robótica Educacional
+            </p>
+
+
+            <div class="aviso">
+
+                <strong>🔐 Acesso pelo GitHub</strong>
+
+                <p>
+                    Para publicar projetos, você precisa usar um
+                    token do GitHub com permissão para modificar
+                    este repositório.
+                </p>
+
+            </div>
+
+
+            <form id="formLogin">
+
+                <label for="token">
+                    Token do GitHub
+                </label>
+
+                <div class="campo-token">
+
+                    <input type="password" id="token" name="token" placeholder="Cole seu token aqui" autocomplete="off"
+                        required>
+
+                    <button type="button" id="mostrarToken" aria-label="Mostrar token">
+                        👁
+                    </button>
+
+                </div>
+
+
+                <button type="submit" class="botao-principal" id="btnEntrar">
+                    Entrar
+                </button>
+
+            </form>
+
+
+            <div id="status" class="status" role="status" aria-live="polite"></div>
+
+
+            <div class="informacoes">
+
+                <p>
+                    O token não será salvo no navegador.
+                </p>
+
+                <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer">
+                    Gerenciar tokens do GitHub
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="github-api.js"></script>
+
+    <script>
+
+        /* =====================================================
+           ELEMENTOS
+           ===================================================== */
+
+        const formLogin =
+            document.getElementById("formLogin");
+
+        const tokenInput =
+            document.getElementById("token");
+
+        const btnEntrar =
+            document.getElementById("btnEntrar");
+
+        const mostrarToken =
+            document.getElementById("mostrarToken");
+
+        const status =
+            document.getElementById("status");
+
+
+        /* =====================================================
+           MOSTRAR / OCULTAR TOKEN
+           ===================================================== */
+
+        mostrarToken.addEventListener("click", () => {
+
+            if (tokenInput.type === "password") {
+
+                tokenInput.type = "text";
+
+                mostrarToken.textContent = "🙈";
+
+                mostrarToken.setAttribute(
+                    "aria-label",
+                    "Ocultar token"
+                );
+
+            } else {
+
+                tokenInput.type = "password";
+
+                mostrarToken.textContent = "👁";
+
+                mostrarToken.setAttribute(
+                    "aria-label",
+                    "Mostrar token"
+                );
+            }
+
+        });
+
+
+        /* =====================================================
+           STATUS
+           ===================================================== */
+
+        function mostrarStatus(mensagem, tipo = "") {
+
+            status.textContent = mensagem;
+
+            status.className = "status";
+
+            if (tipo) {
+                status.classList.add(tipo);
+            }
+        }
+
+
+        /* =====================================================
+           LOGIN
+           ===================================================== */
+
+        formLogin.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+
+            const token =
+                tokenInput.value.trim();
+
+
+            if (!token) {
+
+                mostrarStatus(
+                    "Digite o token do GitHub.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            btnEntrar.disabled = true;
+
+            btnEntrar.textContent =
+                "Verificando...";
+
+
+            mostrarStatus(
+                "Verificando acesso ao GitHub..."
+            );
+
+
+            try {
+                GitHubAPI.definirToken(token);
+                await GitHubAPI.testarRepositorio();
+
+                sessionStorage.setItem("roboticaGithubToken", token);
+
+                status.textContent = "Acesso autorizado! Abrindo painel...";
+                status.className = "status sucesso";
+
+                window.location.href = "painel.html";
+
+            } catch (erro) {
+                GitHubAPI.limparToken();
+
+                status.textContent = erro.message;
+                status.className = "status erro";
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

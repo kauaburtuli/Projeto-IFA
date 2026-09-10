@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Painel — Robótica Educacional</title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body class="pagina-painel">
+
+    <header class="admin-header">
+
+        <div class="header-esquerda">
+
+            <img
+                src="../imagens/robo-logo.png"
+                alt="Mascote da Robótica Educacional"
+            >
+
+            <div>
+
+                <h1>
+                    Robótica Educacional
+                </h1>
+
+                <span>
+                    Painel administrativo
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="btnSair"
+            class="botao-sair"
+            type="button"
+        >
+            Sair
+        </button>
+
+    </header>
+
+
+    <main class="painel">
+
+        <div class="titulo-pagina">
+
+            <div>
+
+                <h2>
+                    Novo projeto
+                </h2>
+
+                <p>
+                    Preencha as informações e monte o conteúdo
+                    do projeto.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             INFORMAÇÕES PRINCIPAIS
+             ================================================= -->
+
+        <section class="cartao">
+
+            <h3>
+                Informações do projeto
+            </h3>
+
+
+            <div class="campo">
+
+                <label for="tituloProjeto">
+                    Título do projeto
+                </label>
+
+                <input
+                    type="text"
+                    id="tituloProjeto"
+                    placeholder="Ex.: Efeito Fade-In e Fade-Out"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="slugProjeto">
+                    Nome do arquivo
+                </label>
+
+                <div class="campo-com-prefixo">
+
+                    <span>
+                        projetos/
+                    </span>
+
+                    <input
+                        type="text"
+                        id="slugProjeto"
+                        placeholder="efeito-fade-in-fade-out"
+                    >
+
+                    <strong>
+                        .html
+                    </strong>
+
+                </div>
+
+                <small>
+                    Esse nome será usado no endereço da página.
+                </small>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="descricaoProjeto">
+                    Descrição curta
+                </label>
+
+                <textarea
+                    id="descricaoProjeto"
+                    rows="4"
+                    placeholder="Digite uma breve descrição do projeto..."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BANNER
+             ================================================= -->
+
+        <section class="cartao">
+
+            <h3>
+                Banner do projeto
+            </h3>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="bannerProjeto"
+                    accept="image/*"
+                    hidden
+                >
+
+                <label
+                    for="bannerProjeto"
+                    class="botao-secundario"
+                >
+                    📷 Escolher imagem
+                </label>
+
+                <span id="nomeBanner">
+                    Nenhuma imagem selecionada
+                </span>
+
+            </div>
+
+
+            <div
+                id="previewBanner"
+                class="preview-imagem"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTEÚDO
+             ================================================= -->
+
+        <section class="cartao">
+
+            <div class="cabecalho-conteudo">
+
+                <div>
+
+                    <h3>
+                        Conteúdo do projeto
+                    </h3>
+
+                    <p>
+                        Adicione quantos blocos forem necessários.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="botoes-blocos">
+
+                <button
+                    type="button"
+                    data-bloco="texto"
+                >
+                    + Texto
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="imagem"
+                >
+                    + Imagem
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="galeria"
+                >
+                    + Galeria
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="materiais"
+                >
+                    + Materiais
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="codigo"
+                >
+                    + Código
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="video"
+                >
+                    + Vídeo
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="link"
+                >
+                    + Link
+                </button>
+
+                <button
+                    type="button"
+                    data-bloco="tinkercad"
+                >
+                    + Tinkercad
+                </button>
+
+            </div>
+
+
+            <div
+                id="listaBlocos"
+                class="lista-blocos"
+            >
+
+                <div class="blocos-vazio">
+
+                    <span>
+                        📦
+                    </span>
+
+                    <p>
+                        Nenhum conteúdo adicionado.
+                    </p>
+
+                    <small>
+                        Use os botões acima para começar.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PUBLICAÇÃO
+             ================================================= -->
+
+        <section class="cartao publicacao">
+
+            <div>
+
+                <h3>
+                    Publicar projeto
+                </h3>
+
+                <p>
+                    O sistema irá criar a página HTML,
+                    enviar os arquivos e atualizar o
+                    arquivo <strong>projetos.html</strong>.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="btnPublicar"
+                class="botao-publicar"
+            >
+                🚀 Publicar projeto
+            </button>
+
+
+            <div
+                id="statusPublicacao"
+                class="status-publicacao"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL DE CONFIRMAÇÃO
+         ===================================================== -->
+
+    <div
+        id="modalConfirmacao"
+        class="modal"
+        hidden
+    >
+
+        <div class="modal-conteudo">
+
+            <button
+                id="fecharModal"
+                class="fechar-modal"
+                type="button"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+            <h2>
+                Publicar projeto?
+            </h2>
+
+            <p id="resumoPublicacao">
+                Confira as informações antes de publicar.
+            </p>
+
+            <div class="modal-botoes">
+
+                <button
+                    id="cancelarPublicacao"
+                    type="button"
+                    class="botao-cancelar"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="confirmarPublicacao"
+                    type="button"
+                    class="botao-confirmar"
+                >
+                    Confirmar publicação
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="github-api.js"></script>
+    <script src="gerador-html.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1433 @@
+/* =========================================================
+   CONFIGURAÇÃO GERAL
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: #eef4f9;
+
+    color: #222;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   PÁGINA
+   ========================================================= */
+
+.pagina-login {
+    width: 100%;
+    max-width: 500px;
+}
+
+
+/* =========================================================
+   CARTÃO
+   ========================================================= */
+
+.cartao-login {
+
+    background: white;
+
+    width: 100%;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.10);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo-login {
+    margin-bottom: 15px;
+}
+
+
+.logo-login img {
+
+    width: 90px;
+    height: 90px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
+h1 {
+
+    color: #0d47a1;
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+}
+
+
+.subtitulo {
+
+    color: #666;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   AVISO
+   ========================================================= */
+
+.aviso {
+
+    background: #eef4f9;
+
+    border-left: 5px solid #0d47a1;
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+    margin-bottom: 25px;
+
+    text-align: left;
+}
+
+
+.aviso strong {
+
+    display: block;
+
+    color: #0d47a1;
+
+    margin-bottom: 7px;
+}
+
+
+.aviso p {
+
+    color: #444;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+form {
+
+    text-align: left;
+}
+
+
+label {
+
+    display: block;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   TOKEN
+   ========================================================= */
+
+.campo-token {
+
+    display: flex;
+
+    width: 100%;
+
+    margin-bottom: 18px;
+}
+
+
+.campo-token input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 46px;
+
+    border: 2px solid #d5dce3;
+
+    border-right: none;
+
+    border-radius: 8px 0 0 8px;
+
+    padding: 0 13px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.campo-token input:focus {
+
+    border-color: #0d47a1;
+}
+
+
+.campo-token button {
+
+    width: 50px;
+
+    border: 2px solid #d5dce3;
+
+    border-radius: 0 8px 8px 0;
+
+    background: #f7f9fb;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+.campo-token button:hover {
+
+    background: #eef4f9;
+}
+
+
+/* =========================================================
+   BOTÃO PRINCIPAL
+   ========================================================= */
+
+.botao-principal {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #0d47a1;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.botao-principal:hover {
+
+    background: #083b88;
+
+    transform: translateY(-1px);
+}
+
+
+.botao-principal:disabled {
+
+    opacity: 0.7;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status {
+
+    min-height: 24px;
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+
+.status.sucesso {
+
+    color: #19733a;
+}
+
+
+.status.erro {
+
+    color: #c62828;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
+
+.informacoes {
+
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e1e5e8;
+
+    font-size: 12px;
+
+    color: #777;
+}
+
+
+.informacoes p {
+
+    margin-bottom: 8px;
+}
+
+
+.informacoes a {
+
+    color: #0d47a1;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.informacoes a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+
+    .cartao-login {
+
+        padding: 25px 20px;
+
+        border-radius: 14px;
+    }
+
+
+    h1 {
+        font-size: 24px;
+    }
+
+}
+
+/* =========================================================
+   PAINEL ADMINISTRATIVO
+   ========================================================= */
+
+.admin-header {
+
+    width: 100%;
+
+    min-height: 76px;
+
+    background: #0d47a1;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 12px 6%;
+
+}
+
+
+.header-esquerda {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.header-esquerda img {
+
+    width: 52px;
+
+    height: 52px;
+
+    object-fit: contain;
+}
+
+
+.header-esquerda h1 {
+
+    color: white;
+
+    font-size: 19px;
+
+    margin: 0;
+}
+
+
+.header-esquerda span {
+
+    display: block;
+
+    font-size: 12px;
+
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   BOTÃO SAIR
+   ========================================================= */
+
+.botao-sair {
+
+    border: 1px solid rgba(255,255,255,0.5);
+
+    background: transparent;
+
+    color: white;
+
+    border-radius: 7px;
+
+    padding: 9px 17px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.botao-sair:hover {
+
+    background: rgba(255,255,255,0.12);
+}
+
+
+/* =========================================================
+   PAINEL
+   ========================================================= */
+
+.painel {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    padding: 35px 25px 60px;
+}
+
+
+.titulo-pagina {
+
+    margin-bottom: 25px;
+}
+
+
+.titulo-pagina h2 {
+
+    color: #0d47a1;
+
+    font-size: 29px;
+
+    margin-bottom: 4px;
+}
+
+
+.titulo-pagina p {
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CARTÕES
+   ========================================================= */
+
+.cartao {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 27px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 5px 22px rgba(0,0,0,0.07);
+}
+
+
+.cartao h3 {
+
+    color: #0d47a1;
+
+    font-size: 19px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.campo {
+
+    margin-bottom: 20px;
+}
+
+
+.campo:last-child {
+
+    margin-bottom: 0;
+}
+
+
+.campo label {
+
+    display: block;
+
+    color: #333;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+
+.campo input,
+.campo textarea {
+
+    width: 100%;
+
+    border: 2px solid #dce2e7;
+
+    border-radius: 8px;
+
+    padding: 11px 13px;
+
+    font-size: 14px;
+
+    color: #222;
+
+    outline: none;
+
+    transition: 0.2s;
+
+    background: white;
+}
+
+
+.campo input {
+
+    height: 45px;
+}
+
+
+.campo textarea {
+
+    resize: vertical;
+
+    min-height: 90px;
+
+    line-height: 1.5;
+}
+
+
+.campo input:focus,
+.campo textarea:focus {
+
+    border-color: #0d47a1;
+}
+
+
+.campo small {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   NOME DO ARQUIVO
+   ========================================================= */
+
+.campo-com-prefixo {
+
+    display: flex;
+
+    align-items: stretch;
+
+    width: 100%;
+}
+
+
+.campo-com-prefixo span,
+.campo-com-prefixo strong {
+
+    display: flex;
+
+    align-items: center;
+
+    background: #f0f3f6;
+
+    border: 2px solid #dce2e7;
+
+    color: #666;
+
+    padding: 0 11px;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+.campo-com-prefixo span {
+
+    border-right: none;
+
+    border-radius: 8px 0 0 8px;
+}
+
+
+.campo-com-prefixo strong {
+
+    border-left: none;
+
+    border-radius: 0 8px 8px 0;
+}
+
+
+.campo-com-prefixo input {
+
+    border-radius: 0;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   UPLOAD
+   ========================================================= */
+
+.upload-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    flex-wrap: wrap;
+}
+
+
+.botao-secundario {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    background: #0d47a1;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.botao-secundario:hover {
+
+    background: #083b88;
+}
+
+
+#nomeBanner {
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PREVIEW
+   ========================================================= */
+
+.preview-imagem {
+
+    margin-top: 18px;
+
+    display: none;
+
+    max-width: 500px;
+}
+
+
+.preview-imagem img {
+
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 280px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    border: 1px solid #dce2e7;
+}
+
+
+/* =========================================================
+   BOTÕES DOS BLOCOS
+   ========================================================= */
+
+.botoes-blocos {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #e5e8eb;
+}
+
+
+.botoes-blocos button {
+
+    border: 1px solid #b9c8d8;
+
+    background: #f5f8fb;
+
+    color: #0d47a1;
+
+    border-radius: 8px;
+
+    padding: 9px 13px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.botoes-blocos button:hover {
+
+    background: #0d47a1;
+
+    color: white;
+
+    border-color: #0d47a1;
+}
+
+
+/* =========================================================
+   LISTA DE BLOCOS
+   ========================================================= */
+
+.lista-blocos {
+
+    padding-top: 22px;
+}
+
+
+.blocos-vazio {
+
+    text-align: center;
+
+    padding: 35px 10px;
+
+    color: #777;
+}
+
+
+.blocos-vazio span {
+
+    display: block;
+
+    font-size: 35px;
+
+    margin-bottom: 7px;
+}
+
+
+.blocos-vazio p {
+
+    font-size: 14px;
+
+    margin-bottom: 3px;
+}
+
+
+.blocos-vazio small {
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BLOCO DO EDITOR
+   ========================================================= */
+
+.bloco-editor {
+
+    border: 1px solid #d8e0e7;
+
+    border-radius: 11px;
+
+    margin-bottom: 16px;
+
+    overflow: hidden;
+
+    background: #fff;
+}
+
+
+.bloco-cabecalho {
+
+    min-height: 48px;
+
+    padding: 9px 13px;
+
+    background: #f4f7fa;
+
+    border-bottom: 1px solid #d8e0e7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+.bloco-titulo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #0d47a1;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.bloco-acoes {
+
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.bloco-acoes button {
+
+    width: 32px;
+
+    height: 32px;
+
+    border: 1px solid #d2dbe3;
+
+    background: white;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    color: #555;
+}
+
+
+.bloco-acoes button:hover {
+
+    background: #eef4f9;
+}
+
+
+.bloco-acoes .remover-bloco:hover {
+
+    color: #c62828;
+
+    border-color: #e0aaaa;
+}
+
+
+.bloco-corpo {
+
+    padding: 18px;
+}
+
+
+/* =========================================================
+   CAMPOS INTERNOS
+   ========================================================= */
+
+.bloco-corpo label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+}
+
+
+.bloco-corpo input,
+.bloco-corpo textarea,
+.bloco-corpo select {
+
+    width: 100%;
+
+    border: 1px solid #cfd8df;
+
+    border-radius: 7px;
+
+    padding: 9px 11px;
+
+    font-size: 13px;
+
+    outline: none;
+
+    background: white;
+}
+
+
+.bloco-corpo input {
+
+    height: 40px;
+}
+
+
+.bloco-corpo textarea {
+
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+.bloco-corpo input:focus,
+.bloco-corpo textarea:focus,
+.bloco-corpo select:focus {
+
+    border-color: #0d47a1;
+}
+
+
+.bloco-campo {
+
+    margin-bottom: 15px;
+}
+
+
+.bloco-campo:last-child {
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   ARQUIVO
+   ========================================================= */
+
+.bloco-upload {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+.bloco-upload input[type="file"] {
+
+    display: none;
+}
+
+
+.botao-upload {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 0 13px;
+
+    border-radius: 7px;
+
+    background: #eef4f9;
+
+    border: 1px solid #c8d5e0;
+
+    color: #0d47a1;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.nome-arquivo {
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PUBLICAÇÃO
+   ========================================================= */
+
+.publicacao {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+.publicacao h3 {
+
+    margin-bottom: 7px;
+}
+
+
+.publicacao p {
+
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    max-width: 650px;
+}
+
+
+.botao-publicar {
+
+    min-width: 210px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #0d47a1;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.botao-publicar:hover {
+
+    background: #083b88;
+
+    transform: translateY(-1px);
+}
+
+
+.botao-publicar:disabled {
+
+    opacity: 0.65;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+.status-publicacao {
+
+    width: 100%;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.status-publicacao.sucesso {
+
+    color: #19733a;
+}
+
+
+.status-publicacao.erro {
+
+    color: #c62828;
+}
+
+
+.status-publicacao.carregando {
+
+    color: #0d47a1;
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+
+.modal[hidden] {
+
+    display: none;
+}
+
+
+.modal-conteudo {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 470px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 12px 40px rgba(0,0,0,0.2);
+}
+
+
+.modal-conteudo h2 {
+
+    color: #0d47a1;
+
+    margin-bottom: 10px;
+
+    font-size: 22px;
+}
+
+
+.modal-conteudo p {
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+
+.fechar-modal {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 12px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 27px;
+
+    color: #777;
+
+    cursor: pointer;
+}
+
+
+.modal-botoes {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+
+.botao-cancelar,
+.botao-confirmar {
+
+    min-height: 42px;
+
+    border-radius: 7px;
+
+    padding: 0 15px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    font-size: 13px;
+}
+
+
+.botao-cancelar {
+
+    background: white;
+
+    border: 1px solid #cfd8df;
+
+    color: #555;
+}
+
+
+.botao-confirmar {
+
+    background: #0d47a1;
+
+    border: 1px solid #0d47a1;
+
+    color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .admin-header {
+
+        padding: 10px 15px;
+    }
+
+
+    .header-esquerda h1 {
+
+        font-size: 15px;
+    }
+
+
+    .header-esquerda span {
+
+        font-size: 10px;
+    }
+
+
+    .header-esquerda img {
+
+        width: 43px;
+
+        height: 43px;
+    }
+
+
+    .painel {
+
+        padding: 25px 13px 45px;
+    }
+
+
+    .cartao {
+
+        padding: 20px 16px;
+    }
+
+
+    .titulo-pagina h2 {
+
+        font-size: 24px;
+    }
+
+
+    .campo-com-prefixo span {
+
+        display: none;
+    }
+
+
+    .campo-com-prefixo input {
+
+        border-radius: 8px 0 0 8px;
+    }
+
+
+    .publicacao {
+
+        align-items: stretch;
+    }
+
+
+    .botao-publicar {
+
+        width: 100%;
+    }
+
+
+    .modal-botoes {
+
+        flex-direction: column-reverse;
+    }
+
+
+    .botao-cancelar,
+    .botao-confirmar {
+
+        width: 100%;
+    }
+
+}
+
+.pagina-painel {
+    display: block;
+    padding: 0;
+}
