@@ -144,60 +144,116 @@ function mostrarPreviewBanner(arquivo) {
    BOTÕES
    ========================================================= */
 
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
 function configurarBotoes() {
 
-    const botoes = {
+    /* =====================================================
+       BOTÕES DE ADICIONAR BLOCOS
+       ===================================================== */
 
-        btnTexto: "texto",
-        btnImagem: "imagem",
-        btnGaleria: "galeria",
-        btnMateriais: "materiais",
-        btnCodigo: "codigo",
-        btnVideo: "video",
-        btnLink: "link",
-        btnTinkercad: "tinkercad"
-    };
+    const botoesBlocos =
+        document.querySelectorAll("[data-bloco]");
 
-    Object.entries(botoes).forEach(([id, tipo]) => {
+    botoesBlocos.forEach(botao => {
 
-        const botao = document.getElementById(id);
+        botao.addEventListener("click", () => {
 
-        if (botao) {
-            botao.addEventListener("click", () => {
-                adicionarBloco(tipo);
-            });
-        }
+            const tipo = botao.dataset.bloco;
+
+            adicionarBloco(tipo);
+
+        });
+
     });
 
 
-    const btnPublicar = document.getElementById("btnPublicar");
+    /* =====================================================
+       BOTÃO PUBLICAR
+       ===================================================== */
+
+    const btnPublicar =
+        document.getElementById("btnPublicar");
 
     if (btnPublicar) {
-        btnPublicar.addEventListener("click", abrirConfirmacao);
+
+        btnPublicar.addEventListener(
+            "click",
+            abrirConfirmacao
+        );
+
     }
 
 
-    const btnCancelar = document.getElementById("btnCancelarPublicacao");
+    /* =====================================================
+       MODAL - CANCELAR
+       ===================================================== */
+
+    const btnCancelar =
+        document.getElementById("cancelarPublicacao");
 
     if (btnCancelar) {
-        btnCancelar.addEventListener("click", fecharConfirmacao);
+
+        btnCancelar.addEventListener(
+            "click",
+            fecharConfirmacao
+        );
+
     }
 
 
-    const btnConfirmar = document.getElementById("btnConfirmarPublicacao");
+    /* =====================================================
+       MODAL - CONFIRMAR
+       ===================================================== */
+
+    const btnConfirmar =
+        document.getElementById("confirmarPublicacao");
 
     if (btnConfirmar) {
-        btnConfirmar.addEventListener("click", publicarProjeto);
+
+        btnConfirmar.addEventListener(
+            "click",
+            publicarProjeto
+        );
+
     }
 
 
-    const btnSair = document.getElementById("btnSair");
+    /* =====================================================
+       MODAL - FECHAR NO X
+       ===================================================== */
+
+    const fecharModal =
+        document.getElementById("fecharModal");
+
+    if (fecharModal) {
+
+        fecharModal.addEventListener(
+            "click",
+            fecharConfirmacao
+        );
+
+    }
+
+
+    /* =====================================================
+       BOTÃO SAIR
+       ===================================================== */
+
+    const btnSair =
+        document.getElementById("btnSair");
 
     if (btnSair) {
-        btnSair.addEventListener("click", sairPainel);
+
+        btnSair.addEventListener(
+            "click",
+            sairPainel
+        );
+
     }
 }
-
 
 /* =========================================================
    ADICIONAR BLOCO
