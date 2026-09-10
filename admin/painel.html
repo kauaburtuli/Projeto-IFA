@@ -5,17 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Painel — Robótica Educacional</title>
 
-    <link
-        rel="stylesheet"
-        href="admin.css"
-    >
+    <link rel="stylesheet" href="admin.css">
 
 </head>
 
@@ -26,10 +20,7 @@
 
         <div class="header-esquerda">
 
-            <img
-                src="../imagens/robo-logo.png"
-                alt="Mascote da Robótica Educacional"
-            >
+            <img src="../imagens/robo-logo.png" alt="Mascote da Robótica Educacional">
 
             <div>
 
@@ -46,11 +37,7 @@
         </div>
 
 
-        <button
-            id="btnSair"
-            class="botao-sair"
-            type="button"
-        >
+        <button id="btnSair" class="botao-sair" type="button">
             Sair
         </button>
 
@@ -94,11 +81,7 @@
                     Título do projeto
                 </label>
 
-                <input
-                    type="text"
-                    id="tituloProjeto"
-                    placeholder="Ex.: Efeito Fade-In e Fade-Out"
-                >
+                <input type="text" id="tituloProjeto" placeholder="Ex.: Efeito Fade-In e Fade-Out">
 
             </div>
 
@@ -115,11 +98,7 @@
                         projetos/
                     </span>
 
-                    <input
-                        type="text"
-                        id="slugProjeto"
-                        placeholder="efeito-fade-in-fade-out"
-                    >
+                    <input type="text" id="slugProjeto" placeholder="efeito-fade-in-fade-out">
 
                     <strong>
                         .html
@@ -140,11 +119,8 @@
                     Descrição curta
                 </label>
 
-                <textarea
-                    id="descricaoProjeto"
-                    rows="4"
-                    placeholder="Digite uma breve descrição do projeto..."
-                ></textarea>
+                <textarea id="descricaoProjeto" rows="4"
+                    placeholder="Digite uma breve descrição do projeto..."></textarea>
 
             </div>
 
@@ -156,39 +132,21 @@
              ================================================= -->
 
         <section class="cartao">
-
-            <h3>
-                Banner do projeto
-            </h3>
+            <h3>Banner do projeto</h3>
 
             <div class="upload-area">
+                <input type="file" id="bannerProjeto" accept="image/*" hidden>
 
-                <input
-                    type="file"
-                    id="bannerProjeto"
-                    accept="image/*"
-                    hidden
-                >
-
-                <label
-                    for="bannerProjeto"
-                    class="botao-secundario"
-                >
+                <label for="bannerProjeto" class="botao-secundario">
                     📷 Escolher imagem
                 </label>
 
                 <span id="nomeBanner">
                     Nenhuma imagem selecionada
                 </span>
-
             </div>
 
-
-            <div
-                id="previewBanner"
-                class="preview-imagem"
-            ></div>
-
+            <img id="previewBanner" class="preview-imagem" alt="Pré-visualização do banner" style="display:none;">
         </section>
 
 
@@ -217,69 +175,42 @@
 
             <div class="botoes-blocos">
 
-                <button
-                    type="button"
-                    data-bloco="texto"
-                >
+                <button type="button" data-bloco="texto">
                     + Texto
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="imagem"
-                >
+                <button type="button" data-bloco="imagem">
                     + Imagem
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="galeria"
-                >
+                <button type="button" data-bloco="galeria">
                     + Galeria
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="materiais"
-                >
+                <button type="button" data-bloco="materiais">
                     + Materiais
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="codigo"
-                >
+                <button type="button" data-bloco="codigo">
                     + Código
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="video"
-                >
+                <button type="button" data-bloco="video">
                     + Vídeo
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="link"
-                >
+                <button type="button" data-bloco="link">
                     + Link
                 </button>
 
-                <button
-                    type="button"
-                    data-bloco="tinkercad"
-                >
+                <button type="button" data-bloco="tinkercad">
                     + Tinkercad
                 </button>
 
             </div>
 
 
-            <div
-                id="listaBlocos"
-                class="lista-blocos"
-            >
+            <div id="listaBlocos" class="lista-blocos">
 
                 <div class="blocos-vazio">
 
@@ -323,21 +254,12 @@
             </div>
 
 
-            <button
-                type="button"
-                id="btnPublicar"
-                class="botao-publicar"
-            >
+            <button type="button" id="btnPublicar" class="botao-publicar">
                 🚀 Publicar projeto
             </button>
 
 
-            <div
-                id="statusPublicacao"
-                class="status-publicacao"
-                role="status"
-                aria-live="polite"
-            ></div>
+            <div id="statusPublicacao" class="status-publicacao" role="status" aria-live="polite"></div>
 
         </section>
 
@@ -348,20 +270,11 @@
          MODAL DE CONFIRMAÇÃO
          ===================================================== -->
 
-    <div
-        id="modalConfirmacao"
-        class="modal"
-        hidden
-    >
+    <div id="modalConfirmacao" class="modal" hidden>
 
         <div class="modal-conteudo">
 
-            <button
-                id="fecharModal"
-                class="fechar-modal"
-                type="button"
-                aria-label="Fechar"
-            >
+            <button id="fecharModal" class="fechar-modal" type="button" aria-label="Fechar">
                 ×
             </button>
 
@@ -375,19 +288,11 @@
 
             <div class="modal-botoes">
 
-                <button
-                    id="cancelarPublicacao"
-                    type="button"
-                    class="botao-cancelar"
-                >
+                <button id="cancelarPublicacao" type="button" class="botao-cancelar">
                     Cancelar
                 </button>
 
-                <button
-                    id="confirmarPublicacao"
-                    type="button"
-                    class="botao-confirmar"
-                >
+                <button id="confirmarPublicacao" type="button" class="botao-confirmar">
                     Confirmar publicação
                 </button>
 
