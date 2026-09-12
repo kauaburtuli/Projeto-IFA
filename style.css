@@ -9,7 +9,7 @@
 body {
     background: #eef4f9;
     color: #222;
-    padding-top: var(--altura-cabecalho, 91px);
+    /*padding-top: var(--altura-cabecalho, 91px);*/
 }
 
 header {
