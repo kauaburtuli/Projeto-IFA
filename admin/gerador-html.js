@@ -232,26 +232,147 @@ function gerarCabecalho(projeto) {
 
 function gerarBlocoTexto(bloco) {
 
-    const titulo = escaparHTMLGerador(bloco.titulo);
-    const conteudo = String(bloco.conteudo || "");
+    const titulo =
+        escaparHTMLGerador(
+            bloco.titulo || ""
+        );
+
+    const conteudo =
+        sanitizarTextoFormatado(
+            bloco.conteudo || ""
+        );
 
     return `
 <section>
 
-    <h2 class="titulo">
-        ${titulo}
-    </h2>
+    ${
+        titulo
+        ? `
+        <h2 class="titulo">
+            ${titulo}
+        </h2>
+        `
+        : ""
+    }
 
     <div class="texto">
-
-        <p>
-            ${converterQuebrasTexto(conteudo)}
-        </p>
-
+        <p>${conteudo}</p>
     </div>
 
 </section>
 `;
+}
+
+function sanitizarTextoFormatado(html) {
+
+    const area =
+        document.createElement("div");
+
+    area.innerHTML = html;
+
+    const tagsPermitidas = [
+        "STRONG",
+        "EM",
+        "U",
+        "S",
+        "BR",
+        "SPAN"
+    ];
+
+    function limpar(elemento) {
+
+        Array.from(
+            elemento.children
+        ).forEach(function (filho) {
+
+            limpar(filho);
+
+            if (
+                !tagsPermitidas.includes(
+                    filho.tagName
+                )
+            ) {
+
+                const fragmento =
+                    document.createDocumentFragment();
+
+                while (
+                    filho.firstChild
+                ) {
+                    fragmento.appendChild(
+                        filho.firstChild
+                    );
+                }
+
+                filho.replaceWith(
+                    fragmento
+                );
+
+                return;
+            }
+
+            Array.from(
+                filho.attributes
+            ).forEach(function (atributo) {
+
+                if (
+                    atributo.name !== "style"
+                ) {
+                    filho.removeAttribute(
+                        atributo.name
+                    );
+                }
+
+            });
+
+            if (filho.hasAttribute("style")) {
+
+                const estilo =
+                    filho.style;
+
+                const cor =
+                    estilo.color;
+
+                filho.removeAttribute(
+                    "style"
+                );
+
+                if (cor) {
+                    filho.style.color = cor;
+                }
+
+            }
+
+        });
+    }
+
+    limpar(area);
+
+    let resultado =
+        area.innerHTML.trim();
+
+    /*
+     * Remove <p>, <div> e outros elementos
+     * de estrutura que o editor possa criar.
+     *
+     * O conteúdo final ficará dentro de
+     * um único <p>, criado por gerarBlocoTexto().
+     */
+
+    resultado = resultado
+        .replace(/<\/?p[^>]*>/gi, "")
+        .replace(/<div[^>]*>/gi, "")
+        .replace(/<\/div>/gi, "");
+
+    /*
+     * Cada quebra de linha vira <br><br>,
+     * criando o espaçamento entre parágrafos.
+     */
+
+    resultado = resultado
+        .replace(/(<br\s*\/?>\s*)+/gi, "<br><br>");
+
+    return resultado;
 }
 
 
@@ -264,7 +385,7 @@ function converterQuebrasTexto(texto) {
     return escaparHTMLGerador(texto)
         .replace(/\r\n/g, "\n")
         .replace(/\r/g, "\n")
-        .replace(/\n/g, "<br>");
+        .replace(/\n/g, "<br><br>");
 }
 
 

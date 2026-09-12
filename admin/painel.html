@@ -9,6 +9,8 @@
 
     <title>Painel — Robótica Educacional</title>
 
+    <link rel="icon" type="image/png" href="../imagens/robo-logo.png">
+
     <link rel="stylesheet" href="admin.css">
 
 </head>
@@ -302,6 +304,36 @@
 
     </div>
 
+<!-- Modal para selecionar imagem existente -->
+<div id="modalImagens" class="modal" hidden>
+
+    <div class="modal-conteudo modal-imagens">
+
+        <button
+            id="fecharModalImagens"
+            class="fechar-modal"
+            type="button"
+            aria-label="Fechar"
+        >
+            ×
+        </button>
+
+        <h2>Selecionar imagem</h2>
+
+        <p>
+            Escolha uma imagem que já está salva no site.
+        </p>
+
+        <div
+            id="listaImagensExistentes"
+            class="lista-imagens-existentes"
+        >
+            <p>Carregando imagens...</p>
+        </div>
+
+    </div>
+
+</div>
 
     <script src="github-api.js"></script>
     <script src="gerador-html.js"></script>

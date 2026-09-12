@@ -383,3 +383,24 @@ footer {
     padding: 25px;
 
 }
+
+.texto p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.texto strong {
+    font-weight: 700;
+}
+
+.texto em {
+    font-style: italic;
+}
+
+.texto u {
+    text-decoration: underline;
+}
+
+.texto s {
+    text-decoration: line-through;
+}

@@ -1431,3 +1431,164 @@ label {
     display: block;
     padding: 0;
 }
+
+/* =====================================================
+   SELETOR DE IMAGENS EXISTENTES
+   ===================================================== */
+
+.modal-imagens {
+    width: min(900px, 92%);
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.lista-imagens-existentes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.imagem-existente {
+    border: 2px solid #dce5ef;
+    border-radius: 12px;
+    padding: 10px;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.imagem-existente:hover {
+    border-color: #0d47a1;
+    transform: translateY(-2px);
+}
+
+.imagem-existente img {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+    background: white;
+}
+
+.nome-imagem-existente {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #333;
+    word-break: break-word;
+    text-align: center;
+}
+
+.imagem-selecionada {
+    border-color: #0d47a1;
+    background: #e8f0fe;
+}
+
+@media (max-width: 700px) {
+
+    .lista-imagens-existentes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* =========================================================
+   EDITOR DE TEXTO
+   ========================================================= */
+
+.editor-texto {
+    width: 100%;
+}
+
+.barra-formatacao {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    padding: 8px;
+
+    background: #f4f7fa;
+
+    border: 1px solid #cfd8df;
+    border-bottom: none;
+
+    border-radius: 7px 7px 0 0;
+}
+
+.formatar-texto {
+    min-width: 34px;
+    height: 34px;
+
+    padding: 0 8px;
+
+    border: 1px solid #cfd8df;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #333;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.formatar-texto:hover {
+    background: #eef4f9;
+    border-color: #0d47a1;
+    color: #0d47a1;
+}
+
+.cor-texto {
+    width: 38px;
+    height: 34px;
+
+    padding: 2px;
+
+    border: 1px solid #cfd8df;
+
+    border-radius: 6px;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+.editor-conteudo {
+    min-height: 180px;
+
+    padding: 12px 13px;
+
+    border: 1px solid #cfd8df;
+
+    border-radius: 0 0 7px 7px;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    outline: none;
+
+    overflow-wrap: break-word;
+}
+
+.editor-conteudo:focus {
+    border-color: #0d47a1;
+}
+
+.editor-conteudo:empty::before {
+    content: attr(data-placeholder);
+
+    color: #999;
+
+    pointer-events: none;
+}

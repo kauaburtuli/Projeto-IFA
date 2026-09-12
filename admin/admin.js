@@ -40,6 +40,7 @@ function iniciarPainel() {
 
     configurarCampos();
     configurarBotoes();
+    configurarModalImagens();
     atualizarListaBlocos();
 
 }
@@ -298,12 +299,12 @@ function adicionarBloco(tipo) {
     if (tipo === "materiais") {
 
         novoBloco.materiais = [
-            {
-                nome: "",
-                descricao: "",
-                arquivo: null
-            }
-        ];
+    {
+        nome: "",
+        descricao: "",
+        imagem: ""
+    }
+];
 
     }
 
@@ -390,34 +391,117 @@ function gerarEditorBloco(bloco, indice) {
     let conteudo = "";
 
 
-    if (bloco.tipo === "texto") {
+   if (bloco.tipo === "texto") {
+    conteudo = `
+        <div class="campo">
+            <label>Título</label>
 
-        conteudo = `
-            <div class="campo">
-                <label>Título</label>
+            <input
+                type="text"
+                class="campo-titulo"
+                value="${escapeHTML(bloco.titulo)}"
+                placeholder="Título da seção"
+            >
+        </div>
 
-                <input
-                    type="text"
-                    class="campo-titulo"
-                    value="${escapeHTML(bloco.titulo)}"
-                    placeholder="Título da seção"
-                >
+        <div class="campo">
+            <label>Texto</label>
+
+            <div class="editor-texto">
+
+                <div class="barra-formatacao">
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="bold"
+                        title="Negrito"
+                    >
+                        <strong>B</strong>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="italic"
+                        title="Itálico"
+                    >
+                        <em>I</em>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="underline"
+                        title="Sublinhado"
+                    >
+                        <u>U</u>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="strikeThrough"
+                        title="Tachado"
+                    >
+                        <s>S</s>
+                    </button>
+
+                    <input
+                        type="color"
+                        class="cor-texto"
+                        title="Cor do texto"
+                        value="#222222"
+                    >
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="insertUnorderedList"
+                        title="Lista"
+                    >
+                        • Lista
+                    </button>
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="justifyLeft"
+                        title="Alinhar à esquerda"
+                    >
+                        ≡
+                    </button>
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="justifyCenter"
+                        title="Centralizar"
+                    >
+                        ☰
+                    </button>
+
+                    <button
+                        type="button"
+                        class="formatar-texto"
+                        data-comando="justifyRight"
+                        title="Alinhar à direita"
+                    >
+                        ≡
+                    </button>
+
+                </div>
+
+                <div
+                    class="campo-conteudo editor-conteudo"
+                    contenteditable="true"
+                    data-placeholder="Digite o conteúdo..."
+                >${bloco.conteudo || ""}</div>
+
             </div>
-
-            <div class="campo">
-
-                <label>Texto</label>
-
-                <textarea
-                    class="campo-conteudo"
-                    rows="7"
-                    placeholder="Digite o conteúdo..."
-                >${escapeHTML(bloco.conteudo)}</textarea>
-
-            </div>
-        `;
-
-    }
+        </div>
+    `;
+}
 
 
 
@@ -810,8 +894,7 @@ function gerarMateriais(bloco) {
         bloco.materiais = [];
     }
 
-
-    return bloco.materiais.map(function (material, indice) {
+    return bloco.materiais.map(function(material, indice) {
 
         return `
             <div
@@ -832,6 +915,7 @@ function gerarMateriais(bloco) {
 
                 </div>
 
+
                 <div class="campo">
 
                     <label>Descrição</label>
@@ -840,29 +924,48 @@ function gerarMateriais(bloco) {
                         type="text"
                         class="material-descricao"
                         value="${escapeHTML(material.descricao)}"
+                        placeholder="Descrição do material"
                     >
 
                 </div>
+
 
                 <div class="campo">
 
                     <label>Imagem do material</label>
 
-                    <input
-                        type="file"
-                        class="material-arquivo"
-                        accept="image/*"
+                    <button
+                        type="button"
+                        class="botao-secundario selecionar-imagem-material"
                     >
+                        🖼 Selecionar imagem existente
+                    </button>
 
-                    <small>
+                    <div class="imagem-material-selecionada">
+
                         ${
-                            material.arquivo
-                            ? escapeHTML(material.arquivo.name)
-                            : "Nenhuma imagem selecionada"
+                            material.imagem
+                            ? `
+                                <img
+                                    src="../${escapeHTML(material.imagem)}"
+                                    alt="Imagem selecionada"
+                                >
+
+                                <small>
+                                    ${escapeHTML(material.imagem)}
+                                </small>
+                            `
+                            : `
+                                <small>
+                                    Nenhuma imagem selecionada
+                                </small>
+                            `
                         }
-                    </small>
+
+                    </div>
 
                 </div>
+
 
                 <button
                     type="button"
@@ -916,18 +1019,78 @@ function configurarEditoresBlocos() {
             }
 
 
-            const conteudo =
-                elemento.querySelector(".campo-conteudo");
+           const conteudo =
+    elemento.querySelector(".editor-conteudo");
 
-            if (conteudo) {
+if (conteudo) {
 
-                conteudo.addEventListener("input", function () {
+    conteudo.addEventListener("input", function () {
+        bloco.conteudo = this.innerHTML;
+    });
 
-                    bloco.conteudo = this.value;
+    conteudo
+        .querySelectorAll("a")
+        .forEach(function (link) {
+            link.setAttribute("target", "_blank");
+            link.setAttribute("rel", "noopener noreferrer");
+        });
+}
 
-                });
+const botoesFormatacao =
+    elemento.querySelectorAll(".formatar-texto");
 
-            }
+botoesFormatacao.forEach(function (botao) {
+
+    botao.addEventListener("click", function () {
+
+        const comando =
+            this.dataset.comando;
+
+        const editor =
+            elemento.querySelector(".editor-conteudo");
+
+        if (!editor) return;
+
+        editor.focus();
+
+        document.execCommand(
+            comando,
+            false,
+            null
+        );
+
+        bloco.conteudo =
+            editor.innerHTML;
+    });
+
+});
+
+
+const seletorCor =
+    elemento.querySelector(".cor-texto");
+
+if (seletorCor) {
+
+    seletorCor.addEventListener("input", function () {
+
+        const editor =
+            elemento.querySelector(".editor-conteudo");
+
+        if (!editor) return;
+
+        editor.focus();
+
+        document.execCommand(
+            "foreColor",
+            false,
+            this.value
+        );
+
+        bloco.conteudo =
+            editor.innerHTML;
+    });
+
+}
 
 
             const codigo =
@@ -1208,26 +1371,25 @@ function configurarEditoresBlocos() {
 function configurarMateriais(elemento, bloco) {
 
     const materiais =
-        elemento.querySelectorAll(
-            ".material-editor"
-        );
+        elemento.querySelectorAll(".material-editor");
 
 
-    materiais.forEach(function (materialElemento) {
+    materiais.forEach(function(materialElemento) {
 
         const indice =
-            Number(
-                materialElemento.dataset.material
-            );
+            Number(materialElemento.dataset.material);
 
 
         const material =
             bloco.materiais[indice];
 
+
         if (!material) {
             return;
         }
 
+
+        // Nome
 
         const nome =
             materialElemento.querySelector(
@@ -1238,7 +1400,7 @@ function configurarMateriais(elemento, bloco) {
 
             nome.addEventListener(
                 "input",
-                function () {
+                function() {
 
                     material.nome =
                         this.value;
@@ -1249,6 +1411,8 @@ function configurarMateriais(elemento, bloco) {
         }
 
 
+        // Descrição
+
         const descricao =
             materialElemento.querySelector(
                 ".material-descricao"
@@ -1258,7 +1422,7 @@ function configurarMateriais(elemento, bloco) {
 
             descricao.addEventListener(
                 "input",
-                function () {
+                function() {
 
                     material.descricao =
                         this.value;
@@ -1269,29 +1433,31 @@ function configurarMateriais(elemento, bloco) {
         }
 
 
-        const arquivo =
+        // Selecionar imagem existente
+
+        const selecionarImagem =
             materialElemento.querySelector(
-                ".material-arquivo"
+                ".selecionar-imagem-material"
             );
 
-        if (arquivo) {
+        if (selecionarImagem) {
 
-            arquivo.addEventListener(
-                "change",
-                function () {
+            selecionarImagem.addEventListener(
+                "click",
+                function() {
 
-                    if (this.files[0]) {
-
-                        material.arquivo =
-                            this.files[0];
-
-                    }
+                    abrirSeletorImagem(
+                        bloco,
+                        indice
+                    );
 
                 }
             );
 
         }
 
+
+        // Remover material
 
         const remover =
             materialElemento.querySelector(
@@ -1302,7 +1468,7 @@ function configurarMateriais(elemento, bloco) {
 
             remover.addEventListener(
                 "click",
-                function () {
+                function() {
 
                     bloco.materiais.splice(
                         indice,
@@ -1833,4 +1999,254 @@ function escapeHTML(valor) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 
+}
+
+// ======================================================
+// SELETOR DE IMAGENS EXISTENTES
+// ======================================================
+
+let blocoMaterialSelecionado = null;
+let indiceMaterialSelecionado = null;
+
+
+async function abrirSeletorImagem(bloco, indice) {
+
+    blocoMaterialSelecionado = bloco;
+    indiceMaterialSelecionado = indice;
+
+
+    const modal =
+        document.getElementById("modalImagens");
+
+    const lista =
+        document.getElementById(
+            "listaImagensExistentes"
+        );
+
+
+    if (!modal || !lista) {
+        return;
+    }
+
+
+    modal.hidden = false;
+    modal.style.display = "flex";
+
+
+    lista.innerHTML = `
+        <p>
+            🔄 Carregando imagens do site...
+        </p>
+    `;
+
+
+    try {
+
+        const arquivos =
+            await GitHubAPI.listarArquivos(
+                "imagens"
+            );
+
+
+        const imagens =
+            arquivos.filter(function(arquivo) {
+
+                return /\.(jpg|jpeg|png|gif|webp|svg)$/i
+                    .test(arquivo.name);
+
+            });
+
+
+        if (imagens.length === 0) {
+
+            lista.innerHTML = `
+                <p>
+                    Nenhuma imagem encontrada.
+                </p>
+            `;
+
+            return;
+
+        }
+
+
+        lista.innerHTML = imagens.map(
+            function(imagem) {
+
+                const caminho =
+                    imagem.path;
+
+
+                return `
+                    <div
+                        class="imagem-existente"
+                        data-caminho="${escapeHTML(caminho)}"
+                    >
+
+                        <img
+                            src="../${escapeHTML(caminho)}"
+                            alt="${escapeHTML(imagem.name)}"
+                        >
+
+                        <span
+                            class="nome-imagem-existente"
+                        >
+                            ${escapeHTML(imagem.name)}
+                        </span>
+
+                    </div>
+                `;
+
+            }
+        ).join("");
+
+
+        lista
+            .querySelectorAll(".imagem-existente")
+            .forEach(function(item) {
+
+                item.addEventListener(
+                    "click",
+                    function() {
+
+                        selecionarImagemExistente(
+                            this.dataset.caminho
+                        );
+
+                    }
+                );
+
+            });
+
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        lista.innerHTML = `
+            <p style="color:#b00020;">
+                ❌ Não foi possível carregar
+                as imagens do site.
+            </p>
+        `;
+
+    }
+
+}
+
+
+// ======================================================
+// SELECIONAR IMAGEM
+// ======================================================
+
+function selecionarImagemExistente(caminho) {
+
+    if (
+        !blocoMaterialSelecionado ||
+        indiceMaterialSelecionado === null
+    ) {
+        return;
+    }
+
+
+    const material =
+        blocoMaterialSelecionado
+            .materiais[
+                indiceMaterialSelecionado
+            ];
+
+
+    if (!material) {
+        return;
+    }
+
+
+    material.imagem = caminho;
+
+
+    fecharSeletorImagem();
+
+
+    atualizarListaBlocos();
+
+}
+
+
+// ======================================================
+// FECHAR SELETOR
+// ======================================================
+
+function fecharSeletorImagem() {
+
+    const modal =
+        document.getElementById(
+            "modalImagens"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.hidden = true;
+    modal.style.display = "none";
+
+
+    blocoMaterialSelecionado = null;
+    indiceMaterialSelecionado = null;
+
+}
+
+
+// ======================================================
+// CONFIGURAR MODAL DE IMAGENS
+// ======================================================
+
+function configurarModalImagens() {
+
+    const fechar =
+        document.getElementById(
+            "fecharModalImagens"
+        );
+
+
+    if (fechar) {
+
+        fechar.addEventListener(
+            "click",
+            fecharSeletorImagem
+        );
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "modalImagens"
+        );
+
+
+    if (modal) {
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (event.target === modal) {
+
+                    fecharSeletorImagem();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+function sairPainel() {
+    GitHubAPI.limparToken();
+    window.location.href = "../index.html";
 }
