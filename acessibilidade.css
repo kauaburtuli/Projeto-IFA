@@ -464,7 +464,7 @@ body.cursor-grande input[type="button"],
 body.cursor-grande .btn,
 body.cursor-grande [role="button"]{
 
-    cursor:url("cursores/cursor-mao.cur"), pointer;
+    cursor:url("cursores/hand-cursor128.cur"), pointer;
 
 }
 
@@ -474,7 +474,7 @@ body.cursor-grande input,
 body.cursor-grande textarea,
 body.cursor-grande select{
 
-    cursor:url("cursores/cursor-texto.cur"), text;
+    cursor:url("cursores/text-cursor128.cur"), text;
 
 }
 

@@ -128,6 +128,26 @@
 
         </section>
 
+        <section class="cartao">
+            <div class="cabecalho-conteudo">
+                <div>
+                    <h3>Projetos publicados</h3>
+                    <p>Edite ou exclua projetos que já estão publicados no site.</p>
+                </div>
+
+                <button type="button" id="btnAtualizarProjetos" class="botao-secundario">
+                    🔄 Atualizar lista
+                </button>
+            </div>
+
+            <div id="listaProjetosPublicados" class="lista-projetos-publicados">
+                <div class="projetos-carregando">
+                    <span>⏳</span>
+                    <p>Carregando projetos...</p>
+                </div>
+            </div>
+        </section>
+
 
         <!-- =================================================
              BANNER
@@ -304,36 +324,28 @@
 
     </div>
 
-<!-- Modal para selecionar imagem existente -->
-<div id="modalImagens" class="modal" hidden>
+    <!-- Modal para selecionar imagem existente -->
+    <div id="modalImagens" class="modal" hidden>
 
-    <div class="modal-conteudo modal-imagens">
+        <div class="modal-conteudo modal-imagens">
 
-        <button
-            id="fecharModalImagens"
-            class="fechar-modal"
-            type="button"
-            aria-label="Fechar"
-        >
-            ×
-        </button>
+            <button id="fecharModalImagens" class="fechar-modal" type="button" aria-label="Fechar">
+                ×
+            </button>
 
-        <h2>Selecionar imagem</h2>
+            <h2>Selecionar imagem</h2>
 
-        <p>
-            Escolha uma imagem que já está salva no site.
-        </p>
+            <p>
+                Escolha uma imagem que já está salva no site.
+            </p>
 
-        <div
-            id="listaImagensExistentes"
-            class="lista-imagens-existentes"
-        >
-            <p>Carregando imagens...</p>
+            <div id="listaImagensExistentes" class="lista-imagens-existentes">
+                <p>Carregando imagens...</p>
+            </div>
+
         </div>
 
     </div>
-
-</div>
 
     <script src="github-api.js"></script>
     <script src="gerador-html.js"></script>

@@ -1592,3 +1592,138 @@ label {
 
     pointer-events: none;
 }
+
+/* =========================================================
+   PROJETOS PUBLICADOS
+   ========================================================= */
+
+.lista-projetos-publicados {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.projeto-publicado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 16px 18px;
+
+    background: #f7f9fb;
+    border: 1px solid #dce3e8;
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
+
+.projeto-publicado:hover {
+    border-color: #0d47a1;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.projeto-publicado-info {
+    min-width: 0;
+}
+
+.projeto-publicado-titulo {
+    margin: 0 0 4px;
+    color: #222;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.projeto-publicado-arquivo {
+    margin: 0;
+    color: #777;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.projeto-publicado-acoes {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.botao-editar-projeto,
+.botao-excluir-projeto {
+    border: none;
+    border-radius: 7px;
+    padding: 9px 13px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.botao-editar-projeto {
+    background: #0d47a1;
+    color: white;
+}
+
+.botao-editar-projeto:hover {
+    background: #083578;
+}
+
+.botao-excluir-projeto {
+    background: #f1f1f1;
+    color: #b00020;
+    border: 1px solid #ddd;
+}
+
+.botao-excluir-projeto:hover {
+    background: #ffecec;
+    border-color: #e0a0a0;
+}
+
+.projetos-vazio {
+    text-align: center;
+    padding: 30px 20px;
+    color: #777;
+}
+
+.projetos-vazio span {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.projetos-carregando {
+    text-align: center;
+    padding: 25px;
+    color: #777;
+}
+
+.projetos-carregando span {
+    font-size: 25px;
+}
+
+.erro-projetos {
+    padding: 15px;
+    border-radius: 8px;
+    background: #fff0f0;
+    border: 1px solid #e0aaaa;
+    color: #a00000;
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+
+    .projeto-publicado {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .projeto-publicado-acoes {
+        width: 100%;
+    }
+
+    .botao-editar-projeto,
+    .botao-excluir-projeto {
+        flex: 1;
+    }
+
+}

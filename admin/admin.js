@@ -42,6 +42,7 @@ function iniciarPainel() {
     configurarBotoes();
     configurarModalImagens();
     atualizarListaBlocos();
+    carregarProjetosPublicados();
 
 }
 
@@ -271,6 +272,20 @@ function configurarBotoes() {
         );
 
     }
+
+    const btnAtualizarProjetos =
+    document.getElementById(
+        "btnAtualizarProjetos"
+    );
+
+if (btnAtualizarProjetos) {
+
+    btnAtualizarProjetos.addEventListener(
+        "click",
+        carregarProjetosPublicados
+    );
+
+}
 
 }
 
@@ -2249,4 +2264,913 @@ function configurarModalImagens() {
 function sairPainel() {
     GitHubAPI.limparToken();
     window.location.href = "../index.html";
+}
+
+/* =========================================================
+   PROJETOS PUBLICADOS
+   ========================================================= */
+
+async function carregarProjetosPublicados() {
+
+    const lista =
+        document.getElementById(
+            "listaProjetosPublicados"
+        );
+
+    if (!lista) {
+        return;
+    }
+
+    lista.innerHTML = `
+        <div class="projetos-carregando">
+            <span>⏳</span>
+            <p>Carregando projetos...</p>
+        </div>
+    `;
+
+    try {
+
+        const arquivos =
+            await GitHubAPI.listarPastaGitHub(
+                "projetos"
+            );
+
+        if (!Array.isArray(arquivos)) {
+
+            lista.innerHTML = `
+                <div class="erro-projetos">
+                    Não foi possível obter a lista de projetos.
+                </div>
+            `;
+
+            return;
+        }
+
+        const projetos =
+            arquivos.filter(function (arquivo) {
+
+                return (
+                    arquivo.type === "file" &&
+                    arquivo.name.toLowerCase().endsWith(".html")
+                );
+
+            });
+
+        if (projetos.length === 0) {
+
+            lista.innerHTML = `
+                <div class="projetos-vazio">
+                    <span>📂</span>
+                    <p>Nenhum projeto publicado ainda.</p>
+                </div>
+            `;
+
+            return;
+        }
+
+        lista.innerHTML = projetos
+            .map(function (arquivo) {
+
+                const nome =
+                    arquivo.name
+                        .replace(/\.html$/i, "")
+                        .replace(/-/g, " ");
+
+                const titulo =
+                    nome.charAt(0).toUpperCase() +
+                    nome.slice(1);
+
+                return `
+                    <div
+                        class="projeto-publicado"
+                        data-caminho="${escaparAtributoAdmin(arquivo.path)}"
+                    >
+
+                        <div class="projeto-publicado-info">
+
+                            <p class="projeto-publicado-titulo">
+                                ${escaparHTMLAdmin(titulo)}
+                            </p>
+
+                            <p class="projeto-publicado-arquivo">
+                                ${escaparHTMLAdmin(arquivo.path)}
+                            </p>
+
+                        </div>
+
+                        <div class="projeto-publicado-acoes">
+
+                            <button
+                                type="button"
+                                class="botao-editar-projeto"
+                                data-editar="${escaparAtributoAdmin(arquivo.path)}"
+                            >
+                                ✏️ Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="botao-excluir-projeto"
+                                data-excluir="${escaparAtributoAdmin(arquivo.path)}"
+                            >
+                                🗑️ Excluir
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+
+            })
+            .join("");
+
+        configurarAcoesProjetosPublicados();
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar projetos:",
+            erro
+        );
+
+        lista.innerHTML = `
+            <div class="erro-projetos">
+                ❌ Não foi possível carregar os projetos publicados.
+                <br><br>
+                ${escaparHTMLAdmin(erro.message)}
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   AÇÕES DOS PROJETOS PUBLICADOS
+   ========================================================= */
+
+function configurarAcoesProjetosPublicados() {
+
+    const botoesEditar =
+        document.querySelectorAll(
+            "[data-editar]"
+        );
+
+    botoesEditar.forEach(function (botao) {
+
+        botao.addEventListener(
+            "click",
+            function () {
+
+                const caminho =
+                    this.dataset.editar;
+
+                iniciarEdicaoProjeto(
+                    caminho
+                );
+
+            }
+        );
+
+    });
+
+
+    const botoesExcluir =
+        document.querySelectorAll(
+            "[data-excluir]"
+        );
+
+    botoesExcluir.forEach(function (botao) {
+
+        botao.addEventListener(
+            "click",
+            function () {
+
+                const caminho =
+                    this.dataset.excluir;
+
+                excluirProjetoPublicado(
+                    caminho
+                );
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   PREPARAR EDIÇÃO
+   ========================================================= */
+
+async function iniciarEdicaoProjeto(caminho) {
+
+    if (!caminho) return;
+
+    try {
+
+        mostrarStatus(
+            "Carregando projeto para edição...",
+            "sucesso"
+        );
+
+        const arquivo =
+            await GitHubAPI.lerArquivo(caminho);
+
+        if (!arquivo || !arquivo.content) {
+            throw new Error(
+                "Não foi possível obter o conteúdo do projeto."
+            );
+        }
+
+        const html =
+            decodificarBase64GitHub(arquivo.content);
+
+        carregarProjetoDoHTML(
+            html,
+            caminho
+        );
+
+        mostrarStatus(
+            "Projeto carregado. Você pode editar as informações e publicar novamente.",
+            "sucesso"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        mostrarStatus(
+            "Erro ao carregar projeto: " + erro.message,
+            "erro"
+        );
+    }
+}
+
+function carregarProjetoDoHTML(html, caminho) {
+
+    const parser = new DOMParser();
+
+    const documento =
+        parser.parseFromString(
+            html,
+            "text/html"
+        );
+
+    /*
+     * --------------------------------------------------
+     * TÍTULO
+     * --------------------------------------------------
+     */
+
+    const titulo =
+        documento.querySelector("title");
+
+    projeto.titulo =
+        titulo
+            ? titulo.textContent.trim()
+            : "";
+
+
+    /*
+     * --------------------------------------------------
+     * SLUG
+     * --------------------------------------------------
+     */
+
+    const nomeArquivo =
+        caminho
+            .split("/")
+            .pop()
+            .replace(/\.html$/i, "");
+
+    projeto.slug =
+        nomeArquivo;
+
+
+    /*
+     * --------------------------------------------------
+     * DESCRIÇÃO
+     * --------------------------------------------------
+     */
+
+    const bannerTexto =
+        documento.querySelector(
+            ".banner-texto p"
+        );
+
+    projeto.descricao =
+        bannerTexto
+            ? bannerTexto.textContent.trim()
+            : "";
+
+
+    /*
+     * --------------------------------------------------
+     * BANNER
+     * --------------------------------------------------
+     */
+
+    projeto.bannerFile = null;
+
+    const imagemBanner =
+        documento.querySelector(
+            ".banner img"
+        );
+
+    projeto.bannerExistente =
+        imagemBanner
+            ? obterCaminhoImagem(
+                imagemBanner.getAttribute("src")
+            )
+            : "";
+
+
+    /*
+     * --------------------------------------------------
+     * BLOCOS
+     * --------------------------------------------------
+     */
+
+    blocos = [];
+
+    const secoes =
+        documento.querySelectorAll(
+            "main > section"
+        );
+
+    secoes.forEach(function(secao) {
+
+        const bloco =
+            identificarBlocoHTML(secao);
+
+        if (bloco) {
+            blocos.push(bloco);
+        }
+
+    });
+
+
+    /*
+     * --------------------------------------------------
+     * PREENCHER CAMPOS
+     * --------------------------------------------------
+     */
+
+    const campoTitulo =
+        document.getElementById(
+            "tituloProjeto"
+        );
+
+    const campoSlug =
+        document.getElementById(
+            "slugProjeto"
+        );
+
+    const campoDescricao =
+        document.getElementById(
+            "descricaoProjeto"
+        );
+
+
+    if (campoTitulo) {
+        campoTitulo.value =
+            projeto.titulo;
+    }
+
+    if (campoSlug) {
+        campoSlug.value =
+            projeto.slug;
+    }
+
+    if (campoDescricao) {
+        campoDescricao.value =
+            projeto.descricao;
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * MOSTRAR BANNER EXISTENTE
+     * --------------------------------------------------
+     */
+
+    mostrarBannerExistente(
+        projeto.bannerExistente
+    );
+
+
+    /*
+     * --------------------------------------------------
+     * ATUALIZAR EDITOR
+     * --------------------------------------------------
+     */
+
+    atualizarListaBlocos();
+
+}
+
+
+/* =========================================================
+   EXCLUIR PROJETO
+   ========================================================= */
+
+async function excluirProjetoPublicado(caminho) {
+
+    if (!caminho) {
+        return;
+    }
+
+    const confirmar =
+        confirm(
+            "Tem certeza que deseja excluir este projeto?\n\n" +
+            caminho +
+            "\n\n" +
+            "Essa ação excluirá a página HTML do projeto."
+        );
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+
+        mostrarStatus(
+            "Excluindo projeto...",
+            "info"
+        );
+
+        await GitHubAPI.excluirArquivoGitHub({
+            caminho: caminho,
+            mensagem:
+                `Exclusão de projeto: ${caminho}`
+        });
+
+        mostrarStatus(
+            "Projeto excluído com sucesso.",
+            "sucesso"
+        );
+
+        await carregarProjetosPublicados();
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao excluir projeto:",
+            erro
+        );
+
+        mostrarStatus(
+            "Erro ao excluir projeto: " +
+            erro.message,
+            "erro"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML DO ADMIN
+   ========================================================= */
+
+function escaparHTMLAdmin(texto) {
+
+    return String(texto || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function escaparAtributoAdmin(texto) {
+
+    return escaparHTMLAdmin(texto);
+
+}
+
+function obterCaminhoImagem(src) {
+
+    if (!src) {
+        return "";
+    }
+
+    return src
+        .replace(/^\.\.\//, "")
+        .replace(/^\//, "");
+
+}
+
+function mostrarBannerExistente(caminho) {
+
+    const preview =
+        document.getElementById(
+            "previewBanner"
+        );
+
+    const nome =
+        document.getElementById(
+            "nomeBanner"
+        );
+
+    if (!preview) return;
+
+    if (!caminho) {
+
+        preview.innerHTML = "";
+
+        preview.style.display =
+            "none";
+
+        if (nome) {
+            nome.textContent =
+                "Nenhuma imagem selecionada";
+        }
+
+        return;
+    }
+
+
+    preview.innerHTML = `
+        <img
+            src="../${escaparHTMLAdmin(caminho)}"
+            alt="Banner atual"
+            style="
+                max-width:100%;
+                max-height:300px;
+                border-radius:12px;
+                display:block;
+                margin:auto;
+            "
+        >
+    `;
+
+    preview.style.display =
+        "block";
+
+    if (nome) {
+
+        nome.textContent =
+            "Banner atual: " + caminho;
+
+    }
+
+}
+
+function identificarBlocoHTML(secao) {
+
+    if (!secao) {
+        return null;
+    }
+
+    const id =
+        Date.now() +
+        Math.random();
+
+
+    /*
+     * ================================================
+     * TEXTO
+     * ================================================
+     */
+
+    const areaTexto =
+        secao.querySelector(
+            ".texto-formatado"
+        );
+
+    if (areaTexto) {
+
+        const titulo =
+            secao.querySelector(
+                "h2.titulo"
+            );
+
+        return {
+
+            id: id,
+
+            tipo: "texto",
+
+            titulo:
+                titulo
+                    ? titulo.textContent.trim()
+                    : "",
+
+            conteudo:
+                areaTexto.innerHTML,
+
+            legenda: "",
+            alt: "",
+            arquivo: null,
+            arquivos: [],
+            nomeArquivo: "",
+            url: "",
+            textoLink: "",
+            materiais: []
+
+        };
+
+    }
+
+
+    /*
+     * ================================================
+     * CÓDIGO
+     * ================================================
+     */
+
+    const codigo =
+        secao.querySelector(
+            ".codigo"
+        );
+
+    if (codigo) {
+
+        const titulo =
+            codigo.querySelector(
+                "h3"
+            );
+
+        const codigoElemento =
+            codigo.querySelector(
+                "pre code"
+            );
+
+        const linkDownload =
+            codigo.querySelector(
+                "a[download]"
+            );
+
+        let nomeArquivo = "";
+
+        if (linkDownload) {
+
+            const href =
+                linkDownload.getAttribute(
+                    "href"
+                );
+
+            if (href) {
+
+                nomeArquivo =
+                    href
+                        .split("/")
+                        .pop();
+
+            }
+
+        }
+
+        return {
+
+            id: id,
+
+            tipo: "codigo",
+
+            titulo:
+                titulo
+                    ? titulo.textContent.trim()
+                    : "",
+
+            conteudo:
+                codigoElemento
+                    ? codigoElemento.textContent
+                    : "",
+
+            nomeArquivo:
+                nomeArquivo,
+
+            legenda: "",
+            alt: "",
+            arquivo: null,
+            arquivos: [],
+            url: "",
+            textoLink: "",
+            materiais: []
+
+        };
+
+    }
+
+
+    /*
+     * ================================================
+     * VÍDEO
+     * ================================================
+     */
+
+    const video =
+        secao.querySelector(
+            ".video video"
+        );
+
+    if (video) {
+
+        const titulo =
+            secao.querySelector(
+                "h2.titulo"
+            );
+
+        const fonte =
+            video.querySelector(
+                "source"
+            );
+
+        const legenda =
+            secao.querySelector(
+                ".video p"
+            );
+
+        return {
+
+            id: id,
+
+            tipo: "video",
+
+            titulo:
+                titulo
+                    ? titulo.textContent.trim()
+                    : "",
+
+            conteudo: "",
+
+            legenda:
+                legenda
+                    ? legenda.textContent.trim()
+                    : "",
+
+            arquivo: null,
+
+            arquivoExistente:
+                fonte
+                    ? obterCaminhoImagem(
+                        fonte.getAttribute("src")
+                    )
+                    : "",
+
+            arquivos: [],
+
+            alt: "",
+            nomeArquivo: "",
+            url: "",
+            textoLink: "",
+            materiais: []
+
+        };
+
+    }
+
+
+    /*
+     * ================================================
+     * TINKERCAD
+     * ================================================
+     */
+
+    const tinkercad =
+        secao.querySelector(
+            ".tinkercad"
+        );
+
+    if (tinkercad) {
+
+        const titulo =
+            secao.querySelector(
+                "h2.titulo"
+            );
+
+        const link =
+            tinkercad.querySelector(
+                "a"
+            );
+
+        const imagem =
+            tinkercad.querySelector(
+                "img"
+            );
+
+        const legenda =
+            tinkercad.querySelector(
+                "p"
+            );
+
+        return {
+
+            id: id,
+
+            tipo: "tinkercad",
+
+            titulo:
+                titulo
+                    ? titulo.textContent.trim()
+                    : "",
+
+            url:
+                link
+                    ? link.getAttribute("href")
+                    : "",
+
+            textoLink:
+                link
+                    ? link.textContent.trim()
+                    : "Abrir no Tinkercad",
+
+            legenda:
+                legenda
+                    ? legenda.textContent.trim()
+                    : "",
+
+            imagem: null,
+
+            imagemExistente:
+                imagem
+                    ? obterCaminhoImagem(
+                        imagem.getAttribute("src")
+                    )
+                    : "",
+
+            conteudo: "",
+            arquivo: null,
+            arquivos: [],
+            alt: "",
+            nomeArquivo: "",
+            materiais: []
+
+        };
+
+    }
+
+
+    /*
+     * ================================================
+     * LINK
+     * ================================================
+     */
+
+    const areaLink =
+        secao.querySelector(
+            ".link"
+        );
+
+    if (areaLink) {
+
+        const link =
+            areaLink.querySelector(
+                "a"
+            );
+
+        const titulo =
+            secao.querySelector(
+                "h2.titulo"
+            );
+
+        return {
+
+            id: id,
+
+            tipo: "link",
+
+            titulo:
+                titulo
+                    ? titulo.textContent.trim()
+                    : "",
+
+            url:
+                link
+                    ? link.getAttribute("href")
+                    : "",
+
+            textoLink:
+                link
+                    ? link.textContent.trim()
+                    : "",
+
+            conteudo: "",
+            legenda: "",
+            alt: "",
+            arquivo: null,
+            arquivos: [],
+            nomeArquivo: "",
+            materiais: []
+
+        };
+
+    }
+
+
+    return null;
+
 }
