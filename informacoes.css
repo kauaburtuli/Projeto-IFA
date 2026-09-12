@@ -56,6 +56,8 @@ main{
     width:90%;
     max-width:1200px;
     margin:60px auto;
+    padding-top:calc(var(--altura-cabecalho) + 20px);
+
 }
 
 .titulo{

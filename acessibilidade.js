@@ -1597,3 +1597,52 @@ document.getElementById("restaurarAcessibilidade").onclick = () => {
     menu.classList.remove("ativo");
 
 };
+
+// =====================================
+// AJUSTE AUTOMÁTICO DO CABEÇALHO
+// =====================================
+
+function ajustarEspacoCabecalho(){
+
+    const header = document.querySelector("header");
+
+    if(!header){
+        return;
+    }
+
+    const altura = header.offsetHeight;
+
+    document.documentElement.style.setProperty(
+        "--altura-cabecalho",
+        altura + "px"
+    );
+
+}
+
+window.addEventListener(
+    "load",
+    ajustarEspacoCabecalho
+);
+
+window.addEventListener(
+    "resize",
+    ajustarEspacoCabecalho
+);
+
+
+// Atualiza quando a página mudar
+const observadorCabecalho =
+new ResizeObserver(() => {
+
+    ajustarEspacoCabecalho();
+
+});
+
+const header =
+document.querySelector("header");
+
+if(header){
+
+    observadorCabecalho.observe(header);
+
+}

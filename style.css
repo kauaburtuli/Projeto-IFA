@@ -38,6 +38,10 @@ header h1 {
     object-fit: contain;
 }
 
+main{
+    padding-top:calc(var(--altura-cabecalho) + 20px);
+}
+
 nav a {
     color: white;
     text-decoration: none;
