@@ -9,6 +9,7 @@
 body{
     background:#eef4f9;
     color:#222;
+    padding-top: var(--altura-cabecalho, 91px);
 }
 
 /* Cabeçalho */
@@ -89,7 +90,6 @@ main{
     width:90%;
     max-width:1200px;
     margin:60px auto;
-    padding-top:calc(var(--altura-cabecalho) + 20px);
 
 }
 

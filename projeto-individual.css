@@ -9,6 +9,7 @@
         body {
             background: #eef4f9;
             color: #222;
+            padding-top: var(--altura-cabecalho, 91px);
         }
 
         header {
@@ -38,9 +39,6 @@
             object-fit: contain;
         }
 
-        main {
-            padding-top: calc(var(--altura-cabecalho) + 20px);
-        }
 
         nav a {
             color: white;
