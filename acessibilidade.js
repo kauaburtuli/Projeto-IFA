@@ -8,6 +8,9 @@ let indiceLeitura = -1;
 let filaLeitura = [];
 let lendoFila = false;
 
+let modoLeitura = false;
+let leitura = null;
+
 
 /* =========================================================
    OBTER ELEMENTOS NAVEGÁVEIS
