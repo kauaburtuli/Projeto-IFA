@@ -451,7 +451,7 @@ body.espacamento .material{
 body.cursor-grande,
 body.cursor-grande *{
 
-    cursor:url("cursores/cursor-normal.cur"), auto;
+    cursor:url("cursores/normal-cursor.cur"), auto;
 
 }
 
