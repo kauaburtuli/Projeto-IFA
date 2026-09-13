@@ -4,7 +4,25 @@
 
 
 /* =========================================================
-   VARIÁVEIS PRINCIPAIS
+   ELEMENTOS
+========================================================= */
+
+const botaoAcessibilidade = document.querySelector(".btn-acessibilidade");
+const menuAcessibilidade = document.querySelector(".menu-acessibilidade");
+
+const botaoLer = document.getElementById("lerPagina");
+
+const controleLeitura = document.getElementById("controleLeitura");
+const statusLeitura = document.getElementById("statusLeitura");
+
+const botaoPausar = document.getElementById("pausarBtn");
+const botaoContinuar = document.getElementById("continuarBtn");
+const botaoParar = document.getElementById("pararBtn");
+
+
+
+/* =========================================================
+   VARIÁVEIS DA LEITURA
 ========================================================= */
 
 let leitura = null;
@@ -23,136 +41,240 @@ let opcaoAtual = 0;
 
 
 /* =========================================================
-   ELEMENTOS
-========================================================= */
-
-const botaoAcessibilidade =
-    document.querySelector(".btn-acessibilidade");
-
-const menuAcessibilidade =
-    document.querySelector(".menu-acessibilidade");
-
-const botaoLerPagina =
-    document.getElementById("lerPagina");
-
-const controleLeitura =
-    document.getElementById("controleLeitura");
-
-const statusLeitura =
-    document.getElementById("statusLeitura");
-
-const botaoPausar =
-    document.getElementById("pausarBtn");
-
-const botaoContinuar =
-    document.getElementById("continuarBtn");
-
-const botaoParar =
-    document.getElementById("pararLeitura") ||
-    document.getElementById("pararBtn");
-
-const modalLeitura =
-    document.getElementById("modalLeitura");
-
-const cancelarLeitura =
-    document.getElementById("cancelarLeitura");
-
-const indicadorSelecao =
-    document.getElementById("indicadorSelecao");
-
-
-/* =========================================================
    MENU DE ACESSIBILIDADE
 ========================================================= */
 
 if (botaoAcessibilidade && menuAcessibilidade) {
 
-    botaoAcessibilidade.addEventListener("click", function (event) {
+    botaoAcessibilidade.addEventListener("click", function (evento) {
 
-        event.stopPropagation();
+        evento.stopPropagation();
 
         menuAcessibilidade.classList.toggle("ativo");
 
     });
 
-    menuAcessibilidade.addEventListener("click", function (event) {
-        event.stopPropagation();
-    });
+}
 
-    document.addEventListener("click", function () {
+
+/* Fecha o menu quando clicar fora */
+
+document.addEventListener("click", function (evento) {
+
+    if (
+        menuAcessibilidade &&
+        botaoAcessibilidade &&
+        !menuAcessibilidade.contains(evento.target) &&
+        !botaoAcessibilidade.contains(evento.target)
+    ) {
+
         menuAcessibilidade.classList.remove("ativo");
-    });
+
+    }
+
+});
+
+
+/* =========================================================
+   FUNÇÃO AUXILIAR - TEXTO
+========================================================= */
+
+function limparTexto(texto) {
+
+    if (!texto) return "";
+
+    return texto
+        .replace(/\s+/g, " ")
+        .replace(/\n+/g, " ")
+        .trim();
 
 }
 
 
 /* =========================================================
-   FUNÇÃO PARA FALAR UM TEXTO
+   FALAR TEXTO SIMPLES
 ========================================================= */
 
-function falar(texto, callback) {
+function falar(texto) {
 
-    if (!texto) {
-        if (callback) callback();
-        return;
-    }
+    if (!texto || !("speechSynthesis" in window)) return;
 
-    leitura = new SpeechSynthesisUtterance(texto);
+    speechSynthesis.cancel();
+
+    leitura = new SpeechSynthesisUtterance(limparTexto(texto));
 
     leitura.lang = "pt-BR";
     leitura.rate = 1;
     leitura.pitch = 1;
     leitura.volume = 1;
 
-    leitura.onend = function () {
-
-        if (callback) {
-            callback();
-        }
-
-    };
-
-    leitura.onerror = function () {
-
-        if (callback) {
-            callback();
-        }
-
-    };
-
     speechSynthesis.speak(leitura);
+
 }
 
 
 /* =========================================================
-   ABRIR MODAL DE LEITURA
+   TEXTO DA PÁGINA
 ========================================================= */
 
-if (botaoLerPagina) {
+function obterTextoPagina() {
 
-    botaoLerPagina.addEventListener("click", function () {
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    const footer = document.querySelector("footer");
 
-        if (!modalLeitura) {
-            iniciarLeituraGeral();
+    let partes = [];
+
+    if (header) {
+        partes.push(header.innerText);
+    }
+
+    if (main) {
+        partes.push(main.innerText);
+    }
+
+    if (footer) {
+        partes.push(footer.innerText);
+    }
+
+    if (partes.length === 0) {
+        partes.push(document.body.innerText);
+    }
+
+    return limparTexto(partes.join(" "));
+
+}
+
+
+/* =========================================================
+   LEITURA GERAL
+========================================================= */
+
+function iniciarLeituraGeral() {
+
+    const texto = obterTextoPagina();
+
+    if (!texto) return;
+
+    modoLeitura = "geral";
+
+    if (menuAcessibilidade) {
+        menuAcessibilidade.classList.remove("ativo");
+    }
+
+    if (controleLeitura) {
+        controleLeitura.style.display = "flex";
+    }
+
+    if (statusLeitura) {
+        statusLeitura.innerHTML = "🔊 Lendo...";
+    }
+
+    iniciarLeituraTexto(texto);
+
+}
+
+
+/* =========================================================
+   LEITURA GERAL EM PARTES
+========================================================= */
+
+function iniciarLeituraTexto(texto) {
+
+    if (!texto) return;
+
+    speechSynthesis.cancel();
+
+    const partes = texto
+        .replace(/\s+/g, " ")
+        .trim()
+        .match(/.{1,180}(?:\s|$)/g);
+
+    if (!partes || partes.length === 0) return;
+
+    let indice = 0;
+
+    lendoTexto = true;
+
+    function falarParte() {
+
+        if (!lendoTexto) return;
+
+        if (indice >= partes.length) {
+
+            lendoTexto = false;
+
+            if (statusLeitura) {
+                statusLeitura.innerHTML = "🔊 Leitura concluída";
+            }
+
             return;
         }
 
-        menuAcessibilidade.classList.remove("ativo");
-
-        modalLeitura.style.display = "flex";
-
-        opcaoAtual = 0;
-
-        atualizarOpcaoModal();
-
-        falar(
-            "Selecione o tipo de leitura. " +
-            "Use as setas para escolher entre leitura geral da página " +
-            "ou leitura por seleção. Pressione Enter para confirmar " +
-            "ou Escape para cancelar."
+        leitura = new SpeechSynthesisUtterance(
+            partes[indice].trim()
         );
 
+        leitura.lang = "pt-BR";
+        leitura.rate = 1;
+        leitura.pitch = 1;
+        leitura.volume = 1;
+
+        leitura.onend = function () {
+
+            indice++;
+
+            setTimeout(falarParte, 80);
+
+        };
+
+        leitura.onerror = function () {
+
+            indice++;
+
+            setTimeout(falarParte, 100);
+
+        };
+
+        speechSynthesis.speak(leitura);
+
+    }
+
+    falarParte();
+
+}
+
+
+/* =========================================================
+   MODAL DE ESCOLHA DO TIPO DE LEITURA
+========================================================= */
+
+if (botaoLer) {
+
+    botaoLer.addEventListener("click", function () {
+
+        abrirModalLeitura();
+
     });
+
+}
+
+
+function abrirModalLeitura() {
+
+    if (!modalLeitura) {
+
+        iniciarLeituraGeral();
+
+        return;
+
+    }
+
+    modalLeitura.style.display = "flex";
+
+    opcaoAtual = 0;
+
+    atualizarOpcaoModal();
 
 }
 
@@ -161,63 +283,47 @@ if (botaoLerPagina) {
    OPÇÕES DO MODAL
 ========================================================= */
 
-const opcoesLeitura =
-    document.querySelectorAll(
-        "#modalLeitura .opcao-leitura"
-    );
+const opcoesLeitura = document.querySelectorAll(
+    "#modalLeitura .opcao-leitura"
+);
 
 
 function atualizarOpcaoModal() {
 
+    if (!opcoesLeitura.length) return;
+
     opcoesLeitura.forEach(function (opcao, indice) {
 
-        if (indice === opcaoAtual) {
+        opcao.classList.toggle(
+            "selecionada",
+            indice === opcaoAtual
+        );
 
-            opcao.classList.add("selecionada");
-
-            opcao.setAttribute(
-                "aria-selected",
-                "true"
-            );
-
-        } else {
-
-            opcao.classList.remove("selecionada");
-
-            opcao.setAttribute(
-                "aria-selected",
-                "false"
-            );
-
-        }
+        opcao.setAttribute(
+            "aria-selected",
+            indice === opcaoAtual ? "true" : "false"
+        );
 
     });
+
+    const opcao = opcoesLeitura[opcaoAtual];
+
+    if (opcao) {
+
+        let texto = opcao.innerText;
+
+        falar(texto);
+
+    }
 
 }
-
-
-/* =========================================================
-   CLICAR NAS OPÇÕES DO MODAL
-========================================================= */
-
-opcoesLeitura.forEach(function (opcao, indice) {
-
-    opcao.addEventListener("click", function () {
-
-        opcaoAtual = indice;
-
-        confirmarLeitura();
-
-    });
-
-});
 
 
 /* =========================================================
    TECLADO DO MODAL
 ========================================================= */
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", function (evento) {
 
     if (
         !modalLeitura ||
@@ -226,10 +332,9 @@ document.addEventListener("keydown", function (event) {
         return;
     }
 
-    if (event.key === "ArrowDown" ||
-        event.key === "ArrowRight") {
+    if (evento.key === "ArrowDown") {
 
-        event.preventDefault();
+        evento.preventDefault();
 
         opcaoAtual++;
 
@@ -239,14 +344,12 @@ document.addEventListener("keydown", function (event) {
 
         atualizarOpcaoModal();
 
-        return;
     }
 
 
-    if (event.key === "ArrowUp" ||
-        event.key === "ArrowLeft") {
+    if (evento.key === "ArrowUp") {
 
-        event.preventDefault();
+        evento.preventDefault();
 
         opcaoAtual--;
 
@@ -256,23 +359,21 @@ document.addEventListener("keydown", function (event) {
 
         atualizarOpcaoModal();
 
-        return;
     }
 
 
-    if (event.key === "Enter") {
+    if (evento.key === "Enter") {
 
-        event.preventDefault();
+        evento.preventDefault();
 
         confirmarLeitura();
 
-        return;
     }
 
 
-    if (event.key === "Escape") {
+    if (evento.key === "Escape") {
 
-        event.preventDefault();
+        evento.preventDefault();
 
         fecharModal();
 
@@ -282,30 +383,20 @@ document.addEventListener("keydown", function (event) {
 
 
 /* =========================================================
-   CONFIRMAR TIPO DE LEITURA
+   CONFIRMAR LEITURA
 ========================================================= */
 
 function confirmarLeitura() {
 
-    if (!opcoesLeitura.length) {
-        fecharModal();
-        iniciarLeituraGeral();
-        return;
-    }
+    const opcao = opcoesLeitura[opcaoAtual];
 
-    const opcao =
-        opcoesLeitura[opcaoAtual];
+    if (!opcao) return;
 
-    const tipo =
-        opcao.dataset.tipo ||
-        opcao.getAttribute("data-leitura");
+    const tipo = opcao.dataset.tipo;
 
     fecharModal();
 
-    if (
-        tipo === "selecao" ||
-        tipo === "seleção"
-    ) {
+    if (tipo === "selecao") {
 
         iniciarLeituraSelecao();
 
@@ -328,530 +419,96 @@ function fecharModal() {
         modalLeitura.style.display = "none";
     }
 
-}
-
-
-/* =========================================================
-   OBTER TEXTO COMPLETO DA PÁGINA
-========================================================= */
-
-function obterTextoPagina() {
-
-    const partes = [];
-
-    /*
-       HEADER
-    */
-
-    const header =
-        document.querySelector("header");
-
-    if (header) {
-
-        const textoHeader =
-            header.innerText.trim();
-
-        if (textoHeader) {
-            partes.push(textoHeader);
-        }
-
-    }
-
-
-    /*
-       MAIN
-    */
-
-    const main =
-        document.querySelector("main");
-
-    if (main) {
-
-        const textoMain =
-            main.innerText.trim();
-
-        if (textoMain) {
-            partes.push(textoMain);
-        }
-
-    } else {
-
-        /*
-           Caso alguma página não possua <main>,
-           utiliza o conteúdo do body.
-        */
-
-        const bodyTexto =
-            document.body.innerText.trim();
-
-        if (bodyTexto) {
-            partes.push(bodyTexto);
-        }
-
-    }
-
-
-    /*
-       FOOTER
-    */
-
-    const footer =
-        document.querySelector("footer");
-
-    if (footer) {
-
-        const textoFooter =
-            footer.innerText.trim();
-
-        if (textoFooter) {
-            partes.push(textoFooter);
-        }
-
-    }
-
-
-    return partes
-        .join("\n\n")
-        .replace(/\s+/g, " ")
-        .trim();
+    speechSynthesis.cancel();
 
 }
 
 
 /* =========================================================
-   DIVIDIR TEXTO EM PARTES
+   BOTÃO CANCELAR
 ========================================================= */
 
-function dividirTexto(texto) {
+if (cancelarLeitura) {
 
-    if (!texto) {
-        return [];
-    }
+    cancelarLeitura.addEventListener("click", function () {
 
-    texto =
-        texto
-            .replace(/\s+/g, " ")
-            .trim();
-
-
-    /*
-       Tenta preservar frases inteiras.
-       Cada bloco fica com aproximadamente
-       180 caracteres para evitar problemas
-       em navegadores com SpeechSynthesis.
-    */
-
-    const frases =
-        texto.match(
-            /[^.!?]+[.!?]+|[^.!?]+$/g
-        ) || [texto];
-
-
-    const partes = [];
-
-    let atual = "";
-
-
-    frases.forEach(function (frase) {
-
-        frase = frase.trim();
-
-        if (!frase) {
-            return;
-        }
-
-
-        if (
-            (atual + " " + frase).length <= 180
-        ) {
-
-            atual =
-                atual
-                    ? atual + " " + frase
-                    : frase;
-
-        } else {
-
-            if (atual) {
-                partes.push(atual);
-            }
-
-            atual = frase;
-
-        }
+        fecharModal();
 
     });
 
-
-    if (atual) {
-        partes.push(atual);
-    }
-
-
-    return partes;
-
 }
 
 
 /* =========================================================
-   INICIAR LEITURA GERAL
-========================================================= */
-
-function iniciarLeituraGeral() {
-
-    pararLeituraInternamente(false);
-
-    modoLeitura = "geral";
-
-    const texto =
-        obterTextoPagina();
-
-    if (!texto) {
-
-        atualizarStatus(
-            "⚠️ Nenhum texto encontrado"
-        );
-
-        return;
-    }
-
-
-    if (menuAcessibilidade) {
-        menuAcessibilidade.classList.remove("ativo");
-    }
-
-
-    if (controleLeitura) {
-        controleLeitura.style.display = "flex";
-    }
-
-
-    filaLeitura =
-        dividirTexto(texto);
-
-    indiceFila = 0;
-
-    lendoFila = true;
-
-    atualizarStatus("🔊 Lendo...");
-
-    falarProximaParte();
-
-}
-
-
-/* =========================================================
-   INICIAR LEITURA DE UM TEXTO
-========================================================= */
-
-function iniciarLeituraTexto(texto) {
-
-    if (!texto) {
-        return;
-    }
-
-    pararLeituraInternamente(false);
-
-    modoLeitura = "geral";
-
-    filaLeitura =
-        dividirTexto(texto);
-
-    indiceFila = 0;
-
-    lendoFila = true;
-
-    if (controleLeitura) {
-        controleLeitura.style.display = "flex";
-    }
-
-    atualizarStatus("🔊 Lendo...");
-
-    falarProximaParte();
-
-}
-
-
-/* =========================================================
-   LER PRÓXIMA PARTE DA FILA
-========================================================= */
-
-function falarProximaParte() {
-
-    if (!lendoFila) {
-        return;
-    }
-
-
-    if (
-        indiceFila >= filaLeitura.length
-    ) {
-
-        lendoFila = false;
-        lendoTexto = false;
-
-        atualizarStatus(
-            "🔊 Leitura concluída"
-        );
-
-        return;
-    }
-
-
-    const texto =
-        filaLeitura[indiceFila];
-
-
-    leitura =
-        new SpeechSynthesisUtterance(texto);
-
-    leitura.lang = "pt-BR";
-    leitura.rate = 1;
-    leitura.pitch = 1;
-    leitura.volume = 1;
-
-
-    lendoTexto = true;
-
-
-    leitura.onstart = function () {
-
-        atualizarStatus("🔊 Lendo...");
-
-    };
-
-
-    leitura.onend = function () {
-
-        indiceFila++;
-
-        setTimeout(function () {
-
-            falarProximaParte();
-
-        }, 80);
-
-    };
-
-
-    leitura.onerror = function () {
-
-        indiceFila++;
-
-        setTimeout(function () {
-
-            falarProximaParte();
-
-        }, 100);
-
-    };
-
-
-    speechSynthesis.speak(leitura);
-
-}
-
-
-/* =========================================================
-   LEITURA POR SELEÇÃO
-========================================================= */
-
-function iniciarLeituraSelecao() {
-
-    pararLeituraInternamente(false);
-
-    modoLeitura = "selecao";
-
-    document.body.classList.add(
-        "modo-leitura-selecao"
-    );
-
-
-    if (indicadorSelecao) {
-
-        indicadorSelecao.style.display =
-            "block";
-
-        indicadorSelecao.innerHTML =
-            "🔊 Clique em um texto para ouvir";
-
-    }
-
-
-    prepararElementos();
-
-
-    if (controleLeitura) {
-        controleLeitura.style.display = "flex";
-    }
-
-
-    atualizarStatus(
-        "🔊 Selecione um texto"
-    );
-
-
-    falar(
-        "Modo de leitura por seleção ativado. " +
-        "Clique em um texto para ouvi-lo. " +
-        "Você também pode usar a tecla Tab para navegar. " +
-        "Pressione Escape para sair."
-    );
-
-}
-
-
-/* =========================================================
-   OBTER TEXTO DE UM ELEMENTO
+   TEXTO DE ELEMENTOS INTERATIVOS
 ========================================================= */
 
 function obterTextoLeitura(elemento) {
 
-    if (!elemento) {
-        return "";
-    }
-
+    if (!elemento) return "";
 
     let texto = "";
 
+    const aria = elemento.getAttribute("aria-label");
+    const title = elemento.getAttribute("title");
+    const alt = elemento.getAttribute("alt");
 
-    /*
-       ARIA-LABEL
-    */
+    if (aria) {
 
-    if (elemento.getAttribute("aria-label")) {
+        texto = aria;
 
-        texto =
-            elemento
-                .getAttribute("aria-label")
-                .trim();
+    } else if (alt) {
 
-    }
+        texto = alt;
 
+    } else if (title) {
 
-    /*
-       TITLE
-    */
+        texto = title;
 
-    if (
-        !texto &&
-        elemento.getAttribute("title")
+    } else if (
+        elemento.tagName === "INPUT" &&
+        elemento.value
     ) {
 
-        texto =
-            elemento
-                .getAttribute("title")
-                .trim();
+        texto = elemento.value;
+
+    } else {
+
+        texto = elemento.innerText || elemento.textContent || "";
 
     }
 
+    texto = limparTexto(texto);
 
-    /*
-       ALT DE IMAGEM
-    */
+    if (!texto) return "";
 
-    if (
-        !texto &&
-        elemento.tagName === "IMG"
-    ) {
+    const tag = elemento.tagName.toLowerCase();
 
-        texto =
-            elemento
-                .getAttribute("alt") || "";
+    if (tag === "button") {
+
+        texto += ". Botão. Pressione Enter para ativar.";
 
     }
 
+    if (tag === "a") {
 
-    /*
-       VALUE
-    */
-
-    if (
-        !texto &&
-        (
-            elemento.tagName === "INPUT" ||
-            elemento.tagName === "TEXTAREA"
-        )
-    ) {
-
-        texto =
-            elemento.value ||
-            elemento.placeholder ||
-            "";
+        texto += ". Link. Pressione Enter para acessar.";
 
     }
 
+    if (tag === "input") {
 
-    /*
-       TEXTO NORMAL
-    */
+        const tipo = elemento.type || "campo";
 
-    if (!texto) {
-
-        texto =
-            elemento.innerText ||
-            elemento.textContent ||
-            "";
+        texto += ". Campo de entrada " + tipo + ".";
 
     }
 
+    if (tag === "select") {
 
-    texto =
-        texto
-            .replace(/\s+/g, " ")
-            .trim();
-
-
-    if (!texto) {
-        return "";
-    }
-
-
-    /*
-       BOTÕES
-    */
-
-    if (
-        elemento.tagName === "BUTTON" ||
-        elemento.getAttribute("role") === "button"
-    ) {
-
-        texto +=
-            ". Botão. Pressione Enter para ativar.";
+        texto += ". Caixa de seleção.";
 
     }
-
-
-    /*
-       LINKS
-    */
-
-    else if (
-        elemento.tagName === "A" ||
-        elemento.getAttribute("role") === "link"
-    ) {
-
-        texto +=
-            ". Link. Pressione Enter para acessar.";
-
-    }
-
-
-    /*
-       CAMPOS
-    */
-
-    else if (
-        elemento.tagName === "INPUT" ||
-        elemento.tagName === "TEXTAREA" ||
-        elemento.tagName === "SELECT"
-    ) {
-
-        texto +=
-            ". Campo de formulário.";
-
-    }
-
 
     return texto;
 
@@ -859,44 +516,36 @@ function obterTextoLeitura(elemento) {
 
 
 /* =========================================================
-   OBTER ELEMENTOS NAVEGÁVEIS
+   ELEMENTOS NAVEGÁVEIS
 ========================================================= */
 
 function obterElementosNavegaveis() {
 
     const seletores = [
 
-        /*
-           CABEÇALHO
-        */
+        /* CABEÇALHO */
 
-        "header",
         "header h1",
-        "header h2",
         "header a",
         "header button",
         "header input",
         "header select",
         "header textarea",
 
-
-        /*
-           LINKS E CONTROLES
-        */
+        /* ELEMENTOS INTERATIVOS */
 
         "a[href]",
         "button",
         "input",
         "select",
         "textarea",
+
         "[role='button']",
         "[role='link']",
+
         "[tabindex]:not([tabindex='-1'])",
 
-
-        /*
-           CONTEÚDO
-        */
+        /* CONTEÚDO */
 
         "main h1",
         "main h2",
@@ -904,26 +553,16 @@ function obterElementosNavegaveis() {
         "main h4",
         "main h5",
         "main h6",
+
         "main p",
         "main li",
-        "main blockquote",
-        "main figcaption",
-        "main label",
-
-
-        /*
-           CLASSES COMUNS DO SITE
-        */
 
         "main .texto",
         "main .titulo",
         "main .card",
         "main .item",
 
-
-        /*
-           RODAPÉ
-        */
+        /* RODAPÉ */
 
         "footer",
         "footer a",
@@ -933,37 +572,27 @@ function obterElementosNavegaveis() {
 
     ];
 
-
     const encontrados = [];
-
 
     seletores.forEach(function (seletor) {
 
-        document
-            .querySelectorAll(seletor)
-            .forEach(function (elemento) {
+        document.querySelectorAll(seletor).forEach(function (elemento) {
 
-                if (
-                    !encontrados.includes(elemento)
-                ) {
+            if (!encontrados.includes(elemento)) {
 
-                    encontrados.push(elemento);
+                encontrados.push(elemento);
 
-                }
+            }
 
-            });
+        });
 
     });
 
 
     return encontrados.filter(function (elemento) {
 
-        const estilo =
-            getComputedStyle(elemento);
-
-        const rect =
-            elemento.getBoundingClientRect();
-
+        const estilo = getComputedStyle(elemento);
+        const rect = elemento.getBoundingClientRect();
 
         return (
             estilo.display !== "none" &&
@@ -983,99 +612,88 @@ function obterElementosNavegaveis() {
 
 function prepararElementos() {
 
-    elementosLeitura =
-        obterElementosNavegaveis();
-
-
-    elementosLeitura =
-        elementosLeitura.filter(function (elemento) {
-
-            const texto =
-                obterTextoLeitura(elemento);
-
-            return texto.length > 0;
-
-        });
-
+    elementosLeitura = obterElementosNavegaveis();
 
     elementosLeitura.forEach(function (elemento) {
 
-        if (
-            elemento.dataset.leituraPreparada === "true"
-        ) {
+        if (elemento.dataset.leituraPreparada === "true") {
             return;
         }
 
-
-        elemento.dataset.leituraPreparada =
-            "true";
+        elemento.dataset.leituraPreparada = "true";
 
 
-        elemento.addEventListener(
-            "mouseenter",
-            function () {
+        /* Mouse */
 
-                if (
-                    !document.body.classList.contains(
-                        "modo-leitura-selecao"
-                    )
-                ) {
-                    return;
-                }
+        elemento.addEventListener("mouseenter", function () {
+
+            if (
+                modoLeitura === "selecao" &&
+                !eLeituraInterativa()
+            ) {
 
                 destacarElemento(elemento);
 
             }
-        );
+
+        });
 
 
-        elemento.addEventListener(
-            "mouseleave",
-            function () {
+        elemento.addEventListener("mouseleave", function () {
 
-                elemento.classList.remove(
-                    "leitura-destaque"
-                );
+            if (
+                modoLeitura === "selecao" &&
+                !eLeituraInterativa()
+            ) {
 
-            }
-        );
-
-
-        elemento.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    !document.body.classList.contains(
-                        "modo-leitura-selecao"
-                    )
-                ) {
-                    return;
-                }
-
-
-                /*
-                   Evita que links e botões
-                   sejam ativados duas vezes
-                   quando necessário.
-                */
-
-                if (
-                    elemento.tagName === "A" ||
-                    elemento.tagName === "BUTTON"
-                ) {
-
-                    event.preventDefault();
-
-                }
-
-
-                lerElementoComFila(elemento);
+                removerDestaque(elemento);
 
             }
-        );
+
+        });
+
+
+        /* Clique */
+
+        elemento.addEventListener("click", function () {
+
+            if (modoLeitura !== "selecao") return;
+
+            if (
+                elemento.id === "cursor" ||
+                elemento.id === "contraste" ||
+                elemento.id === "dislexia" ||
+                elemento.id === "espacamento" ||
+                elemento.id === "animacoes" ||
+                elemento.id === "lupa"
+            ) {
+
+                return;
+
+            }
+
+            const texto = obterTextoLeitura(elemento);
+
+            if (texto) {
+
+                adicionarNaFila(texto);
+
+            }
+
+        });
 
     });
+
+}
+
+
+/* =========================================================
+   VERIFICAR SE HÁ LEITURA INTERATIVA
+========================================================= */
+
+function eLeituraInterativa() {
+
+    return lendoFila || speechSynthesis.speaking;
 
 }
 
@@ -1086,286 +704,344 @@ function prepararElementos() {
 
 function destacarElemento(elemento) {
 
-    elementosLeitura.forEach(function (item) {
+    if (!elemento) return;
 
-        item.classList.remove(
-            "leitura-destaque"
-        );
+    elemento.classList.add("elemento-leitura");
 
-    });
+}
 
 
-    elemento.classList.add(
-        "leitura-destaque"
+function removerDestaque(elemento) {
+
+    if (!elemento) return;
+
+    elemento.classList.remove("elemento-leitura");
+
+}
+
+
+/* =========================================================
+   LEITURA POR SELEÇÃO
+========================================================= */
+
+function iniciarLeituraSelecao() {
+
+    modoLeitura = "selecao";
+
+    prepararElementos();
+
+    indiceLeitura = -1;
+
+    if (menuAcessibilidade) {
+        menuAcessibilidade.classList.remove("ativo");
+    }
+
+    if (indicadorSelecao) {
+
+        indicadorSelecao.style.display = "block";
+
+        indicadorSelecao.innerHTML =
+            "👆 Modo de seleção ativo — clique ou use Tab para escolher o texto.";
+
+    }
+
+    if (controleLeitura) {
+
+        controleLeitura.style.display = "flex";
+
+    }
+
+    if (statusLeitura) {
+
+        statusLeitura.innerHTML =
+            "👆 Selecione um texto";
+
+    }
+
+    falar(
+        "Modo de leitura por seleção ativado. " +
+        "Clique em um texto para ouvi-lo. " +
+        "Você também pode usar a tecla Tab para navegar pelos elementos."
     );
 
 }
 
 
 /* =========================================================
-   LER ELEMENTO COM FILA
+   ADICIONAR TEXTO À FILA
 ========================================================= */
 
-function lerElementoComFila(elemento) {
+function adicionarNaFila(texto) {
 
-    const texto =
-        obterTextoLeitura(elemento);
+    if (!texto) return;
 
-    if (!texto) {
-        return;
-    }
+    filaLeitura.push(texto);
 
-
-    destacarElemento(elemento);
-
-
-    /*
-       IMPORTANTE:
-       Não usamos speechSynthesis.cancel()
-       aqui.
-
-       Assim, se um texto já estiver sendo lido,
-       o novo texto entra na fila e espera
-       o anterior terminar.
-    */
-
-    const partes =
-        dividirTexto(texto);
-
-
-    partes.forEach(function (parte) {
-
-        filaLeitura.push(parte);
-
-    });
-
-
-    if (!lendoFila) {
-
-        lendoFila = true;
-
-        indiceFila = 0;
-
-        if (controleLeitura) {
-            controleLeitura.style.display =
-                "flex";
-        }
-
-        atualizarStatus(
-            "🔊 Lendo seleção..."
-        );
-
-        falarProximaParte();
-
-    }
+    processarFila();
 
 }
 
 
 /* =========================================================
-   NAVEGAÇÃO POR TAB
+   PROCESSAR FILA
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    function (event) {
+function processarFila() {
 
-        if (
-            !document.body.classList.contains(
-                "modo-leitura-selecao"
-            )
-        ) {
-            return;
-        }
+    if (lendoFila) return;
 
+    if (filaLeitura.length === 0) {
 
-        if (event.key !== "Tab") {
-            return;
-        }
+        if (modoLeitura === "selecao") {
 
-
-        event.preventDefault();
-
-
-        if (!elementosLeitura.length) {
-
-            prepararElementos();
-
-        }
-
-
-        if (event.shiftKey) {
-
-            indiceLeitura--;
-
-            if (indiceLeitura < 0) {
-
-                indiceLeitura =
-                    elementosLeitura.length - 1;
-
-            }
-
-        } else {
-
-            indiceLeitura++;
-
-            if (
-                indiceLeitura >=
-                elementosLeitura.length
-            ) {
-
-                indiceLeitura = 0;
-
+            if (statusLeitura) {
+                statusLeitura.innerHTML =
+                    "👆 Selecione um texto";
             }
 
         }
 
-
-        const elemento =
-            elementosLeitura[indiceLeitura];
-
-
-        if (!elemento) {
-            return;
-        }
-
-
-        destacarElemento(elemento);
-
-
-        try {
-
-            elemento.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        } catch (erro) {}
-
-
-        lerElementoComFila(elemento);
+        return;
 
     }
-);
+
+    lendoFila = true;
+
+    const texto = filaLeitura.shift();
+
+    if (statusLeitura) {
+
+        statusLeitura.innerHTML = "🔊 Lendo...";
+
+    }
+
+    falarTextoFila(texto);
+
+}
+
+
+/* =========================================================
+   FALAR TEXTO DA FILA
+========================================================= */
+
+function falarTextoFila(texto) {
+
+    if (!texto) {
+
+        lendoFila = false;
+        processarFila();
+
+        return;
+
+    }
+
+    const partes = limparTexto(texto)
+        .match(/.{1,180}(?:\s|$)/g);
+
+    if (!partes || partes.length === 0) {
+
+        lendoFila = false;
+        processarFila();
+
+        return;
+
+    }
+
+    let indice = 0;
+
+
+    function falarParteFila() {
+
+        if (indice >= partes.length) {
+
+            lendoFila = false;
+
+            processarFila();
+
+            return;
+
+        }
+
+        leitura = new SpeechSynthesisUtterance(
+            partes[indice].trim()
+        );
+
+        leitura.lang = "pt-BR";
+        leitura.rate = 1;
+        leitura.pitch = 1;
+        leitura.volume = 1;
+
+
+        leitura.onend = function () {
+
+            indice++;
+
+            setTimeout(
+                falarParteFila,
+                80
+            );
+
+        };
+
+
+        leitura.onerror = function () {
+
+            indice++;
+
+            setTimeout(
+                falarParteFila,
+                100
+            );
+
+        };
+
+
+        speechSynthesis.speak(leitura);
+
+    }
+
+
+    falarParteFila();
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO COM TAB
+========================================================= */
+
+document.addEventListener("keydown", function (evento) {
+
+    if (modoLeitura !== "selecao") return;
+
+    if (evento.key !== "Tab") return;
+
+    prepararElementos();
+
+    if (elementosLeitura.length === 0) return;
+
+    evento.preventDefault();
+
+
+    if (evento.shiftKey) {
+
+        indiceLeitura--;
+
+        if (indiceLeitura < 0) {
+
+            indiceLeitura =
+                elementosLeitura.length - 1;
+
+        }
+
+    } else {
+
+        indiceLeitura++;
+
+        if (
+            indiceLeitura >=
+            elementosLeitura.length
+        ) {
+
+            indiceLeitura = 0;
+
+        }
+
+    }
+
+
+    const elemento =
+        elementosLeitura[indiceLeitura];
+
+    if (!elemento) return;
+
+    destacarPorTab(elemento);
+
+});
+
+
+/* =========================================================
+   DESTACAR PELO TAB
+========================================================= */
+
+function destacarPorTab(elemento) {
+
+    elementosLeitura.forEach(function (item) {
+
+        removerDestaque(item);
+
+    });
+
+    destacarElemento(elemento);
+
+    try {
+
+        elemento.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    } catch (erro) {}
+
+    const texto = obterTextoLeitura(elemento);
+
+    if (texto) {
+
+        adicionarNaFila(texto);
+
+    }
+
+}
 
 
 /* =========================================================
    ENTER NO ELEMENTO SELECIONADO
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    function (event) {
+document.addEventListener("keydown", function (evento) {
 
-        if (
-            !document.body.classList.contains(
-                "modo-leitura-selecao"
-            )
-        ) {
-            return;
-        }
+    if (modoLeitura !== "selecao") return;
 
+    if (evento.key !== "Enter") return;
 
-        if (event.key !== "Enter") {
-            return;
-        }
+    const elemento =
+        elementosLeitura[indiceLeitura];
+
+    if (!elemento) return;
+
+    const tag =
+        elemento.tagName.toLowerCase();
 
 
-        const elemento =
-            elementosLeitura[indiceLeitura];
+    if (
+        tag === "button" ||
+        tag === "a"
+    ) {
 
+        evento.preventDefault();
 
-        if (!elemento) {
-            return;
-        }
-
-
-        /*
-           Links
-        */
-
-        if (
-            elemento.tagName === "A"
-        ) {
-
-            elemento.click();
-
-        }
-
-
-        /*
-           Botões
-        */
-
-        else if (
-            elemento.tagName === "BUTTON"
-        ) {
-
-            elemento.click();
-
-        }
-
-
-        /*
-           Outros elementos interativos
-        */
-
-        else if (
-            elemento.getAttribute("role") ===
-            "button"
-        ) {
-
-            elemento.click();
-
-        }
+        elemento.click();
 
     }
-);
+
+});
 
 
 /* =========================================================
-   ESCAPE - SAIR DO MODO DE SELEÇÃO
+   ESC - SAIR DO MODO DE LEITURA
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    function (event) {
+document.addEventListener("keydown", function (evento) {
 
-        if (
-            event.key !== "Escape"
-        ) {
-            return;
-        }
+    if (evento.key !== "Escape") return;
 
+    if (modoLeitura === "selecao") {
 
-        if (
-            document.body.classList.contains(
-                "modo-leitura-selecao"
-            )
-        ) {
-
-            pararLeitura();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   ATUALIZAR STATUS
-========================================================= */
-
-function atualizarStatus(texto) {
-
-    if (statusLeitura) {
-
-        statusLeitura.innerHTML =
-            texto;
+        pararLeitura();
 
     }
 
-}
+});
 
 
 /* =========================================================
@@ -1374,25 +1050,25 @@ function atualizarStatus(texto) {
 
 if (botaoPausar) {
 
-    botaoPausar.addEventListener(
-        "click",
-        function () {
+    botaoPausar.addEventListener("click", function () {
 
-            if (
-                speechSynthesis.speaking &&
-                !speechSynthesis.paused
-            ) {
+        if (
+            "speechSynthesis" in window &&
+            speechSynthesis.speaking
+        ) {
 
-                speechSynthesis.pause();
+            speechSynthesis.pause();
 
-                atualizarStatus(
-                    "⏸ Pausado"
-                );
+            if (statusLeitura) {
+
+                statusLeitura.innerHTML =
+                    "⏸ Pausado";
 
             }
 
         }
-    );
+
+    });
 
 }
 
@@ -1403,42 +1079,25 @@ if (botaoPausar) {
 
 if (botaoContinuar) {
 
-    botaoContinuar.addEventListener(
-        "click",
-        function () {
+    botaoContinuar.addEventListener("click", function () {
 
-            if (
-                speechSynthesis.paused
-            ) {
+        if (
+            "speechSynthesis" in window &&
+            speechSynthesis.paused
+        ) {
 
-                speechSynthesis.resume();
+            speechSynthesis.resume();
 
-                atualizarStatus(
-                    "🔊 Lendo..."
-                );
+            if (statusLeitura) {
+
+                statusLeitura.innerHTML =
+                    "🔊 Lendo...";
 
             }
 
         }
-    );
 
-}
-
-
-/* =========================================================
-   PARAR
-========================================================= */
-
-if (botaoParar) {
-
-    botaoParar.addEventListener(
-        "click",
-        function () {
-
-            pararLeitura();
-
-        }
-    );
+    });
 
 }
 
@@ -1447,23 +1106,24 @@ if (botaoParar) {
    PARAR LEITURA
 ========================================================= */
 
-function pararLeitura() {
+if (botaoParar) {
 
-    pararLeituraInternamente(true);
+    botaoParar.addEventListener("click", function () {
+
+        pararLeitura();
+
+    });
 
 }
 
 
-/* =========================================================
-   PARAR INTERNAMENTE
-========================================================= */
+function pararLeitura() {
 
-function pararLeituraInternamente(
-    ocultarControle
-) {
+    if ("speechSynthesis" in window) {
 
-    speechSynthesis.cancel();
+        speechSynthesis.cancel();
 
+    }
 
     leitura = null;
 
@@ -1474,18 +1134,16 @@ function pararLeituraInternamente(
 
     indiceFila = 0;
 
+    modoLeitura = null;
+
     indiceLeitura = -1;
 
 
-    elementosLeitura.forEach(
-        function (elemento) {
+    elementosLeitura.forEach(function (elemento) {
 
-            elemento.classList.remove(
-                "leitura-destaque"
-            );
+        removerDestaque(elemento);
 
-        }
-    );
+    });
 
 
     document.body.classList.remove(
@@ -1495,727 +1153,413 @@ function pararLeituraInternamente(
 
     if (indicadorSelecao) {
 
-        indicadorSelecao.style.display =
-            "none";
+        indicadorSelecao.style.display = "none";
 
     }
 
 
-    if (ocultarControle) {
+    if (controleLeitura) {
 
-        if (controleLeitura) {
-
-            controleLeitura.style.display =
-                "none";
-
-        }
-
-        atualizarStatus("");
+        controleLeitura.style.display = "none";
 
     }
 
-}
 
+    if (statusLeitura) {
 
-/* =========================================================
-   FONTE
-========================================================= */
-
-const botaoFonteMais =
-    document.getElementById("fonteMais");
-
-const botaoFontePadrao =
-    document.getElementById("fontePadrao");
-
-const botaoFonteMenos =
-    document.getElementById("fonteMenos");
-
-
-const CHAVE_FONTE =
-    "tamanhoFonte";
-
-
-function aplicarTamanhoFonte() {
-
-    let escala =
-        parseFloat(
-            localStorage.getItem(
-                CHAVE_FONTE
-            )
-        );
-
-
-    if (isNaN(escala)) {
-        escala = 1;
-    }
-
-
-    escala =
-        Math.max(
-            0.8,
-            Math.min(
-                1.4,
-                escala
-            )
-        );
-
-
-    document.documentElement.style
-        .setProperty(
-            "--escala-fonte",
-            escala
-        );
-
-
-    document.body.style.fontSize =
-        (escala * 100) + "%";
-
-}
-
-
-aplicarTamanhoFonte();
-
-
-if (botaoFonteMais) {
-
-    botaoFonteMais.onclick =
-        function () {
-
-            let escala =
-                parseFloat(
-                    localStorage.getItem(
-                        CHAVE_FONTE
-                    )
-                ) || 1;
-
-
-            escala += 0.1;
-
-
-            if (escala > 1.4) {
-                escala = 1.4;
-            }
-
-
-            localStorage.setItem(
-                CHAVE_FONTE,
-                escala.toFixed(2)
-            );
-
-
-            aplicarTamanhoFonte();
-
-        };
-
-}
-
-
-if (botaoFontePadrao) {
-
-    botaoFontePadrao.onclick =
-        function () {
-
-            localStorage.setItem(
-                CHAVE_FONTE,
-                "1"
-            );
-
-            aplicarTamanhoFonte();
-
-        };
-
-}
-
-
-if (botaoFonteMenos) {
-
-    botaoFonteMenos.onclick =
-        function () {
-
-            let escala =
-                parseFloat(
-                    localStorage.getItem(
-                        CHAVE_FONTE
-                    )
-                ) || 1;
-
-
-            escala -= 0.1;
-
-
-            if (escala < 0.8) {
-                escala = 0.8;
-            }
-
-
-            localStorage.setItem(
-                CHAVE_FONTE,
-                escala.toFixed(2)
-            );
-
-
-            aplicarTamanhoFonte();
-
-        };
-
-}
-
-
-/* =========================================================
-   ALTO CONTRASTE
-========================================================= */
-
-const botaoContraste =
-    document.getElementById("contraste");
-
-
-function aplicarContraste() {
-
-    if (
-        localStorage.getItem(
-            "altoContraste"
-        ) === "on"
-    ) {
-
-        document.body.classList.add(
-            "alto-contraste"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "alto-contraste"
-        );
+        statusLeitura.innerHTML = "";
 
     }
 
 }
 
 
-aplicarContraste();
+// Recupera a escala salva ou usa 1 (100%)
+let escala = parseFloat(localStorage.getItem("escalaFonte")) || 1;
 
+// Seleciona todos os textos do conteúdo
+const textos = document.querySelectorAll(
+    "main h1, main h2, main h3, main h4, main h5, main h6, main p, main a, main li, main span, main button, main pre, main code"
+);
+
+// Guarda o tamanho original que o navegador calculou
+textos.forEach(el => {
+    const tamanho = parseFloat(getComputedStyle(el).fontSize);
+    el.dataset.fonteOriginal = tamanho;
+});
+
+// Aplica a escala
+function atualizarFonte() {
+
+    textos.forEach(el => {
+
+        const original = parseFloat(el.dataset.fonteOriginal);
+
+        el.style.fontSize = (original * escala) + "px";
+
+    });
+
+    // Salva a escala
+    localStorage.setItem("escalaFonte", escala);
+
+}
+
+// Aplica automaticamente ao abrir a página
+atualizarFonte();
+console.log("Escala:", escala);
+console.log("Storage:", localStorage.getItem("escalaFonte"));
+
+// A+
+document.getElementById("fonteMais").onclick = () => {
+
+    if (escala < 1.5) {
+
+        escala = +(escala + 0.1).toFixed(1);
+        atualizarFonte();
+
+    }
+
+};
+
+// A-
+document.getElementById("fonteMenos").onclick = () => {
+
+    if (escala > 0.8) {
+
+        escala = +(escala - 0.1).toFixed(1);
+        atualizarFonte();
+
+    }
+
+};
+
+// A (normal)
+document.getElementById("fontePadrao").onclick = () => {
+
+    escala = 1;
+    atualizarFonte();
+
+};
+
+////////////////////
+// Alto Contraste //
+////////////////////
+
+const botaoContraste = document.getElementById("contraste");
 
 if (botaoContraste) {
 
-    botaoContraste.onclick =
-        function () {
+    if (localStorage.getItem("contraste") === "on") {
+        document.body.classList.add("alto-contraste");
+        botaoContraste.innerHTML = "☀️ Tema normal";
+    }
 
-            document.body.classList.toggle(
-                "alto-contraste"
-            );
+    botaoContraste.onclick = () => {
 
+        document.body.classList.toggle("alto-contraste");
 
-            if (
-                document.body.classList.contains(
-                    "alto-contraste"
-                )
-            ) {
+        if (document.body.classList.contains("alto-contraste")) {
 
-                localStorage.setItem(
-                    "altoContraste",
-                    "on"
-                );
+            botaoContraste.innerHTML = "☀️ Tema normal";
+            localStorage.setItem("contraste", "on");
 
-            } else {
+        } else {
 
-                localStorage.setItem(
-                    "altoContraste",
-                    "off"
-                );
-
-            }
-
-        };
-
-}
-
-
-/* =========================================================
-   FONTE PARA DISLEXIA
-========================================================= */
-
-const botaoDislexia =
-    document.getElementById("dislexia");
-
-
-function aplicarDislexia() {
-
-    if (
-        localStorage.getItem(
-            "fonteDislexia"
-        ) === "on"
-    ) {
-
-        document.body.classList.add(
-            "fonte-dislexia"
-        );
-
-        if (botaoDislexia) {
-
-            botaoDislexia.innerHTML =
-                "📖 Fonte normal";
+            botaoContraste.innerHTML = "🌙 Alto contraste";
+            localStorage.setItem("contraste", "off");
 
         }
 
-    } else {
+    };
 
-        document.body.classList.remove(
-            "fonte-dislexia"
-        );
+}
 
-        if (botaoDislexia) {
 
-            botaoDislexia.innerHTML =
-                "📖 Fonte para dislexia";
 
-        }
+/////////////////////////
+// Fonte para Dislexia //
+/////////////////////////
+
+const botaoDislexia = document.getElementById("dislexia");
+
+// Recupera a preferência salva
+if(localStorage.getItem("dislexia") === "on"){
+
+    document.body.classList.add("fonte-dislexia");
+    botaoDislexia.innerHTML = "🔤 Fonte Normal";
+
+}
+
+botaoDislexia.onclick = () => {
+
+    document.body.classList.toggle("fonte-dislexia");
+
+    if(document.body.classList.contains("fonte-dislexia")){
+
+        botaoDislexia.innerHTML = "🔤 Fonte Normal";
+        localStorage.setItem("dislexia", "on");
+
+    }else{
+
+        botaoDislexia.innerHTML = "📖 Fonte para Dislexia";
+        localStorage.setItem("dislexia", "off");
 
     }
 
-}
+};
 
 
-aplicarDislexia();
+///////////////////////
+// Espaçamento maior //
+///////////////////////
 
+const botaoEspacamento = document.getElementById("espacamento");
 
-if (botaoDislexia) {
+//Recupera a preferência salva
+if(localStorage.getItem("espacamento") === "on"){
 
-    botaoDislexia.onclick =
-        function () {
-
-            const ativada =
-                document.body.classList.toggle(
-                    "fonte-dislexia"
-                );
-
-
-            localStorage.setItem(
-                "fonteDislexia",
-                ativada
-                    ? "on"
-                    : "off"
-            );
-
-
-            botaoDislexia.innerHTML =
-                ativada
-                    ? "📖 Fonte normal"
-                    : "📖 Fonte para dislexia";
-
-        };
+    document.body.classList.add("espacamento");
+    botaoEspacamento.innerHTML = "↔  Espaçamento normal";
 
 }
 
+// Clique no botão
+botaoEspacamento.onclick = () => {
 
-/* =========================================================
-   ESPAÇAMENTO
-========================================================= */
+    document.body.classList.toggle("espacamento");
 
-const botaoEspacamento =
-    document.getElementById("espacamento");
+    if(document.body.classList.contains("espacamento")) {
 
+        botaoEspacamento.innerHTML = "↔ Espaçamento normal";
 
-function aplicarEspacamento() {
+        localStorage.setItem("espacamento", "on");
 
-    if (
-        localStorage.getItem(
-            "espacamento"
-        ) === "on"
-    ) {
+    }else{
+        botaoEspacamento.innerHTML = "↔ Aumentar espaçamento";
 
-        document.body.classList.add(
-            "espacamento-aumentado"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "espacamento-aumentado"
-        );
+        localStorage.setItem("espacamento", "off");
 
     }
-
-}
-
-
-aplicarEspacamento();
+};
 
 
-if (botaoEspacamento) {
-
-    botaoEspacamento.onclick =
-        function () {
-
-            const ativado =
-                document.body.classList.toggle(
-                    "espacamento-aumentado"
-                );
-
-
-            localStorage.setItem(
-                "espacamento",
-                ativado
-                    ? "on"
-                    : "off"
-            );
-
-        };
-
-}
-
-
-/* =========================================================
-   CURSOR AMPLIADO
-========================================================= */
+/////////////////////////
+// Cursor Ampliado
+/////////////////////////
 
 const botaoCursor =
-    document.getElementById("cursor");
+document.getElementById("cursor");
 
+// Recupera preferência
 
-function aplicarCursor() {
+if(localStorage.getItem("cursor") === "on"){
 
-    if (
-        localStorage.getItem(
-            "cursorGrande"
-        ) === "on"
-    ) {
+    document.body.classList.add("cursor-grande");
 
-        document.body.classList.add(
-            "cursor-grande"
-        );
-
-
-        if (botaoCursor) {
-
-            botaoCursor.innerHTML =
-                "🖱 Cursor normal";
-
-        }
-
-    } else {
-
-        document.body.classList.remove(
-            "cursor-grande"
-        );
-
-
-        if (botaoCursor) {
-
-            botaoCursor.innerHTML =
-                "🖱 Cursor ampliado";
-
-        }
-
-    }
+    botaoCursor.innerHTML =
+    "🖱 Cursor normal";
 
 }
 
+// Clique
 
-aplicarCursor();
+botaoCursor.onclick = () => {
 
-
-if (botaoCursor) {
-
-    botaoCursor.onclick =
-        function () {
-
-            const ativado =
-                document.body.classList.toggle(
-                    "cursor-grande"
-                );
-
-
-            localStorage.setItem(
-                "cursorGrande",
-                ativado
-                    ? "on"
-                    : "off"
-            );
-
-
-            botaoCursor.innerHTML =
-                ativado
-                    ? "🖱 Cursor normal"
-                    : "🖱 Cursor ampliado";
-
-        };
-
-}
-
-
-/* =========================================================
-   REDUZIR ANIMAÇÕES
-========================================================= */
-
-const botaoAnimacoes =
-    document.getElementById("animacoes");
-
-
-function aplicarAnimacoes() {
-
-    if (
-        localStorage.getItem(
-            "reduzirAnimacoes"
-        ) === "on"
-    ) {
-
-        document.body.classList.add(
-            "reduzir-animacoes"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "reduzir-animacoes"
-        );
-
-    }
-
-}
-
-
-aplicarAnimacoes();
-
-
-if (botaoAnimacoes) {
-
-    botaoAnimacoes.onclick =
-        function () {
-
-            const ativado =
-                document.body.classList.toggle(
-                    "reduzir-animacoes"
-                );
-
-
-            localStorage.setItem(
-                "reduzirAnimacoes",
-                ativado
-                    ? "on"
-                    : "off"
-            );
-
-        };
-
-}
-
-
-/* =========================================================
-   LUPA
-========================================================= */
-
-const botaoLupa =
-    document.getElementById("lupa");
-
-
-function aplicarLupa() {
-
-    if (
-        localStorage.getItem(
-            "lupaAtiva"
-        ) === "on"
-    ) {
-
-        document.body.classList.add(
-            "lupa-ativa"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "lupa-ativa"
-        );
-
-    }
-
-}
-
-
-aplicarLupa();
-
-
-if (botaoLupa) {
-
-    botaoLupa.onclick =
-        function () {
-
-            const ativada =
-                document.body.classList.toggle(
-                    "lupa-ativa"
-                );
-
-
-            localStorage.setItem(
-                "lupaAtiva",
-                ativada
-                    ? "on"
-                    : "off"
-            );
-
-        };
-
-}
-
-
-/* =========================================================
-   RESTAURAR ACESSIBILIDADE
-========================================================= */
-
-const botaoRestaurar =
-    document.getElementById(
-        "restaurarAcessibilidade"
+    document.body.classList.toggle(
+        "cursor-grande"
     );
 
+    if(document.body.classList.contains(
+        "cursor-grande"
+    )){
 
-if (botaoRestaurar) {
+        localStorage.setItem(
+            "cursorGrande",
+            "on"
+        );
 
-    botaoRestaurar.onclick =
-        function () {
+        botaoCursor.innerHTML =
+        "🖱 Cursor normal";
 
-            /*
-               Leitura
-            */
+    }else{
 
-            pararLeitura();
+        localStorage.setItem(
+            "cursorGrande",
+            "off"
+        );
 
+        botaoCursor.innerHTML =
+        "🖱 Cursor ampliado";
 
-            /*
-               Fonte
-            */
+    }
 
-            localStorage.removeItem(
-                "tamanhoFonte"
-            );
-
-
-            /*
-               Contraste
-            */
-
-            localStorage.removeItem(
-                "altoContraste"
-            );
+};
 
 
-            /*
-               Dislexia
-            */
+/////////////////////////
+// Reduzir animações //
+/////////////////////////
 
-            localStorage.removeItem(
-                "fonteDislexia"
-            );
+const botaoAnimacoes = document.getElementById("animacoes");
 
+// Recupera a preferência salva
+if(localStorage.getItem("animacoes") === "on"){
 
-            /*
-               Espaçamento
-            */
-
-            localStorage.removeItem(
-                "espacamento"
-            );
-
-
-            /*
-               Cursor
-            */
-
-            localStorage.removeItem(
-                "cursorGrande"
-            );
-
-
-            /*
-               Animações
-            */
-
-            localStorage.removeItem(
-                "reduzirAnimacoes"
-            );
-
-
-            /*
-               Lupa
-            */
-
-            localStorage.removeItem(
-                "lupaAtiva"
-            );
-
-
-            /*
-               Aplicar padrões
-            */
-
-            document.body.classList.remove(
-                "alto-contraste",
-                "fonte-dislexia",
-                "espacamento-aumentado",
-                "cursor-grande",
-                "reduzir-animacoes",
-                "lupa-ativa"
-            );
-
-
-            document.body.style.fontSize =
-                "";
-
-
-            document.documentElement.style
-                .removeProperty(
-                    "--escala-fonte"
-                );
-
-
-            aplicarDislexia();
-            aplicarCursor();
-
-
-            if (botaoDislexia) {
-
-                botaoDislexia.innerHTML =
-                    "📖 Fonte para dislexia";
-
-            }
-
-
-            if (botaoCursor) {
-
-                botaoCursor.innerHTML =
-                    "🖱 Cursor ampliado";
-
-            }
-
-
-            atualizarStatus("");
-
-
-            if (controleLeitura) {
-
-                controleLeitura.style.display =
-                    "none";
-
-            }
-
-        };
+    document.body.classList.add("reduzir-animacoes");
+    botaoAnimacoes.innerHTML = "🎞 Animações normais";
 
 }
 
+// Clique no botão
+botaoAnimacoes.onclick = () => {
 
-/* =========================================================
-   GARANTIR QUE O LEITOR FIQUE DISPONÍVEL
-========================================================= */
+    document.body.classList.toggle("reduzir-animacoes");
+
+    if(document.body.classList.contains("reduzir-animacoes")){
+
+        botaoAnimacoes.innerHTML = "🎞 Animações normais";
+        localStorage.setItem("animacoes","on");
+
+    }else{
+
+        botaoAnimacoes.innerHTML = "✨ Reduzir animações";
+        localStorage.setItem("animacoes","off");
+
+    }
+
+};
+
+//////////////////
+// Lupa de foco //
+//////////////////
+
+const lupa = document.getElementById("lupaFoco");
+const botaoLupa = document.getElementById("lupa");
+
+// Recupera a preferência
+if(localStorage.getItem("lupa") === "on"){
+
+    document.body.classList.add("lupa");
+    botaoLupa.innerHTML = "🔍 Desativar lupa";
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+
+    lupa.style.left = e.clientX + "px";
+    lupa.style.top = e.clientY + "px";
+
+});
+
+botaoLupa.onclick = ()=>{
+
+    document.body.classList.toggle("lupa");
+
+    if(document.body.classList.contains("lupa")){
+
+        botaoLupa.innerHTML = "🔍 Desativar lupa";
+        localStorage.setItem("lupa","on");
+
+    }else{
+
+        botaoLupa.innerHTML = "🔍 Ativar lupa";
+        localStorage.setItem("lupa","off");
+
+    }
+
+};
+
+document.getElementById("restaurarAcessibilidade").onclick = () => {
+
+    // Fonte
+    escala = 1;
+    atualizarFonte();
+
+    // Alto contraste
+    document.body.classList.remove("alto-contraste");
+    localStorage.setItem("contraste","off");
+    document.getElementById("contraste").innerHTML = "🌙 Alto contraste";
+
+    // Fonte para dislexia
+    document.body.classList.remove("fonte-dislexia");
+    localStorage.setItem("dislexia","off");
+    document.getElementById("dislexia").innerHTML = "📖 Fonte para dislexia";
+
+    // Espaçamento
+    document.body.classList.remove("espacamento");
+    localStorage.setItem("espacamento","off");
+    document.getElementById("espacamento").innerHTML = "↔️ Aumentar espaçamento";
+
+    // Cursor ampliado
+    document.body.classList.remove("cursor-grande");
+    localStorage.setItem("cursor","off");
+    document.getElementById("cursor").innerHTML = "🖱 Cursor ampliado";
+
+    // Redução de animações
+    document.body.classList.remove("reduzir-animacoes");
+    localStorage.setItem("animacoes","off");
+    document.getElementById("animacoes").innerHTML = "✨ Reduzir animações";
+
+    // Lupa (se existir)
+    document.body.classList.remove("lupa");
+    localStorage.setItem("lupa","off");
+
+    const botaoLupa = document.getElementById("lupa");
+    if(botaoLupa){
+        botaoLupa.innerHTML = "🔍 Ativar lupa";
+    }
+
+    // Fecha o menu
+    menu.classList.remove("ativo");
+
+};
+
+
+// =====================================
+// AJUSTE AUTOMÁTICO DO CABEÇALHO
+// =====================================
+
+function ajustarEspacoCabecalho(){
+
+    const header = document.querySelector("header");
+
+    if(!header){
+        return;
+    }
+
+    const altura = header.offsetHeight;
+
+    document.documentElement.style.setProperty(
+        "--altura-cabecalho",
+        altura + "px"
+    );
+
+}
 
 window.addEventListener(
     "load",
-    function () {
-
-        aplicarTamanhoFonte();
-        aplicarContraste();
-        aplicarDislexia();
-        aplicarEspacamento();
-        aplicarCursor();
-        aplicarAnimacoes();
-        aplicarLupa();
-
-    }
+    ajustarEspacoCabecalho
 );
+
+window.addEventListener(
+    "resize",
+    ajustarEspacoCabecalho
+);
+
+
+// Atualiza quando a página mudar
+const observadorCabecalho =
+new ResizeObserver(() => {
+
+    ajustarEspacoCabecalho();
+
+});
+
+const header =
+document.querySelector("header");
+
+if(header){
+
+    observadorCabecalho.observe(header);
+
+}
