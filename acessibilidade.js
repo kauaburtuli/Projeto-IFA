@@ -274,8 +274,26 @@ function abrirModalLeitura() {
 
     opcaoAtual = 0;
 
-    atualizarOpcaoModal();
+    falarAviso(
+        "Selecione o tipo de leitura. " +
+        "A primeira opção lê a página inteira. " +
+        "A segunda opção permite selecionar os elementos que deseja ouvir. " +
+        "Use as setas para cima e para baixo para navegar entre as opções. " +
+        "Pressione Enter para confirmar ou Escape para fechar."
+    );
 
+    atualizarOpcaoModal();
+}
+
+function falarAviso(texto) {
+    speechSynthesis.cancel();
+
+    const aviso = new SpeechSynthesisUtterance(texto);
+    aviso.lang = "pt-BR";
+    aviso.rate = 1;
+    aviso.pitch = 1;
+
+    speechSynthesis.speak(aviso);
 }
 
 

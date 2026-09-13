@@ -1179,7 +1179,7 @@ body.alto-contraste ::selection{
    DESTAQUE DA LEITURA POR SELEÇÃO
 ========================================================= */
 
-.destaque-leitura {
+.elemento-leitura {
     outline: 4px solid #ff9800 !important;
     outline-offset: 5px !important;
     box-shadow: 0 0 0 6px rgba(255, 152, 0, 0.25) !important;
@@ -1190,7 +1190,7 @@ body.alto-contraste ::selection{
 
 /* Destaque no alto contraste */
 
-body.alto-contraste .destaque-leitura {
+body.alto-contraste .elemento-leitura {
     outline: 4px solid #ffff00 !important;
     outline-offset: 5px !important;
     box-shadow: 0 0 0 6px #ffffff !important;
@@ -1199,6 +1199,6 @@ body.alto-contraste .destaque-leitura {
 
 /* Destaque durante a navegação */
 
-body.modo-leitura-selecao .destaque-leitura {
+body.modo-leitura-selecao .elemento-leitura {
     scroll-margin-top: 120px;
 }
